@@ -53,7 +53,7 @@ autowrap_mode = 0
 
 [node name="Directory" type="Label" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
-text = "directory not found"
+text = "Directory"
 label_settings = SubResource("LabelSettings_ky8oc")
 clip_text = true
 

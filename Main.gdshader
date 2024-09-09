@@ -10,7 +10,7 @@ void vertex() {
 void fragment() {
 	vec4 as = texture(screen_texture,SCREEN_UV);
 	vec4 a2s = texture(TEXTURE,UV);
-	vec4 fart = a2s * (0.1 + as.bgra);
+	vec4 fart = a2s * (0.1 + as.brga);
 	COLOR = fart * intensity;
 }
 
