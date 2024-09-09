@@ -1,0 +1,668 @@
+[gd_scene load_steps=53 format=3 uid="uid://b2sygl55s6fng"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
+[ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
+[ext_resource type="Texture2D" uid="uid://cq8jj63iyu2cs" path="res://d7hftxdivxxvm.cloudfront.webp" id="2_wf35v"]
+[ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Skip.png" id="3_4vx67"]
+[ext_resource type="Script" path="res://wallpaper_manager.gd" id="4_y372l"]
+[ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Loop.png" id="5_c2g63"]
+[ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Headphones.png" id="6_3mi6c"]
+[ext_resource type="Texture2D" uid="uid://snne8iiftksi" path="res://Evening_view_of_Munnar_1633.jpg" id="6_5vm0w"]
+[ext_resource type="Texture2D" uid="uid://ba5wdmchyy50n" path="res://nighttime-in-the-hills-henry-porter.jpg" id="6_8abnc"]
+[ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Play.png" id="8_5v7u3"]
+[ext_resource type="Shader" path="res://CoverShader.gdshader" id="8_4531v"]
+[ext_resource type="Shader" path="res://Main.gdshader" id="10_20857"]
+[ext_resource type="Texture2D" uid="uid://b00wlqid2jdvi" path="res://BigLogo.png" id="10_xnj6a"]
+[ext_resource type="Texture2D" uid="uid://0r1tx6l1lc6x" path="res://settingscog.png" id="11_esjel"]
+[ext_resource type="Script" path="res://cover.gd" id="12_3v50a"]
+[ext_resource type="Script" path="res://settings_button.gd" id="12_073mb"]
+[ext_resource type="Texture2D" uid="uid://bdpat2sfflaxq" path="res://Youtube_logo.png" id="12_bc5ym"]
+[ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://search.png" id="12_cv2gm"]
+[ext_resource type="Script" path="res://search_bar.gd" id="12_mr42x"]
+[ext_resource type="Script" path="res://search_toggle.gd" id="13_5illk"]
+[ext_resource type="PackedScene" uid="uid://dqg674t6kun4e" path="res://Settings.tscn" id="13_7atry"]
+[ext_resource type="Texture2D" uid="uid://b5eims5ucn81r" path="res://Loding.png" id="13_de5ej"]
+[ext_resource type="Script" path="res://volume_button.gd" id="14_7q3ja"]
+[ext_resource type="Texture2D" uid="uid://1rstn6r2wisy" path="res://X.png" id="14_mioc4"]
+[ext_resource type="Script" path="res://Spinning.gd" id="14_rhw4k"]
+[ext_resource type="Script" path="res://yt_tab_button.gd" id="16_2t15p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ku7tv"]
+shader = ExtResource("10_20857")
+shader_parameter/intensity = 1.0
+
+[sub_resource type="Gradient" id="Gradient_7vgyc"]
+offsets = PackedFloat32Array(0.00292398, 0.845029)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bhdch"]
+gradient = SubResource("Gradient_7vgyc")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_hqvtw"]
+offsets = PackedFloat32Array(0.459016, 0.565574, 0.704918, 0.827869, 0.92623, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.132947, 0.132947, 0.132947, 0.867053, 0.286885, 0.286885, 0.286885, 0.713115, 0.536475, 0.536475, 0.536475, 0.463525, 0.790666, 0.790666, 0.790666, 0.209334, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_50sv0"]
+gradient = SubResource("Gradient_hqvtw")
+fill = 1
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3bw0j"]
+shader = ExtResource("8_4531v")
+shader_parameter/dissolve = SubResource("GradientTexture2D_50sv0")
+
+[sub_resource type="InputEventKey" id="InputEventKey_x0ps1"]
+device = -1
+ctrl_pressed = true
+keycode = 68
+
+[sub_resource type="Shortcut" id="Shortcut_vp2fh"]
+events = [SubResource("InputEventKey_x0ps1")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0fjy0"]
+font_size = 21
+
+[sub_resource type="InputEventKey" id="InputEventKey_0jlka"]
+device = -1
+ctrl_pressed = true
+keycode = 82
+
+[sub_resource type="Shortcut" id="Shortcut_axi6u"]
+events = [SubResource("InputEventKey_0jlka")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_117g0"]
+device = -1
+ctrl_pressed = true
+keycode = 83
+
+[sub_resource type="Shortcut" id="Shortcut_8p5o4"]
+events = [SubResource("InputEventKey_117g0")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_5af16"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_0ov5v"]
+events = [SubResource("InputEventKey_5af16")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_l1ahe"]
+device = -1
+keycode = 4194321
+
+[sub_resource type="Shortcut" id="Shortcut_qw6pv"]
+events = [SubResource("InputEventKey_l1ahe")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_c5qef"]
+device = -1
+keycode = 76
+unicode = 108
+
+[sub_resource type="Shortcut" id="Shortcut_vot6l"]
+events = [SubResource("InputEventKey_c5qef")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_y4cc2"]
+device = -1
+keycode = 4194319
+
+[sub_resource type="Shortcut" id="Shortcut_xu6hm"]
+events = [SubResource("InputEventKey_y4cc2")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6prit"]
+font_size = 22
+outline_size = 3
+outline_color = Color(0.215902, 0.215902, 0.215902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jg5vn"]
+font_size = 20
+outline_size = 3
+outline_color = Color(0.393086, 0.393086, 0.393085, 1)
+
+[sub_resource type="InputEventKey" id="InputEventKey_puhgg"]
+device = -1
+ctrl_pressed = true
+keycode = 81
+
+[sub_resource type="Shortcut" id="Shortcut_g3fcr"]
+events = [SubResource("InputEventKey_puhgg")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fiiw4"]
+font_size = 12
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ubs1p")
+LoopPressed = ExtResource("2_iolk5")
+LoopNotPressed = ExtResource("5_c2g63")
+
+[node name="WallpaperManager" type="Node2D" parent="." node_paths=PackedStringArray("Daytime", "Evening", "Nighttime")]
+script = ExtResource("4_y372l")
+Daytime = NodePath("../Daytime")
+Evening = NodePath("../Evening")
+Nighttime = NodePath("../Nighttime")
+
+[node name="Daytime" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wf35v")
+stretch_mode = 6
+
+[node name="Evening" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_5vm0w")
+stretch_mode = 6
+
+[node name="Nighttime" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_8abnc")
+stretch_mode = 6
+
+[node name="UserBG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Logo" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.686275)
+position = Vector2(192, 162)
+scale = Vector2(0.159259, 0.159259)
+texture = ExtResource("10_xnj6a")
+
+[node name="PausedIndicator" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ku7tv")
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -164.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_bhdch")
+
+[node name="CoverHolder" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = -3.0
+offset_bottom = 1.0
+grow_vertical = 0
+
+[node name="Cover" type="Sprite2D" parent="CoverHolder"]
+modulate = Color(1, 1, 1, 0.592157)
+material = SubResource("ShaderMaterial_3bw0j")
+scale = Vector2(0.333333, 0.333333)
+region_rect = Rect2(142.036, 106.625, 632.359, 516.605)
+region_filter_clip_enabled = true
+script = ExtResource("12_3v50a")
+
+[node name="SelectDirectory" type="Button" parent="."]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 24.0
+offset_right = 255.0
+offset_bottom = 80.0
+focus_mode = 0
+shortcut = SubResource("Shortcut_vp2fh")
+text = "select the
+directory"
+
+[node name="SelectPlaylist" type="Button" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 24.0
+offset_right = 131.0
+offset_bottom = 80.0
+focus_mode = 0
+shortcut = SubResource("Shortcut_vp2fh")
+text = "Playlists"
+
+[node name="PlaylistsContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 83.0
+offset_right = 352.0
+offset_bottom = 661.0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlaylistsContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="PlaylistsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "PLAYLISTS"
+label_settings = SubResource("LabelSettings_0fjy0")
+
+[node name="PlaylistsHolder" type="VBoxContainer" parent="PlaylistsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="RandomizeList" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -254.0
+offset_top = 24.0
+offset_right = -86.0
+offset_bottom = 80.0
+grow_horizontal = 0
+focus_mode = 0
+shortcut = SubResource("Shortcut_axi6u")
+text = "Randomize"
+
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -77.0
+offset_top = 23.0
+offset_right = -5.0
+offset_bottom = 95.0
+grow_horizontal = 0
+scale = Vector2(0.79, 0.79)
+focus_mode = 0
+shortcut = SubResource("Shortcut_8p5o4")
+icon = ExtResource("11_esjel")
+script = ExtResource("12_073mb")
+
+[node name="SettingsPopup" type="Popup" parent="."]
+position = Vector2i(319, 85)
+size = Vector2i(591, 501)
+
+[node name="SettingsMenuChild" parent="SettingsPopup" instance=ExtResource("13_7atry")]
+offset_left = -272.0
+offset_top = 8.0
+offset_bottom = 458.0
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+position = Vector2i(28, 115)
+size = Vector2i(576, 507)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="playList" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -77.0
+offset_right = 92.0
+offset_bottom = -5.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+focus_mode = 0
+shortcut = SubResource("Shortcut_0ov5v")
+icon = ExtResource("8_5v7u3")
+
+[node name="AddRemoveFromPlaylist" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 62.0
+offset_top = -77.0
+offset_right = 134.0
+offset_bottom = -5.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("14_mioc4")
+
+[node name="CurrentProgress" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 106.0
+offset_top = -88.0
+offset_right = -211.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1000.0
+ticks_on_borders = true
+
+[node name="Skip" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -105.0
+offset_top = -75.0
+offset_right = -65.0
+offset_bottom = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+shortcut = SubResource("Shortcut_qw6pv")
+icon = ExtResource("3_4vx67")
+
+[node name="Loop" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -152.0
+offset_top = -75.0
+offset_right = -112.0
+offset_bottom = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+shortcut = SubResource("Shortcut_vot6l")
+icon = ExtResource("5_c2g63")
+
+[node name="GoBack" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -157.0
+offset_top = -35.0
+offset_right = -117.0
+offset_bottom = 5.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 3.14159
+focus_mode = 0
+shortcut = SubResource("Shortcut_xu6hm")
+icon = ExtResource("3_4vx67")
+
+[node name="SongName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 109.0
+offset_top = -124.0
+offset_right = -158.0
+offset_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Please select a directory"
+label_settings = SubResource("LabelSettings_6prit")
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="ArtistName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 109.0
+offset_top = -103.0
+offset_right = -158.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "if this text is visible the programmer is lazy"
+label_settings = SubResource("LabelSettings_jg5vn")
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="SearchToggle" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -318.0
+offset_top = 24.0
+offset_right = -246.0
+offset_bottom = 96.0
+grow_horizontal = 0
+scale = Vector2(0.79, 0.79)
+focus_mode = 0
+toggle_mode = true
+shortcut = SubResource("Shortcut_g3fcr")
+icon = ExtResource("12_cv2gm")
+script = ExtResource("13_5illk")
+PressedIcon = ExtResource("14_mioc4")
+NotPressedIcon = ExtResource("12_cv2gm")
+
+[node name="SearchBar" type="LineEdit" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 264.0
+offset_top = 24.0
+offset_right = -328.0
+offset_bottom = 80.0
+grow_horizontal = 2
+focus_mode = 1
+placeholder_text = "Search"
+alignment = 1
+caret_blink = true
+script = ExtResource("12_mr42x")
+
+[node name="SongsMenu" type="MenuButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 264.0
+offset_top = 24.0
+offset_right = -328.0
+offset_bottom = 80.0
+grow_horizontal = 2
+text = "Select Songs"
+flat = false
+
+[node name="SearchResults" type="PopupMenu" parent="."]
+handle_input_locally = false
+position = Vector2i(265, 80)
+size = Vector2i(623, 300)
+wrap_controls = false
+max_size = Vector2i(625, 300)
+allow_search = false
+
+[node name="VolumeButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -75.0
+offset_right = -18.0
+offset_bottom = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+toggle_mode = true
+icon = ExtResource("6_3mi6c")
+script = ExtResource("14_7q3ja")
+
+[node name="VolumeSlider" type="VSlider" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -83.0
+offset_right = -30.0
+offset_bottom = -75.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 1
+size_flags_vertical = 8
+value = 100.0
+
+[node name="TimeListeningSong" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 109.0
+offset_top = -47.0
+offset_right = 221.0
+offset_bottom = -11.0
+grow_vertical = 0
+
+[node name="DiscordMenuHolder" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1042.0
+offset_top = 174.0
+offset_right = 1082.0
+offset_bottom = 214.0
+
+[node name="YtTabButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -97.0
+offset_top = 109.0
+offset_right = 551.0
+offset_bottom = 560.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.105, 0.105)
+focus_mode = 0
+toggle_mode = true
+icon = ExtResource("12_bc5ym")
+flat = true
+script = ExtResource("16_2t15p")
+
+[node name="YoutubeMenuHolder" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -358.0
+offset_top = 107.0
+offset_right = -318.0
+offset_bottom = 147.0
+grow_horizontal = 0
+
+[node name="Youtube menu" type="Control" parent="YoutubeMenuHolder"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 363.0
+
+[node name="YTLink" type="LineEdit" parent="YoutubeMenuHolder/Youtube menu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -229.0
+offset_bottom = 47.0
+grow_horizontal = 0
+placeholder_text = "Youtube link(can be playlist)"
+
+[node name="YTDownload" type="Button" parent="YoutubeMenuHolder/Youtube menu"]
+layout_mode = 1
+offset_left = -29.0
+offset_top = 70.465
+offset_right = 58.0
+offset_bottom = 110.465
+focus_mode = 0
+text = "Download"
+
+[node name="LoadingIMG" type="Sprite2D" parent="YoutubeMenuHolder/Youtube menu"]
+position = Vector2(80, 90.165)
+rotation = 1.5708
+scale = Vector2(-0.5, 0.5)
+texture = ExtResource("13_de5ej")
+script = ExtResource("14_rhw4k")
+
+[node name="Label" type="Label" parent="YoutubeMenuHolder/Youtube menu"]
+layout_mode = 0
+offset_left = -27.795
+offset_top = 49.0
+offset_right = 197.205
+offset_bottom = 72.0
+text = "NOTE: speeds depend on your internet"
+label_settings = SubResource("LabelSettings_fiiw4")
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "v1.1.0"
+horizontal_alignment = 2
+
+[node name="WavDisclaimer" type="AcceptDialog" parent="."]
+transparent_bg = true
+title = "WAV disclaimer"
+initial_position = 4
+size = Vector2i(256, 100)
+transparent = true
+popup_window = true
+force_native = true
+dialog_text = "wav files are not supported yet"
+
+[connection signal="pressed" from="SettingsButton" to="SettingsButton" method="_on_pressed"]
+[connection signal="toggled" from="SearchToggle" to="SearchToggle" method="_on_toggled"]
+[connection signal="text_submitted" from="SearchBar" to="SearchBar" method="_on_text_submitted"]
+[connection signal="index_pressed" from="SearchResults" to="SearchBar" method="_on_search_results_index_pressed"]
+[connection signal="toggled" from="VolumeButton" to="VolumeButton" method="_on_toggled"]
+[connection signal="toggled" from="YtTabButton" to="YtTabButton" method="_on_toggled"]

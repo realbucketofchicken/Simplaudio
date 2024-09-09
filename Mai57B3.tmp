@@ -1,0 +1,308 @@
+[gd_scene load_steps=26 format=3 uid="uid://b2sygl55s6fng"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
+[ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
+[ext_resource type="Texture2D" uid="uid://cq8jj63iyu2cs" path="res://d7hftxdivxxvm.cloudfront.webp" id="2_wf35v"]
+[ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Skip.png" id="3_4vx67"]
+[ext_resource type="Script" path="res://wallpaper_manager.gd" id="4_y372l"]
+[ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Loop.png" id="5_c2g63"]
+[ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Headphones.png" id="6_3mi6c"]
+[ext_resource type="Texture2D" uid="uid://snne8iiftksi" path="res://Evening_view_of_Munnar_1633.jpg" id="6_5vm0w"]
+[ext_resource type="Texture2D" uid="uid://ba5wdmchyy50n" path="res://nighttime-in-the-hills-henry-porter.jpg" id="6_8abnc"]
+[ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Play.png" id="8_5v7u3"]
+[ext_resource type="Shader" path="res://CoverShader.gdshader" id="8_4531v"]
+[ext_resource type="Texture2D" uid="uid://b00wlqid2jdvi" path="res://BigLogo.png" id="10_xnj6a"]
+[ext_resource type="Script" path="res://cover.gd" id="12_3v50a"]
+[ext_resource type="Texture2D" uid="uid://bdpat2sfflaxq" path="res://Youtube_logo.png" id="12_bc5ym"]
+[ext_resource type="Script" path="res://search_bar.gd" id="12_mr42x"]
+[ext_resource type="Texture2D" uid="uid://b5eims5ucn81r" path="res://Loding.png" id="13_de5ej"]
+[ext_resource type="Script" path="res://volume_button.gd" id="14_7q3ja"]
+[ext_resource type="Script" path="res://Spinning.gd" id="14_rhw4k"]
+[ext_resource type="Script" path="res://yt_tab_button.gd" id="16_2t15p"]
+
+[sub_resource type="Gradient" id="Gradient_hqvtw"]
+offsets = PackedFloat32Array(0.459016, 0.565574, 0.704918, 0.827869, 0.92623, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.132947, 0.132947, 0.132947, 0.867053, 0.286885, 0.286885, 0.286885, 0.713115, 0.536475, 0.536475, 0.536475, 0.463525, 0.790666, 0.790666, 0.790666, 0.209334, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_50sv0"]
+gradient = SubResource("Gradient_hqvtw")
+fill = 1
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3bw0j"]
+shader = ExtResource("8_4531v")
+shader_parameter/dissolve = SubResource("GradientTexture2D_50sv0")
+
+[sub_resource type="InputEventKey" id="InputEventKey_5af16"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_0ov5v"]
+events = [SubResource("InputEventKey_5af16")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6prit"]
+font_size = 22
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.643137)
+shadow_offset = Vector2(7.88, 4.31)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ubs1p")
+LoopPressed = ExtResource("2_iolk5")
+LoopNotPressed = ExtResource("5_c2g63")
+
+[node name="WallpaperManager" type="Node2D" parent="." node_paths=PackedStringArray("Daytime", "Evening", "Nighttime")]
+script = ExtResource("4_y372l")
+Daytime = NodePath("../Daytime")
+Evening = NodePath("../Evening")
+Nighttime = NodePath("../Nighttime")
+
+[node name="Daytime" type="Sprite2D" parent="."]
+position = Vector2(576.949, 401)
+scale = Vector2(1.27923, 1.25956)
+texture = ExtResource("2_wf35v")
+
+[node name="Evening" type="Sprite2D" parent="."]
+position = Vector2(582, 342)
+scale = Vector2(1.00181, 1.00181)
+texture = ExtResource("6_5vm0w")
+
+[node name="Nighttime" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+position = Vector2(610, 326)
+scale = Vector2(1.49056, 1.51111)
+texture = ExtResource("6_8abnc")
+
+[node name="CoverHolder" type="Node2D" parent="."]
+position = Vector2(-3, 649)
+
+[node name="Cover" type="Sprite2D" parent="CoverHolder"]
+modulate = Color(1, 1, 1, 0.592157)
+material = SubResource("ShaderMaterial_3bw0j")
+position = Vector2(200, -122.333)
+scale = Vector2(0.333333, 0.333333)
+region_rect = Rect2(142.036, 106.625, 632.359, 516.605)
+region_filter_clip_enabled = true
+script = ExtResource("12_3v50a")
+
+[node name="SelectPlaylist" type="Button" parent="."]
+offset_left = 20.0
+offset_top = 24.0
+offset_right = 255.0
+offset_bottom = 80.0
+focus_mode = 0
+text = "select the directory
+(playlist's folder)"
+
+[node name="RandomizeList" type="Button" parent="."]
+offset_left = 897.0
+offset_top = 24.0
+offset_right = 1132.0
+offset_bottom = 80.0
+focus_mode = 0
+text = "Randomize the Playlist"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+position = Vector2i(28, 115)
+size = Vector2i(470, 320)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="playList" type="Button" parent="."]
+offset_left = 20.0
+offset_top = 572.0
+offset_right = 92.0
+offset_bottom = 644.0
+scale = Vector2(0.5, 0.5)
+focus_mode = 0
+shortcut = SubResource("Shortcut_0ov5v")
+icon = ExtResource("8_5v7u3")
+
+[node name="CurrentProgress" type="HSlider" parent="."]
+offset_left = 64.0
+offset_top = 560.0
+offset_right = 944.0
+offset_bottom = 624.0
+max_value = 1000.0
+ticks_on_borders = true
+
+[node name="Skip" type="Button" parent="."]
+offset_left = 1046.0
+offset_top = 573.0
+offset_right = 1086.0
+offset_bottom = 613.0
+focus_mode = 0
+icon = ExtResource("3_4vx67")
+
+[node name="Skip2" type="Button" parent="."]
+offset_left = 1046.0
+offset_top = 573.0
+offset_right = 1086.0
+offset_bottom = 613.0
+focus_mode = 0
+icon = ExtResource("3_4vx67")
+
+[node name="Loop" type="Button" parent="."]
+offset_left = 1000.0
+offset_top = 573.0
+offset_right = 1040.0
+offset_bottom = 613.0
+focus_mode = 0
+icon = ExtResource("5_c2g63")
+
+[node name="GoBack" type="Button" parent="."]
+offset_left = 994.0
+offset_top = 613.0
+offset_right = 1034.0
+offset_bottom = 653.0
+rotation = 3.14159
+focus_mode = 0
+icon = ExtResource("3_4vx67")
+
+[node name="SongName" type="Label" parent="."]
+offset_left = 66.0
+offset_top = 524.0
+offset_right = 994.0
+offset_bottom = 581.0
+text = "Please select a directory"
+label_settings = SubResource("LabelSettings_6prit")
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="SearchBar" type="LineEdit" parent="."]
+offset_left = 266.0
+offset_top = 24.0
+offset_right = 883.0
+offset_bottom = 83.0
+script = ExtResource("12_mr42x")
+
+[node name="SearchResults" type="PopupMenu" parent="."]
+position = Vector2i(265, 80)
+size = Vector2i(625, 300)
+max_size = Vector2i(625, 300)
+hide_on_state_item_selection = true
+allow_search = false
+
+[node name="VolumeButton" type="Button" parent="."]
+offset_left = 1092.0
+offset_top = 573.0
+offset_right = 1132.0
+offset_bottom = 613.0
+focus_mode = 0
+toggle_mode = true
+icon = ExtResource("6_3mi6c")
+script = ExtResource("14_7q3ja")
+
+[node name="VolumeSlider" type="VSlider" parent="."]
+layout_direction = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1121.0
+offset_top = 563.0
+offset_right = -1103.0
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 1
+size_flags_vertical = 8
+value = 100.0
+
+[node name="Logo" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.686275)
+position = Vector2(192, 162)
+scale = Vector2(0.159259, 0.159259)
+texture = ExtResource("10_xnj6a")
+
+[node name="TimeListeningSong" type="Label" parent="."]
+offset_left = 66.0
+offset_top = 597.0
+offset_right = 178.0
+offset_bottom = 633.0
+
+[node name="YtTabButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1065.0
+offset_top = 107.0
+offset_right = 1713.0
+offset_bottom = 558.0
+grow_horizontal = 0
+scale = Vector2(0.105, 0.105)
+focus_mode = 0
+toggle_mode = true
+icon = ExtResource("12_bc5ym")
+flat = true
+script = ExtResource("16_2t15p")
+
+[node name="YoutubeMenuHolder" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 794.0
+offset_top = 107.0
+offset_right = 834.0
+offset_bottom = 147.0
+
+[node name="Youtube menu" type="Control" parent="YoutubeMenuHolder"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 363.0
+
+[node name="YTLink" type="LineEdit" parent="YoutubeMenuHolder/Youtube menu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -201.0
+offset_bottom = 47.0
+grow_horizontal = 0
+placeholder_text = "Youtube link(can be playlist)"
+
+[node name="YTDownload" type="Button" parent="YoutubeMenuHolder/Youtube menu"]
+layout_mode = 1
+offset_top = 58.0
+offset_right = 87.0
+offset_bottom = 98.0
+focus_mode = 0
+text = "Download"
+
+[node name="LoadingIMG" type="Sprite2D" parent="YoutubeMenuHolder/Youtube menu"]
+position = Vector2(113, 78)
+rotation = 1.5708
+scale = Vector2(-0.5, 0.5)
+texture = ExtResource("13_de5ej")
+script = ExtResource("14_rhw4k")
+
+[node name="Version" type="Label" parent="."]
+offset_left = 1083.0
+offset_top = 625.0
+offset_right = 1147.0
+offset_bottom = 648.0
+text = "v0.9.2"
+horizontal_alignment = 2
+
+[node name="WavDisclaimer" type="AcceptDialog" parent="."]
+transparent_bg = true
+title = "WAV disclaimer"
+position = Vector2i(495, 305)
+size = Vector2i(256, 100)
+transparent = true
+popup_window = true
+force_native = true
+dialog_text = "wav files are not supported yet"
+
+[connection signal="text_changed" from="SearchBar" to="SearchBar" method="_on_text_changed"]
+[connection signal="toggled" from="VolumeButton" to="VolumeButton" method="_on_toggled"]
+[connection signal="toggled" from="YtTabButton" to="YtTabButton" method="_on_toggled"]
