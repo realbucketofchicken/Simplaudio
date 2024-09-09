@@ -61,12 +61,13 @@ clip_text = true
 layout_mode = 2
 
 [node name="PlayButton" type="Button" parent="HSplitContainer/HBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 focus_mode = 0
 text = "Play"
 
 [node name="OptionsDropdown" type="MenuButton" parent="HSplitContainer/HBoxContainer"]
+modulate = Color(0.724643, 0.724643, 0.724643, 1)
 custom_minimum_size = Vector2(20.505, 0)
 layout_mode = 2
 icon = ExtResource("2_im6ur")
