@@ -698,7 +698,6 @@ PressedIcon = ExtResource("14_mioc4")
 NotPressedIcon = ExtResource("12_cv2gm")
 
 [node name="SearchBar" type="LineEdit" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -714,6 +713,7 @@ caret_blink = true
 script = ExtResource("12_mr42x")
 
 [node name="SongsMenu" type="MenuButton" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -767,6 +767,7 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 1
 size_flags_vertical = 8
+focus_mode = 0
 value = 100.0
 
 [node name="TimeListeningSong" type="Label" parent="."]

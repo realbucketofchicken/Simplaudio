@@ -465,7 +465,13 @@ func _process(_delta: float) -> void:
 		time_listening_song.text = Hours + ":" + Minutes + ":" + Seconds if int(music_player.stream.get_length() /60 / 60) != 0 else Minutes + ":" + Seconds
 	else:
 		time_listening_song.text = "0:00"
+	
 	#time_listening_song.text = str(music_player.get_playback_position())
+	
+	if Input.is_key_pressed(KEY_DOWN):
+		volume_slider.value -= 1*_delta *50
+	if Input.is_key_pressed(KEY_UP):
+		volume_slider.value += 1*_delta *50
 	
 	if CurrentLenght == 0:
 		if LoopingSong == false:
