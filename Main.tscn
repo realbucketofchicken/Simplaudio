@@ -767,6 +767,7 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 1
 size_flags_vertical = 8
+focus_mode = 0
 value = 100.0
 
 [node name="TimeListeningSong" type="Label" parent="."]

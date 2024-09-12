@@ -39,7 +39,7 @@ func CorrectlyName():
 	if !PlaylistLocation == "":
 		directory.text = PlaylistLocation
 	else:
-		directory.text = "directory not found"
+		directory.text = "Directory not found"
 		push_error("Directory not found!")
 
 
