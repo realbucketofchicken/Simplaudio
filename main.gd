@@ -81,13 +81,14 @@ func _ready() -> void:
 		if Arg.to_lower().ends_with(".mp3") or Arg.to_lower().ends_with(".wav"):
 			OS.alert("opening files like this\nis no longer supported")
 	var data:Dictionary
+	loadPlaylists()
 	if loadUserdata() != null:
 		data = loadUserdata()
 	if Strin.is_empty():
-		loadPlaylists()
-		if Playlists.size() != 0:
-			CurrentPlaylist = Playlists.keys()[0]
-			CurrentDir = PlaylistsLocation[Playlists.keys()[0]]
+		if !Playlists.is_empty():
+			PlaylistSelected(Playlists.keys()[0],PlaylistsLocation[Playlists.keys()[0]])
+			#CurrentPlaylist = Playlists.keys()[0]
+			#CurrentDir = PlaylistsLocation[Playlists.keys()[0]]
 		for Playlist in Playlists.keys():
 			var child = PLAYLIST_DISPLAY.instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
 			if PlaylistsLocation.has(Playlist):
@@ -104,11 +105,9 @@ func _ready() -> void:
 			if data.has("Volume"):
 				print(data["Volume"])
 				SetVolume(data["Volume"])
-			if data.has("Directory"):
-				if data["Directory"] != "":
-					DirectorySelected(data["Directory"])
 			if data.has("CurrIDX"):
-				CurrentIDX = data["CurrIDX"]
+				CurrentIDX = int(data["CurrIDX"]) % textSongs.size()
+				print("awau" + str(int(data["CurrIDX"]) % textSongs.size()) )
 			if data.has("Randomized"):
 				Randomize()
 			if data.has("Playing"):
@@ -172,7 +171,7 @@ func _ready() -> void:
 	# this is boolean if everything worked
 	print("Discord working: " + str(DiscordRPC.get_is_discord_working()))
 	# Set the first custom text row of the activity here
-	if textSongs.has(CurrentIDX):
+	if textSongs.size() >= CurrentIDX:
 		DiscordRPC.details = textSongs[CurrentIDX]
 	# Set the second custom text row of the activity here
 	DiscordRPC.state = ""
@@ -396,9 +395,11 @@ func PlaylistSelected(Playlist:String,PlaylistLocation:String):
 		CurrentPlaylist = Playlist
 		PlaylistsLocation[Playlist] = PlaylistLocation
 		print(PlaylistsLocation[Playlist])
+		CurrentDir = PlaylistLocation	
 		GetSongs(PlaylistsLocation[Playlist])
 		CurrentIDX = -1
 		music_player.stop()
+		print("Playlist selected")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
