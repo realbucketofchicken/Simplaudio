@@ -106,8 +106,7 @@ func _ready() -> void:
 				print(data["Volume"])
 				SetVolume(data["Volume"])
 			if data.has("CurrIDX"):
-				CurrentIDX = int(data["CurrIDX"]) % textSongs.size()
-				print("awau" + str(int(data["CurrIDX"]) % textSongs.size()) )
+				CurrentIDX = int(data["CurrIDX"]) % textSongs.size() if textSongs.size() !=0 and int(data["CurrIDX"]) != 0 else 0
 			if data.has("Randomized"):
 				Randomize()
 			if data.has("Playing"):
@@ -172,7 +171,8 @@ func _ready() -> void:
 	print("Discord working: " + str(DiscordRPC.get_is_discord_working()))
 	# Set the first custom text row of the activity here
 	if textSongs.size() >= CurrentIDX:
-		DiscordRPC.details = textSongs[CurrentIDX]
+		if textSongs.size() > CurrentIDX:
+			DiscordRPC.details = textSongs[CurrentIDX]
 	# Set the second custom text row of the activity here
 	DiscordRPC.state = ""
 	# Image key for small image from "Art Assets" from the Discord Developer website
