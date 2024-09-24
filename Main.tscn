@@ -818,7 +818,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.3.1h1"
+text = "v1.3.2"
 horizontal_alignment = 2
 
 [node name="WavDisclaimer" type="AcceptDialog" parent="."]
@@ -830,6 +830,15 @@ transparent = true
 popup_window = true
 force_native = true
 dialog_text = "wav files are not supported yet"
+
+[node name="PlaylistOrSong" type="ConfirmationDialog" parent="."]
+initial_position = 2
+size = Vector2i(473, 106)
+visible = true
+ok_button_text = "Download Playlist"
+dialog_text = "Do you want to download the song or the Entire playlist?"
+dialog_autowrap = true
+cancel_button_text = "Download Song"
 
 [connection signal="toggled" from="SelectPlaylist" to="SelectPlaylist" method="_on_toggled"]
 [connection signal="pressed" from="PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist" to="PlaylistsPanel" method="_on_create_playlist_pressed"]

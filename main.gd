@@ -29,6 +29,7 @@ extends Control
 @onready var playlists_holder: VBoxContainer = $PlaylistsPanel/PlaylistsContainer/VBoxContainer/PlaylistsHolder
 @onready var play_all: Button = $PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/PlayAll
 @onready var album_name: Label = $Album
+@onready var playlist_or_song: ConfirmationDialog = $PlaylistOrSong
 
 
 
@@ -51,7 +52,7 @@ var SeenWAVDisclaimer:bool
 var TimeSpentListening:float
 var DiscordRichPresenceEnabled:bool = false
 var SplashStrings:Array
-var SaveInterval:float = 23.6
+var SaveInterval:float = 11.2
 var currentSaveTime:float = 0.4
 var CurrentPausedIndicatorShaderIntensity:float
 var CurrentCustomBackroundImageDirectory:String
@@ -416,7 +417,7 @@ func _process(_delta: float) -> void:
 		SplashStrings = ["Total listening time: %s!" % str(str(int(TimeSpentListening/60)/60 )
 						 + "h : " + str((int(TimeSpentListening) / 60) % 60) + "m : " + 
 						str(int(TimeSpentListening) % 60) + "s"),
-						"Version: %s" % version.text,"🤷‍♂️","This Changes every ~20 seconds",
+						"Version: %s" % version.text,"🤷‍♂️","This Changes every ~11 seconds",
 						"hello everybody my name is %s" % DiscordRPC.get_current_user()["username"],
 						"wash your dishes, i know you got some","Running on %s" % OS.get_distribution_name(),
 						"%s is cooking" % DiscordRPC.get_current_user()["username"], "debugging" if OS.has_feature("editor") else "Release build",
