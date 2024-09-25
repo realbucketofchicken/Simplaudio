@@ -8,6 +8,10 @@ extends Button
 var currentlyExtending:bool
 var Target:float = 50
 
+signal ContinueProcess
+
+@onready var Parent:MainScene = get_tree().root.get_child(2)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	YtDlp.setup_completed.connect(YTSetupCompleted)
@@ -33,10 +37,24 @@ func YTSetupCompleted():
 	loading_img.hide()
 	yt_download.disabled = false
 
+func DownloadPlaylistConf():
+	ContinueProcess.emit()
+
+func DownloadSingleSongConf():
+	var idx:int = yt_link.text.find("&list=")
+	yt_link.text = yt_link.text.erase(idx,500)
+	ContinueProcess.emit()
+
 func DownloadYTVidFromLink():
 	if yt_link.text.is_empty():
 		OS.alert("please gimme a link")
 		return
+	if "&list=" in yt_link.text:
+		Parent.playlist_or_song.show()
+		Parent.playlist_or_song.confirmed.connect(DownloadPlaylistConf)
+		Parent.playlist_or_song.canceled.connect(DownloadSingleSongConf)
+		await ContinueProcess
+		print(yt_link.text)
 	var download:YtDlp.Download = YtDlp.download(yt_link.text)
 	if download == null:
 		OS.alert("youtube setup has not finished, please wait for the finish notification")
