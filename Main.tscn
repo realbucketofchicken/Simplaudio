@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=64 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -147,6 +147,12 @@ keycode = 81
 
 [sub_resource type="Shortcut" id="Shortcut_g3fcr"]
 events = [SubResource("InputEventKey_puhgg")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b1152"]
+font_size = 31
+
+[sub_resource type="LabelSettings" id="LabelSettings_ivhc6"]
+font_size = 20
 
 [node name="Node2D" type="Control"]
 layout_mode = 3
@@ -855,6 +861,7 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("30_byc5i")
+errorColor = Color(0.981984, 0, 0.065929, 1)
 
 [node name="HTTPRequest" type="HTTPRequest" parent="UpdateChecker"]
 timeout = 5.0
@@ -869,7 +876,7 @@ offset_right = -24.0
 offset_bottom = -44.0
 color = Color(0.14902, 0.14902, 0.14902, 1)
 
-[node name="Label" type="Label" parent="UpdateChecker/ColorRect"]
+[node name="UpdateAvailableText" type="Label" parent="UpdateChecker/ColorRect"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -879,6 +886,8 @@ offset_right = 68.0
 offset_bottom = 23.0
 grow_horizontal = 2
 text = "Update Available!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PatchNotesButton" type="Button" parent="UpdateChecker/ColorRect"]
 z_index = 4
@@ -944,6 +953,92 @@ scale = Vector2(0.25, 0.25)
 pivot_offset = Vector2(72, 0)
 icon = ExtResource("14_mioc4")
 flat = true
+
+[node name="UpdatingNotification" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UpdatingNotification"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.262745, 0.462745, 0.505882, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="UpdatingNotification"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.245
+grow_horizontal = 2
+color = Color(0.196078, 0.278431, 0.32549, 1)
+
+[node name="Label" type="Label" parent="UpdatingNotification"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Simplaudio is Updating!"
+label_settings = SubResource("LabelSettings_b1152")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UpdatingNotification"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.0
+offset_top = 52.0
+offset_right = 142.0
+offset_bottom = 153.0
+grow_horizontal = 2
+text = "Please wait.
+Simplaudio will restart automatically
+
+this wont take long"
+horizontal_alignment = 1
+
+[node name="LoadingIMG" type="Sprite2D" parent="UpdatingNotification"]
+position = Vector2(199, 115)
+rotation = 1.5708
+scale = Vector2(-0.5, 0.5)
+texture = ExtResource("13_de5ej")
+script = ExtResource("14_rhw4k")
+
+[node name="Error" type="Label" parent="UpdatingNotification"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 57.0
+offset_right = 20.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_ivhc6")
+horizontal_alignment = 1
 
 [connection signal="toggled" from="SelectPlaylist" to="SelectPlaylist" method="_on_toggled"]
 [connection signal="pressed" from="PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist" to="PlaylistsPanel" method="_on_create_playlist_pressed"]
