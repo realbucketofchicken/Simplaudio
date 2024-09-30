@@ -5,6 +5,7 @@ extends Control
 
 @onready var update_button := $Update as Button
 @onready var http_request := $HTTPRequest as HTTPRequest
+@onready var download_request: HTTPRequest = $DownloadRequest
 @onready var link_button: Button = $ColorRect/LinkButton
 
 var CheckForUpdates:bool = true
@@ -51,4 +52,42 @@ func _on_close_buen_pressed() -> void:
 
 
 func _on_link_button_pressed() -> void:
-	OS.shell_open(updateLink)
+	var exepath:PackedStringArray = OS.get_executable_path().split("/")
+	var path:String = GetLocalPath()
+	print(OS.get_executable_path())
+	if !OS.has_feature("editor"):
+		if OS.get_name() == "Windows":
+			download_request.download_file = path + "download.zip/"
+			var error = download_request.request(
+								"https://github.com/notdraimdev/Simplaudio/releases/latest/download/Windows.zip"
+			)
+			if error != OK:
+				print("! DOWNLOAD ERROR: " + str(error))
+		else:
+			OS.shell_open(updateLink)
+
+func _on_download_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	if result != HTTPRequest.RESULT_SUCCESS:
+		print("! Something went wrong server side: " + str(result))
+		return
+	else:
+		print("works as expected brotha")
+		var unzipper:ZIPReader = ZIPReader.new() # sus
+		
+		unzipper.open(GetLocalPath()+"download.zip")
+		var files:PackedStringArray = unzipper.get_files()
+		for file in files:
+			var FileAcess:FileAccess = FileAccess.open(GetLocalPath() + file,FileAccess.READ_WRITE)
+			if FileAcess != null:
+				var downloadedfile = unzipper.read_file(file)
+				FileAcess.store_var(downloadedfile)
+			get_tree().root.queue_free()
+			#FileAcess.store_string()
+		unzipper.close()
+
+func GetLocalPath() -> String:
+	var exepath:PackedStringArray = OS.get_executable_path().split("/")
+	var path:String
+	for sting in (exepath.size()-1):
+		path += exepath[sting] + "/"
+	return path

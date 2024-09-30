@@ -530,6 +530,7 @@ func saveUserdata(content):
 	var file = FileAccess.open("user://data.dat", FileAccess.WRITE)
 	@warning_ignore("static_called_on_instance")
 	file.store_string(Marshalls.utf8_to_base64(json.stringify(content)))
+	file.close()
 
 func loadUserdata():
 	var json = JSON.new()
@@ -542,8 +543,10 @@ func loadUserdata():
 		else:
 			@warning_ignore("static_called_on_instance")
 			content = json.parse_string(Marshalls.base64_to_utf8(file.get_as_text()))
+		file.close()
 		return content
 	else: 
+		file.close()
 		return null
 
 func loadPlaylists():
@@ -560,3 +563,5 @@ func loadPlaylists():
 		print(PlaylistsLocation)
 		print(Playlists.keys())
 		print("Playlists")
+	file.close()
+	file2.close()

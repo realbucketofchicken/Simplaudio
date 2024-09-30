@@ -821,7 +821,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.3.3"
+text = "v1.3.5"
 horizontal_alignment = 2
 
 [node name="WavDisclaimer" type="AcceptDialog" parent="."]
@@ -858,6 +858,8 @@ script = ExtResource("30_byc5i")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="UpdateChecker"]
 timeout = 5.0
+
+[node name="DownloadRequest" type="HTTPRequest" parent="UpdateChecker"]
 
 [node name="ColorRect" type="ColorRect" parent="UpdateChecker"]
 layout_mode = 0
@@ -958,5 +960,6 @@ flat = true
 [connection signal="toggled" from="VolumeButton" to="VolumeButton" method="_on_toggled"]
 [connection signal="toggled" from="YtTabButton" to="YtTabButton" method="_on_toggled"]
 [connection signal="request_completed" from="UpdateChecker/HTTPRequest" to="UpdateChecker" method="_on_http_request_completed"]
+[connection signal="request_completed" from="UpdateChecker/DownloadRequest" to="UpdateChecker" method="_on_download_request_completed"]
 [connection signal="pressed" from="UpdateChecker/ColorRect/LinkButton" to="UpdateChecker" method="_on_link_button_pressed"]
 [connection signal="pressed" from="UpdateChecker/ColorRect/CloseBuen" to="UpdateChecker" method="_on_close_buen_pressed"]
