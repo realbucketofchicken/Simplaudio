@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=62 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://yt_tab_button.gd" id="16_2t15p"]
 [ext_resource type="Script" path="res://update_checker.gd" id="30_byc5i"]
 [ext_resource type="Script" path="res://patch_notes_button.gd" id="31_hjsj1"]
+[ext_resource type="Script" path="res://CustomButtonColor.gd" id="32_pwgec"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ku7tv"]
 shader = ExtResource("10_20857")
@@ -842,6 +843,7 @@ dialog_autowrap = true
 cancel_button_text = "Download Song"
 
 [node name="UpdateChecker" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -899,7 +901,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.19706, 0.279877, 0.326012, 1)
+script = ExtResource("32_pwgec")
 
 [node name="LinkButton" type="Button" parent="UpdateChecker/ColorRect"]
 z_index = 1
@@ -922,7 +926,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.264012, 0.463229, 0.504783, 1)
+script = ExtResource("32_pwgec")
 
 [node name="CloseBuen" type="Button" parent="UpdateChecker/ColorRect"]
 layout_mode = 1
