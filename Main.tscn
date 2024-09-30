@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=61 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" path="res://Spinning.gd" id="14_rhw4k"]
 [ext_resource type="Script" path="res://yt_tab_button.gd" id="16_2t15p"]
 [ext_resource type="Script" path="res://update_checker.gd" id="30_byc5i"]
+[ext_resource type="Script" path="res://patch_notes_button.gd" id="31_hjsj1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ku7tv"]
 shader = ExtResource("10_20857")
@@ -841,7 +842,6 @@ dialog_autowrap = true
 cancel_button_text = "Download Song"
 
 [node name="UpdateChecker" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -860,7 +860,7 @@ timeout = 5.0
 [node name="ColorRect" type="ColorRect" parent="UpdateChecker"]
 layout_mode = 0
 offset_left = -214.0
-offset_top = -124.0
+offset_top = -144.0
 offset_right = -24.0
 offset_bottom = -44.0
 color = Color(0.14902, 0.14902, 0.14902, 1)
@@ -876,7 +876,33 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "Update Available!"
 
+[node name="PatchNotesButton" type="Button" parent="UpdateChecker/ColorRect"]
+z_index = 4
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -24.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "View patch notes"
+flat = true
+script = ExtResource("31_hjsj1")
+
+[node name="ColorRect" type="ColorRect" parent="UpdateChecker/ColorRect/PatchNotesButton"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19706, 0.279877, 0.326012, 1)
+
 [node name="LinkButton" type="Button" parent="UpdateChecker/ColorRect"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -886,6 +912,17 @@ offset_top = -38.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Update"
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="UpdateChecker/ColorRect/LinkButton"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.264012, 0.463229, 0.504783, 1)
 
 [node name="CloseBuen" type="Button" parent="UpdateChecker/ColorRect"]
 layout_mode = 1
