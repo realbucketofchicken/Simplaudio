@@ -100,7 +100,6 @@ class Download extends RefCounted:
 	
 	var _status: Status = Status.READY
 	var _thread: Thread = null
-	var _process_id:int
 	
 	# Fields
 	var _url: String
@@ -188,10 +187,9 @@ class Download extends RefCounted:
 		options_and_arguments.append_array(["--yes-playlist","--embed-metadata","--embed-thumbnail",str("-o" + "%(title)s.%(ext)s")])
 		options_and_arguments.append_array(["--no-continue", "-P", file_path, _url])
 		
-		var output: Array = []
-		_process_id = OS.execute(executable, PackedStringArray(options_and_arguments), output)
-		
 		print(options_and_arguments)
+		var output: Array = []
+		OS.execute(executable, PackedStringArray(options_and_arguments), output)
 		self._thread_finished.call_deferred()
 	
 	
