@@ -5,7 +5,6 @@ extends Button
 @onready var yt_link: LineEdit = $"../YoutubeMenuHolder/Youtube menu/YTLink"
 @onready var yt_download: Button = $"../YoutubeMenuHolder/Youtube menu/YTDownload"
 @onready var loading_img: Sprite2D = $"../YoutubeMenuHolder/Youtube menu/LoadingIMG"
-@onready var yt_cancel: Button = $"../YoutubeMenuHolder/Youtube menu/YTCancel"
 
 var currentlyExtending:bool
 var Target:float = 50
@@ -18,7 +17,6 @@ signal ContinueProcess
 func _ready() -> void:
 	YtDlp.setup_completed.connect(YTSetupCompleted)
 	yt_download.pressed.connect(DownloadYTVidFromLink)
-	yt_cancel.pressed.connect(CancelDownload)
 
 func CancelDownload():
 	if CurrentDownload != null:
