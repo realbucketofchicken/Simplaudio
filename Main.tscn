@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=66 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ba5wdmchyy50n" path="res://nighttime-in-the-hills-henry-porter.jpg" id="6_8abnc"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Play.png" id="8_5v7u3"]
 [ext_resource type="Shader" path="res://CoverShader.gdshader" id="8_4531v"]
+[ext_resource type="Shader" path="res://Background1.gdshader" id="8_xtnau"]
 [ext_resource type="Shader" path="res://Main.gdshader" id="10_20857"]
 [ext_resource type="Texture2D" uid="uid://b00wlqid2jdvi" path="res://BigLogo.png" id="10_xnj6a"]
 [ext_resource type="Texture2D" uid="uid://0r1tx6l1lc6x" path="res://settingscog.png" id="11_esjel"]
@@ -32,6 +33,9 @@
 [ext_resource type="Script" path="res://update_checker.gd" id="30_byc5i"]
 [ext_resource type="Script" path="res://patch_notes_button.gd" id="31_hjsj1"]
 [ext_resource type="Script" path="res://CustomButtonColor.gd" id="32_pwgec"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvkfy"]
+shader = ExtResource("8_xtnau")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ku7tv"]
 shader = ExtResource("10_20857")
@@ -213,6 +217,17 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 5
 stretch_mode = 6
+
+[node name="UpdatingBG" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.011)
+material = SubResource("ShaderMaterial_kvkfy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Logo" type="Sprite2D" parent="."]
 visible = false
@@ -827,7 +842,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.3.5"
+text = "v1.4.1"
 horizontal_alignment = 2
 
 [node name="WavDisclaimer" type="AcceptDialog" parent="."]

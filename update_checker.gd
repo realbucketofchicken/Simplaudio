@@ -8,6 +8,8 @@ extends Control
 @onready var update_available_text: Label = $ColorRect/UpdateAvailableText
 @onready var updating_notification: Control = $"../UpdatingNotification"
 @onready var errorLabel: Label = $"../UpdatingNotification/Error"
+@onready var updating_bg: ColorRect = $"../UpdatingBG"
+@onready var paused_indicator: TextureRect = $"../PausedIndicator"
 
 @export var errorColor:Color
 
@@ -17,7 +19,6 @@ var updateLink:String
 
 # The GitHub releases API only allows 60 unauthenticated requests per hour,
 const UPDATE_THROTTLE = 600
-
 
 func _ready() -> void:
 
@@ -58,6 +59,8 @@ func _on_link_button_pressed() -> void:
 	link_button.disabled = true
 	link_button.text = "Updating..."
 	updating_notification.show()
+	updating_bg.show()
+	paused_indicator.hide()
 	var exepath:PackedStringArray = OS.get_executable_path().split("/")
 	var path:String = GetLocalPath()
 	print(OS.get_executable_path())
