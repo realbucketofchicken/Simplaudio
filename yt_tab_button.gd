@@ -8,7 +8,6 @@ extends Button
 
 var currentlyExtending:bool
 var Target:float = 50
-var CurrentDownload:YtDlp.Download
 signal ContinueProcess
 
 @onready var Parent:MainScene = get_tree().root.get_child(2)
@@ -17,10 +16,6 @@ signal ContinueProcess
 func _ready() -> void:
 	YtDlp.setup_completed.connect(YTSetupCompleted)
 	yt_download.pressed.connect(DownloadYTVidFromLink)
-
-func CancelDownload():
-	if CurrentDownload != null:
-		print("! PROCCES ID: " + str(CurrentDownload._process_id))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -45,7 +40,7 @@ func DownloadPlaylistConf():
 	ContinueProcess.emit()
 
 func DownloadSingleSongConf():
-	var idx:int = yt_link.text.find("&list=")
+	var idx:int = yt_link.text.find("list=")
 	yt_link.text = yt_link.text.erase(idx,500)
 	ContinueProcess.emit()
 
