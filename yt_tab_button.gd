@@ -63,7 +63,6 @@ func DownloadYTVidFromLink():
 	if download == null:
 		OS.alert("youtube setup has not finished, please wait for the finish notification")
 		return
-	yt_cancel.disabled = false
 	loading_img.show()
 	yt_link.clear()
 	CurrentDownload = download
@@ -75,7 +74,6 @@ func DownloadYTVidFromLink():
 	download.completely_finished.connect(DownloadCompleted)
 
 func DownloadCompleted():
-	yt_cancel.disabled = true
 	yt_download.disabled = false
 	owner.GetSongs(owner.PlaylistsLocation[owner.CurrentPlaylist])
 	loading_img.hide()
