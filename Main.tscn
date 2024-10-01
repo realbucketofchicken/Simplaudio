@@ -419,16 +419,6 @@ offset_bottom = 110.0
 focus_mode = 0
 text = "Download"
 
-[node name="YTCancel" type="Button" parent="YoutubeMenuHolder/Youtube menu"]
-layout_mode = 1
-offset_left = 2.17004
-offset_top = 113.0
-offset_right = 89.17
-offset_bottom = 153.0
-focus_mode = 0
-disabled = true
-text = "Cancel"
-
 [node name="LoadingIMG" type="Sprite2D" parent="YoutubeMenuHolder/Youtube menu"]
 position = Vector2(108, 91)
 rotation = 1.5708
