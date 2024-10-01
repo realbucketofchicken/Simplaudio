@@ -1,4 +1,5 @@
-[gd_scene load_steps=66 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=67 format=3 uid="uid://b2sygl55s6fng"]
+
 
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -18,7 +19,6 @@
 [ext_resource type="Script" path="res://cover.gd" id="12_3v50a"]
 [ext_resource type="Script" path="res://playlists_panel.gd" id="12_8ie8y"]
 [ext_resource type="Script" path="res://settings_button.gd" id="12_073mb"]
-[ext_resource type="Texture2D" uid="uid://bdpat2sfflaxq" path="res://Youtube_logo.png" id="12_bc5ym"]
 [ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://search.png" id="12_cv2gm"]
 [ext_resource type="Script" path="res://search_bar.gd" id="12_mr42x"]
 [ext_resource type="Script" path="res://select_playlist.gd" id="12_of5fe"]
@@ -30,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://1rstn6r2wisy" path="res://X.png" id="14_mioc4"]
 [ext_resource type="Script" path="res://Spinning.gd" id="14_rhw4k"]
 [ext_resource type="Script" path="res://yt_tab_button.gd" id="16_2t15p"]
+[ext_resource type="Script" path="res://help_button.gd" id="17_4b8oh"]
+[ext_resource type="Texture2D" uid="uid://bmbxyma4ra46p" path="res://Download.png" id="29_v44vi"]
 [ext_resource type="Script" path="res://update_checker.gd" id="30_byc5i"]
 [ext_resource type="Script" path="res://patch_notes_button.gd" id="31_hjsj1"]
 [ext_resource type="Script" path="res://CustomButtonColor.gd" id="32_pwgec"]
@@ -271,7 +273,7 @@ script = ExtResource("12_3v50a")
 layout_mode = 0
 offset_left = 20.0
 offset_top = 24.0
-offset_right = 257.0
+offset_right = 256.0
 offset_bottom = 80.0
 focus_mode = 0
 toggle_mode = true
@@ -355,6 +357,24 @@ layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
+[node name="YtTabButton" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -77.0
+offset_top = 131.0
+offset_right = -5.0
+offset_bottom = 203.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.79, 0.79)
+focus_mode = 0
+toggle_mode = true
+icon = ExtResource("29_v44vi")
+script = ExtResource("16_2t15p")
+
 [node name="YoutubeMenuHolder" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -380,7 +400,7 @@ anchor_bottom = 1.0
 offset_left = -7.0
 offset_top = -5.0
 offset_right = 7.0
-offset_bottom = 5.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.14902, 0.14902, 0.14902, 1)
@@ -415,6 +435,23 @@ offset_right = 227.0
 offset_bottom = 72.0
 text = "NOTE: speeds depend on your internet"
 label_settings = SubResource("LabelSettings_fiiw4")
+
+[node name="HelpButton" type="Button" parent="YoutubeMenuHolder/Youtube menu"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -31.83
+offset_top = -40.0
+offset_right = 0.170044
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "?"
+script = ExtResource("17_4b8oh")
 
 [node name="CreatePlaylistsMenu" type="Control" parent="."]
 visible = false
@@ -813,24 +850,6 @@ offset_top = 174.0
 offset_right = 1082.0
 offset_bottom = 214.0
 
-[node name="YtTabButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -97.0
-offset_top = 109.0
-offset_right = 551.0
-offset_bottom = 560.0
-grow_horizontal = 0
-grow_vertical = 2
-scale = Vector2(0.105, 0.105)
-focus_mode = 0
-toggle_mode = true
-icon = ExtResource("12_bc5ym")
-flat = true
-script = ExtResource("16_2t15p")
-
 [node name="Version" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -842,7 +861,8 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.4.1"
+
+text = "v1.4.2"
 horizontal_alignment = 2
 
 [node name="WavDisclaimer" type="AcceptDialog" parent="."]
@@ -1058,6 +1078,7 @@ horizontal_alignment = 1
 [connection signal="toggled" from="SelectPlaylist" to="SelectPlaylist" method="_on_toggled"]
 [connection signal="pressed" from="PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist" to="PlaylistsPanel" method="_on_create_playlist_pressed"]
 [connection signal="toggled" from="PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/PlayAll" to="PlaylistsPanel" method="_on_play_all_toggled"]
+[connection signal="toggled" from="YtTabButton" to="YtTabButton" method="_on_toggled"]
 [connection signal="dir_selected" from="CreatePlaylistsMenu/FileDialog" to="CreatePlaylistsMenu" method="_on_file_dialog_dir_selected"]
 [connection signal="text_changed" from="CreatePlaylistsMenu/ScrollContainer/VBoxContainer/PlaylistName" to="CreatePlaylistsMenu" method="_on_playlist_name_text_changed"]
 [connection signal="pressed" from="CreatePlaylistsMenu/ScrollContainer/VBoxContainer/SelectDirButton" to="CreatePlaylistsMenu" method="_on_select_dir_button_pressed"]
@@ -1068,7 +1089,6 @@ horizontal_alignment = 1
 [connection signal="text_submitted" from="SearchBar" to="SearchBar" method="_on_text_submitted"]
 [connection signal="index_pressed" from="SearchResults" to="SearchBar" method="_on_search_results_index_pressed"]
 [connection signal="toggled" from="VolumeButton" to="VolumeButton" method="_on_toggled"]
-[connection signal="toggled" from="YtTabButton" to="YtTabButton" method="_on_toggled"]
 [connection signal="request_completed" from="UpdateChecker/HTTPRequest" to="UpdateChecker" method="_on_http_request_completed"]
 [connection signal="request_completed" from="UpdateChecker/DownloadRequest" to="UpdateChecker" method="_on_download_request_completed"]
 [connection signal="pressed" from="UpdateChecker/ColorRect/LinkButton" to="UpdateChecker" method="_on_link_button_pressed"]

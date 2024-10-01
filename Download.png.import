@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdpat2sfflaxq"
-path="res://.godot/imported/Youtube_logo.png-22e44a6c4c4bd7a2da4492032ea62686.ctex"
+uid="uid://bmbxyma4ra46p"
+path="res://.godot/imported/Download.png-3a4ebaeb081d510c32ff24ab28484d7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Youtube_logo.png"
-dest_files=["res://.godot/imported/Youtube_logo.png-22e44a6c4c4bd7a2da4492032ea62686.ctex"]
+source_file="res://Download.png"
+dest_files=["res://.godot/imported/Download.png-3a4ebaeb081d510c32ff24ab28484d7b.ctex"]
 
 [params]
 
