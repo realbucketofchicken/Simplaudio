@@ -5,9 +5,11 @@ extends Button
 @onready var yt_link: LineEdit = $"../YoutubeMenuHolder/Youtube menu/YTLink"
 @onready var yt_download: Button = $"../YoutubeMenuHolder/Youtube menu/YTDownload"
 @onready var loading_img: Sprite2D = $"../YoutubeMenuHolder/Youtube menu/LoadingIMG"
+@onready var yt_cancel: Button = $"../YoutubeMenuHolder/Youtube menu/YTCancel"
+
 var currentlyExtending:bool
 var Target:float = 50
-
+var CurrentDownload:YtDlp.Download
 signal ContinueProcess
 
 @onready var Parent:MainScene = get_tree().root.get_child(2)
@@ -16,7 +18,11 @@ signal ContinueProcess
 func _ready() -> void:
 	YtDlp.setup_completed.connect(YTSetupCompleted)
 	yt_download.pressed.connect(DownloadYTVidFromLink)
+	yt_cancel.pressed.connect(CancelDownload)
 
+func CancelDownload():
+	if CurrentDownload != null:
+		print("! PROCCES ID: " + str(CurrentDownload._process_id))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -49,7 +55,7 @@ func DownloadYTVidFromLink():
 	if yt_link.text.is_empty():
 		OS.alert("please gimme a link")
 		return
-	if "&list=" in yt_link.text:
+	if "list=" in yt_link.text:
 		Parent.playlist_or_song.show()
 		Parent.playlist_or_song.confirmed.connect(DownloadPlaylistConf)
 		Parent.playlist_or_song.canceled.connect(DownloadSingleSongConf)
@@ -59,8 +65,10 @@ func DownloadYTVidFromLink():
 	if download == null:
 		OS.alert("youtube setup has not finished, please wait for the finish notification")
 		return
+	yt_cancel.disabled = false
 	loading_img.show()
 	yt_link.clear()
+	CurrentDownload = download
 	download.set_destination(owner.PlaylistsLocation[owner.CurrentPlaylist])
 	print(owner.PlaylistsLocation[owner.CurrentPlaylist])
 	download.convert_to_audio(YtDlp.Audio.MP3)
@@ -69,9 +77,11 @@ func DownloadYTVidFromLink():
 	download.completely_finished.connect(DownloadCompleted)
 
 func DownloadCompleted():
+	yt_cancel.disabled = true
 	yt_download.disabled = false
 	owner.GetSongs(owner.PlaylistsLocation[owner.CurrentPlaylist])
 	loading_img.hide()
+	CurrentDownload = null
 
 
 func _on_toggled(toggled_on: bool) -> void:
