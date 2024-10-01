@@ -1,5 +1,6 @@
 [gd_scene load_steps=67 format=3 uid="uid://b2sygl55s6fng"]
 
+
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
 [ext_resource type="Texture2D" uid="uid://cq8jj63iyu2cs" path="res://d7hftxdivxxvm.cloudfront.webp" id="2_wf35v"]
@@ -860,6 +861,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
+
 text = "v1.4.2"
 horizontal_alignment = 2
 
