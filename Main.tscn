@@ -408,7 +408,7 @@ color = Color(0.14902, 0.14902, 0.14902, 1)
 layout_mode = 1
 offset_right = 229.0
 offset_bottom = 47.0
-placeholder_text = "Youtube link(can be playlist)"
+placeholder_text = "Link to download"
 
 [node name="YTDownload" type="Button" parent="YoutubeMenuHolder/Youtube menu"]
 layout_mode = 1
@@ -448,9 +448,10 @@ offset_top = -40.0
 offset_right = 1.17004
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 text = "?"
 script = ExtResource("17_4b8oh")
-Open = "https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md"
+Open = "https://notdraimdev.github.io/SimplSite/GettingStarted.html"
 
 [node name="CreatePlaylistsMenu" type="Control" parent="."]
 visible = false
@@ -694,12 +695,12 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 67.0
-offset_top = -120.0
+offset_top = -132.0
 offset_right = -200.0
-offset_bottom = -89.0
+offset_bottom = -95.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Please select a directory"
+text = "Please make a Playlist "
 label_settings = SubResource("LabelSettings_6prit")
 clip_text = true
 text_overrun_behavior = 2
@@ -711,7 +712,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 68.0
-offset_top = -99.0
+offset_top = -106.0
 offset_right = -199.0
 offset_bottom = -68.0
 grow_horizontal = 2
@@ -860,7 +861,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.4.2h1"
+text = "v1.4.2h2"
 horizontal_alignment = 2
 
 [node name="WavDisclaimer" type="AcceptDialog" parent="."]
