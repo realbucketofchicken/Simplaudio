@@ -60,10 +60,9 @@ func DownloadYTVidFromLink():
 		return
 	loading_img.show()
 	yt_link.clear()
-	CurrentDownload = download
 	download.set_destination(owner.PlaylistsLocation[owner.CurrentPlaylist])
 	print(owner.PlaylistsLocation[owner.CurrentPlaylist])
-	download.convert_to_audio(YtDlp.Audio.MP3)
+	download.convert_to_audio(YtDlp.Audio.MP3) 
 	download.start()
 	yt_download.disabled = true
 	download.completely_finished.connect(DownloadCompleted)
@@ -72,7 +71,6 @@ func DownloadCompleted():
 	yt_download.disabled = false
 	owner.GetSongs(owner.PlaylistsLocation[owner.CurrentPlaylist])
 	loading_img.hide()
-	CurrentDownload = null
 
 
 func _on_toggled(toggled_on: bool) -> void:

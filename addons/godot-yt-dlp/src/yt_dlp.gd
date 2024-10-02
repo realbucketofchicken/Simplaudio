@@ -100,7 +100,6 @@ class Download extends RefCounted:
 	
 	var _status: Status = Status.READY
 	var _thread: Thread = null
-	var _process_id:int
 	
 	# Fields
 	var _url: String
@@ -159,7 +158,6 @@ class Download extends RefCounted:
 	
 	
 	func _execute_on_thread() -> void:
-		var _process_id:int
 		var executable: String = OS.get_user_data_dir() + \
 				("/yt-dlp.exe" if OS.get_name() == "Windows" else "/yt-dlp")
 		
