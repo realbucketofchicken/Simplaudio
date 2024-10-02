@@ -100,6 +100,7 @@ class Download extends RefCounted:
 	
 	var _status: Status = Status.READY
 	var _thread: Thread = null
+	var _process_id:int
 	
 	# Fields
 	var _url: String
