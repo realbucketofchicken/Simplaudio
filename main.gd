@@ -67,6 +67,7 @@ var PlayAllLists:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_tree().root.min_size = Vector2(850,459)
 	current_progress.drag_ended.connect(SongDragStopped)
 	current_progress.drag_started.connect(SongDragStarted)
 	loop.pressed.connect(LoopSong)

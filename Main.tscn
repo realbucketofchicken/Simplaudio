@@ -583,7 +583,7 @@ icon = ExtResource("11_esjel")
 script = ExtResource("12_073mb")
 
 [node name="SettingsPopup" type="Popup" parent="."]
-position = Vector2i(319, 85)
+initial_position = 1
 size = Vector2i(591, 501)
 
 [node name="SettingsMenuChild" parent="SettingsPopup" instance=ExtResource("13_7atry")]
@@ -861,7 +861,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.4.2h2"
+text = "v1.4.3"
 horizontal_alignment = 2
 
 [node name="WavDisclaimer" type="AcceptDialog" parent="."]

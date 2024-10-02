@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://BigLogo.png"
+boot_splash/use_filter=false
 config/icon="res://Logo2.png"
 config/windows_native_icon="res://addons/godot-yt-dlp/src/favicon2.ico"
 
@@ -29,7 +30,6 @@ MusicMetadataAutoload="*res://MusicMeta-f98d7384de3e2e658dcba3f5b06fb5b57ac2c73c
 window/size/initial_position_type=3
 window/size/extend_to_title=true
 window/energy_saving/keep_screen_on=false
-window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [dotnet]
