@@ -493,7 +493,7 @@ func UpdateSplashes():
 		"Welcome to todays JahresSchau",
 		"ram is very useful","your cpu is tasty","main course: Nvidia GPU",
 		"SCHOTTLAND FUER IMMER","i eat airborne vehicles","linus trovalds",
-		"™","＼（〇_ｏ）／","Nuh Uh!","Yuh Huh",
+		"™","＼（〇_ｏ）／","Nuh Uh!","Yuh Huh","Breaching.",
 		"I get a narcissistic injury when the wall ignores me","totally not using %s" % version.text] 
 
 
