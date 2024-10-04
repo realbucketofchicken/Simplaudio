@@ -74,7 +74,7 @@ func _on_h_slider_drag_ended(value_changed: bool) -> void:
 	Parent.SaveEverything()
 
 func _on_exit_pressed() -> void:
-	get_parent().hide()
+	Parent.find_child("SettingsButton").button_pressed = false
 	Parent.SaveEverything()
 
 #region Reverb

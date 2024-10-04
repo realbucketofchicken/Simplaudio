@@ -92,14 +92,6 @@ keycode = 82
 [sub_resource type="Shortcut" id="Shortcut_axi6u"]
 events = [SubResource("InputEventKey_0jlka")]
 
-[sub_resource type="InputEventKey" id="InputEventKey_117g0"]
-device = -1
-ctrl_pressed = true
-keycode = 83
-
-[sub_resource type="Shortcut" id="Shortcut_8p5o4"]
-events = [SubResource("InputEventKey_117g0")]
-
 [sub_resource type="InputEventKey" id="InputEventKey_5af16"]
 device = -1
 keycode = 32
@@ -152,6 +144,14 @@ keycode = 81
 
 [sub_resource type="Shortcut" id="Shortcut_g3fcr"]
 events = [SubResource("InputEventKey_puhgg")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_117g0"]
+device = -1
+ctrl_pressed = true
+keycode = 83
+
+[sub_resource type="Shortcut" id="Shortcut_8p5o4"]
+events = [SubResource("InputEventKey_117g0")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b1152"]
 font_size = 31
@@ -285,20 +285,30 @@ shortcut = SubResource("Shortcut_vp2fh")
 text = "Playlists"
 script = ExtResource("12_of5fe")
 
-[node name="PlaylistsPanel" type="Control" parent="."]
-visible = false
+[node name="PlaylistPanelHolder" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_right = -30.0
+offset_bottom = -190.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PlaylistsPanel" type="Control" parent="PlaylistPanelHolder"]
 layout_mode = 2
 anchors_preset = 0
 anchor_bottom = 1.0
 offset_left = 19.0
 offset_top = 88.0
 offset_right = 393.0
-offset_bottom = -132.0
+offset_bottom = 48.0
 grow_vertical = 2
 script = ExtResource("12_8ie8y")
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="PlaylistsPanel"]
+[node name="ColorRect" type="ColorRect" parent="PlaylistPanelHolder/PlaylistsPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -307,7 +317,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.14902, 0.14902, 0.14902, 1)
 
-[node name="PlaylistsContainer" type="ScrollContainer" parent="PlaylistsPanel"]
+[node name="PlaylistsContainer" type="ScrollContainer" parent="PlaylistPanelHolder/PlaylistsPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0174419
@@ -319,44 +329,44 @@ grow_vertical = 2
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlaylistsPanel/PlaylistsContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer"]
 custom_minimum_size = Vector2(365.295, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="PlaylistsPanel/PlaylistsContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "PLAYLISTS"
 label_settings = SubResource("LabelSettings_0fjy0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlaylistsPanel/PlaylistsContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
 alignment = 1
 
-[node name="CreatePlaylist" type="Button" parent="PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer"]
+[node name="CreatePlaylist" type="Button" parent="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(155, 42.335)
 layout_mode = 2
 focus_mode = 0
 text = "Create
 Playlist"
 
-[node name="Control" type="Control" parent="PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(7.55, 0)
 layout_mode = 2
 
-[node name="PlayAll" type="Button" parent="PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer"]
+[node name="PlayAll" type="Button" parent="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(155, 42.335)
 layout_mode = 2
 focus_mode = 0
 toggle_mode = true
 text = "Play all"
 
-[node name="PlaylistsHolder" type="VBoxContainer" parent="PlaylistsPanel/PlaylistsContainer/VBoxContainer"]
+[node name="PlaylistsHolder" type="VBoxContainer" parent="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
@@ -570,22 +580,6 @@ grow_horizontal = 0
 focus_mode = 0
 shortcut = SubResource("Shortcut_axi6u")
 text = "Randomize"
-
-[node name="SettingsButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -77.0
-offset_top = 23.0
-offset_right = -5.0
-offset_bottom = 95.0
-grow_horizontal = 0
-scale = Vector2(0.79, 0.79)
-focus_mode = 0
-shortcut = SubResource("Shortcut_8p5o4")
-icon = ExtResource("11_esjel")
-script = ExtResource("12_073mb")
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a Directory"
@@ -857,24 +851,47 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.4.3"
+text = "v1.4.4"
 horizontal_alignment = 2
 
-[node name="SettingsPopup" type="Control" parent="."]
+[node name="SettingsButton" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -77.0
+offset_top = 23.0
+offset_right = -5.0
+offset_bottom = 95.0
+grow_horizontal = 0
+scale = Vector2(0.79, 0.79)
+focus_mode = 0
+toggle_mode = true
+shortcut = SubResource("Shortcut_8p5o4")
+icon = ExtResource("11_esjel")
+script = ExtResource("12_073mb")
+
+[node name="SettingsHolder" type="Control" parent="."]
+layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -295.5
-offset_top = -250.5
-offset_right = 295.5
-offset_bottom = 250.5
+offset_top = -294.0
+offset_bottom = -294.0
 grow_horizontal = 2
-grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="SettingsPopup"]
+[node name="SettingsPopup" type="Control" parent="SettingsHolder"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -295.5
+offset_right = 295.5
+offset_bottom = 501.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="SettingsHolder/SettingsPopup"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -884,7 +901,7 @@ grow_vertical = 2
 color = Color(0.14902, 0.14902, 0.14902, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="SettingsMenuChild" parent="SettingsPopup" instance=ExtResource("13_7atry")]
+[node name="SettingsMenuChild" parent="SettingsHolder/SettingsPopup" instance=ExtResource("13_7atry")]
 layout_mode = 1
 offset_left = -280.0
 offset_top = 8.0
@@ -1102,19 +1119,19 @@ label_settings = SubResource("LabelSettings_ivhc6")
 horizontal_alignment = 1
 
 [connection signal="toggled" from="SelectPlaylist" to="SelectPlaylist" method="_on_toggled"]
-[connection signal="pressed" from="PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist" to="PlaylistsPanel" method="_on_create_playlist_pressed"]
-[connection signal="toggled" from="PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/PlayAll" to="PlaylistsPanel" method="_on_play_all_toggled"]
+[connection signal="pressed" from="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist" to="PlaylistPanelHolder/PlaylistsPanel" method="_on_create_playlist_pressed"]
+[connection signal="toggled" from="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/PlayAll" to="PlaylistPanelHolder/PlaylistsPanel" method="_on_play_all_toggled"]
 [connection signal="toggled" from="YtTabButton" to="YtTabButton" method="_on_toggled"]
 [connection signal="dir_selected" from="CreatePlaylistsMenu/FileDialog" to="CreatePlaylistsMenu" method="_on_file_dialog_dir_selected"]
 [connection signal="text_changed" from="CreatePlaylistsMenu/ScrollContainer/VBoxContainer/PlaylistName" to="CreatePlaylistsMenu" method="_on_playlist_name_text_changed"]
 [connection signal="pressed" from="CreatePlaylistsMenu/ScrollContainer/VBoxContainer/SelectDirButton" to="CreatePlaylistsMenu" method="_on_select_dir_button_pressed"]
 [connection signal="pressed" from="CreatePlaylistsMenu/ScrollContainer/VBoxContainer/CreatePlaylistButton" to="CreatePlaylistsMenu" method="_on_create_playlist_button_pressed"]
 [connection signal="pressed" from="CreatePlaylistsMenu/CloseButton" to="CreatePlaylistsMenu" method="_on_close_button_pressed"]
-[connection signal="pressed" from="SettingsButton" to="SettingsButton" method="_on_pressed"]
 [connection signal="toggled" from="SearchToggle" to="SearchToggle" method="_on_toggled"]
 [connection signal="text_submitted" from="SearchBar" to="SearchBar" method="_on_text_submitted"]
 [connection signal="index_pressed" from="SearchResults" to="SearchBar" method="_on_search_results_index_pressed"]
 [connection signal="toggled" from="VolumeButton" to="VolumeButton" method="_on_toggled"]
+[connection signal="toggled" from="SettingsButton" to="SettingsButton" method="_on_toggled"]
 [connection signal="request_completed" from="UpdateChecker/HTTPRequest" to="UpdateChecker" method="_on_http_request_completed"]
 [connection signal="request_completed" from="UpdateChecker/DownloadRequest" to="UpdateChecker" method="_on_download_request_completed"]
 [connection signal="pressed" from="UpdateChecker/ColorRect/LinkButton" to="UpdateChecker" method="_on_link_button_pressed"]

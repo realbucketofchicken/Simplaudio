@@ -22,11 +22,11 @@ extends Control
 @onready var version: Label = $Version
 @onready var paused_indicator: TextureRect = $PausedIndicator
 @onready var settings_popup: Control = $SettingsPopup
-@onready var settings_menu_child: Settings = $SettingsPopup/SettingsMenuChild
+@onready var settings_menu_child: Settings = $SettingsHolder/SettingsPopup/SettingsMenuChild
 @onready var artist_name: Label = $ArtistName
 @onready var user_bg: TextureRect = $UserBG
 @onready var playlists_panel: Control = $PlaylistsPanel
-@onready var playlists_holder: VBoxContainer = $PlaylistsPanel/PlaylistsContainer/VBoxContainer/PlaylistsHolder
+@onready var playlists_holder: VBoxContainer = $PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/PlaylistsHolder
 @onready var play_all: Button = $PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/PlayAll
 @onready var album_name: Label = $Album
 @onready var playlist_or_song: ConfirmationDialog = $PlaylistOrSong
@@ -67,7 +67,7 @@ var PlayAllLists:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_tree().root.min_size = Vector2(850,459)
+	get_tree().root.min_size = Vector2(850,492)
 	current_progress.drag_ended.connect(SongDragStopped)
 	current_progress.drag_started.connect(SongDragStarted)
 	loop.pressed.connect(LoopSong)

@@ -46,10 +46,11 @@ func _on_http_request_completed(result: int, _response_code: int, _headers: Pack
 	var json = JSON.new()
 	var result2 = json.parse_string(str(body.get_string_from_utf8()))
 	print("! AHHH  " + str(result2))
-	if result2["tag_name"] != version.text:
-		update_available_text.text = result2["tag_name"] + " Is Out!"
-		show()
-		updateLink = result2["html_url"]
+	if result2.has("tag_name"):
+		if result2["tag_name"] != version.text:
+			update_available_text.text = result2["tag_name"] + " Is Out!"
+			show()
+			updateLink = result2["html_url"]
 
 func _on_close_buen_pressed() -> void:
 	hide()

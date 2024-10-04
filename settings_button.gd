@@ -1,19 +1,25 @@
 extends Button
 
-@onready var settings_popup: Control = $"../SettingsPopup"
+@onready var settings_popup: Control = $"../SettingsHolder/SettingsPopup"
+var currentlyExtending:bool
+var Target:float = 50
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
-
-func _on_pressed() -> void:
-	if settings_popup.visible:
-		settings_popup.hide()
+	if currentlyExtending:
+		settings_popup.position.y = clamp(lerp(settings_popup.position.y,Target,0.25),0,100)
 	else:
+		settings_popup.position.y -=1
+		settings_popup.position.y = clamp(lerp(Target,settings_popup.position.y,1.25),0,100)
+	settings_popup.modulate.a = settings_popup.position.y / Target
+	if settings_popup.position.y > 1:
 		settings_popup.show()
+	else:
+		settings_popup.hide()
+
+func _on_toggled(toggled_on: bool) -> void:
+	print("@@")
+	if toggled_on:
+		currentlyExtending = true
+		settings_popup.position.y = 1
+	else:
+		currentlyExtending = false
