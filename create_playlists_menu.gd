@@ -4,7 +4,7 @@ extends Control
 @onready var file_dialog: FileDialog = $FileDialog
 @onready var current_directory: Label = $ScrollContainer/VBoxContainer/CurrentDirectory
 @onready var playlist_name: LineEdit = $ScrollContainer/VBoxContainer/PlaylistName
-@onready var playlists_holder: VBoxContainer = $"../PlaylistsPanel/PlaylistsContainer/VBoxContainer/PlaylistsHolder"
+@onready var playlists_holder: VBoxContainer = $"../PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/PlaylistsHolder"
 
 const PLAYLIST_DISPLAY = preload("res://PlaylistDisplay.tscn")
 

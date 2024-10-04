@@ -1,6 +1,6 @@
 extends Control
 @onready var create_playlist: Button = $PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist
-@onready var create_playlists_menu: Control = $"../CreatePlaylistsMenu"
+@onready var create_playlists_menu: Control = $"../../CreatePlaylistsMenu"
 @onready var play_all: Button = $PlaylistsContainer/VBoxContainer/HBoxContainer/PlayAll
 
 
