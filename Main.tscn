@@ -170,6 +170,11 @@ script = ExtResource("1_ubs1p")
 LoopPressed = ExtResource("2_iolk5")
 LoopNotPressed = ExtResource("5_c2g63")
 
+[node name="OSMediaIntigration" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="WallpaperManager" type="Node2D" parent="." node_paths=PackedStringArray("Daytime", "Evening", "Nighttime")]
 script = ExtResource("4_y372l")
 Daytime = NodePath("../Daytime")
@@ -582,15 +587,6 @@ shortcut = SubResource("Shortcut_8p5o4")
 icon = ExtResource("11_esjel")
 script = ExtResource("12_073mb")
 
-[node name="SettingsPopup" type="Popup" parent="."]
-initial_position = 1
-size = Vector2i(591, 501)
-
-[node name="SettingsMenuChild" parent="SettingsPopup" instance=ExtResource("13_7atry")]
-offset_left = -272.0
-offset_top = 8.0
-offset_bottom = 458.0
-
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a Directory"
 position = Vector2i(28, 115)
@@ -863,6 +859,37 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "v1.4.3"
 horizontal_alignment = 2
+
+[node name="SettingsPopup" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.5
+offset_top = -250.5
+offset_right = 295.5
+offset_bottom = 250.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="SettingsPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsMenuChild" parent="SettingsPopup" instance=ExtResource("13_7atry")]
+layout_mode = 1
+offset_left = -280.0
+offset_top = 8.0
+offset_right = 296.0
+offset_bottom = 501.0
 
 [node name="WavDisclaimer" type="AcceptDialog" parent="."]
 transparent_bg = true
