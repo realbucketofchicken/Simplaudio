@@ -25,7 +25,7 @@ extends Control
 @onready var artist_name: Label = $ArtistName
 @onready var user_bg: TextureRect = $UserBG
 @onready var playlists_holder: VBoxContainer = $PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/PlaylistsHolder
-@onready var play_all: Button = $PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/PlayAll
+@onready var play_all: Button = $PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/PlayAll
 @onready var album_name: Label = $Album
 @onready var playlist_or_song: ConfirmationDialog = $PlaylistOrSong
 
