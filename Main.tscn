@@ -882,6 +882,7 @@ offset_bottom = -294.0
 grow_horizontal = 2
 
 [node name="SettingsPopup" type="Control" parent="SettingsHolder"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
