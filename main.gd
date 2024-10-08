@@ -424,15 +424,13 @@ func _process(_delta: float) -> void:
 	# "59:59 remaining" timestamp for the activity
 	if music_player.playing:
 		TimeSpentListening += _delta
-		if DiscordRPC.get_current_user().get("username") == "_bucketofchicken":
-			DiscordRPC.state = "i made the music player btw"
-		else:
-			DiscordRPC.state = "Listening To Music"
+		DiscordRPC.state = "Listening To Music"
 		CurrentPausedIndicatorShaderIntensity = lerp(CurrentPausedIndicatorShaderIntensity,0.0,0.1)
 	else:
 		DiscordRPC.start_timestamp = int(0)
 		DiscordRPC.state = "Paused"
-		DiscordRPC.refresh()
+		if DiscordRPC.get_is_discord_working():
+			DiscordRPC.refresh()
 		CurrentPausedIndicatorShaderIntensity = lerp(CurrentPausedIndicatorShaderIntensity,1.0,0.1)
 	if DiscordRichPresenceEnabled:
 		DiscordRPC.run_callbacks()
