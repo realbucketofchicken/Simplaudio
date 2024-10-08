@@ -421,6 +421,7 @@ func _process(_delta: float) -> void:
 		DiscordRPC.large_image_text = LText
 		if DiscordRPC.get_is_discord_working():
 			DiscordRPC.refresh()
+	
 	# "59:59 remaining" timestamp for the activity
 	if music_player.playing:
 		TimeSpentListening += _delta
