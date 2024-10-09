@@ -66,10 +66,15 @@ func _on_link_button_pressed() -> void:
 	var path:String = GetLocalPath()
 	print(OS.get_executable_path())
 	if !OS.has_feature("editor"):
+		download_request.download_file = path + "download.zip"
+		var DownloadLink:String
 		if OS.get_name() == "Windows":
-			download_request.download_file = path + "download.zip"
+			DownloadLink = "https://github.com/notdraimdev/Simplaudio/releases/latest/download/Windows.zip"
+		elif OS.get_name() == "Linux":
+			DownloadLink = "https://github.com/notdraimdev/Simplaudio/releases/latest/download/Linux.zip"
+		if DownloadLink.is_empty() != true:
 			var error = download_request.request(
-								"https://github.com/notdraimdev/Simplaudio/releases/latest/download/Windows.zip"
+								DownloadLink
 			)
 			if error != OK:
 				print("! DOWNLOAD ERROR: " + str(error))
@@ -78,6 +83,7 @@ func _on_link_button_pressed() -> void:
 			else:
 				errorLabel.text = "downloading..."
 		else:
+			push_error("OS NOT SUPPORTED, you should not get this error but you did, congrat!")
 			OS.shell_open(updateLink)
 
 func _on_download_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
@@ -90,7 +96,6 @@ func _on_download_request_completed(result: int, response_code: int, headers: Pa
 		errorLabel.text = "unzipping..."
 		print("works as expected brotha")
 		var unzipper:ZIPReader = ZIPReader.new() # sus
-		
 		unzipper.open(GetLocalPath()+"download.zip")
 		var files:PackedStringArray = unzipper.get_files()
 		for file in files:

@@ -8,6 +8,7 @@ extends Button
 
 var currentlyExtending:bool
 var Target:float = 50
+var downloadList:bool = false
 signal ContinueProcess
 
 @onready var Parent:MainScene = get_tree().root.get_child(2)
@@ -37,11 +38,10 @@ func YTSetupCompleted():
 	yt_download.disabled = false
 
 func DownloadPlaylistConf():
+	downloadList = true
 	ContinueProcess.emit()
 
 func DownloadSingleSongConf():
-	var idx:int = yt_link.text.find("list=")
-	yt_link.text = yt_link.text.erase(idx,500)
 	ContinueProcess.emit()
 
 func DownloadYTVidFromLink():
@@ -63,6 +63,7 @@ func DownloadYTVidFromLink():
 	download.set_destination(owner.PlaylistsLocation[owner.CurrentPlaylist])
 	print(owner.PlaylistsLocation[owner.CurrentPlaylist])
 	download.convert_to_audio(YtDlp.Audio.MP3) 
+	download._download_playlist = downloadList
 	download.start()
 	yt_download.disabled = true
 	download.completely_finished.connect(DownloadCompleted)

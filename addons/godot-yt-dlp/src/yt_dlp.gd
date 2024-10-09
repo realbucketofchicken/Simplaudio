@@ -36,13 +36,22 @@ func download(url: String) -> Download:
 func FilesMissing() -> bool:
 	var executable_name: String = "yt-dlp.exe" if OS.get_name() == "Windows" else "yt-dlp"
 	
-	if not FileAccess.file_exists("user://%s" % executable_name):
-		return true
-	if not FileAccess.file_exists("user://ffmpeg.exe"):
-		return true
-	if not FileAccess.file_exists("user://ffprobe.exe"):
-		return true
-	
+	if OS.get_name() == "Windows":
+		if not FileAccess.file_exists("user://%s" % executable_name):
+			return true
+		if not FileAccess.file_exists("user://ffmpeg.exe"):
+			return true
+		if not FileAccess.file_exists("user://ffprobe.exe"):
+			return true
+	elif OS.get_name() == "Linux":
+		var stuff = OS.execute("bash",PackedStringArray(["-c","ffprobe"]))
+		print(stuff)
+		if stuff != 1:
+			return true
+		var stuff2 = OS.execute("bash",PackedStringArray(["-c","ffmpeg"]))
+		print(stuff2)
+		if stuff2 != 1:
+			return true
 	return false
 
 func setup() -> void:
@@ -59,9 +68,8 @@ func setup() -> void:
 		await (Engine.get_main_loop() as SceneTree).process_frame 
 		_thread.wait_to_finish()
 	
-	if OS.get_name() == "Windows":
-		await _setup_ffmpeg()
-	else:
+	await _setup_ffmpeg()
+	if OS.get_name() == "Linux":
 		OS.execute("chmod", PackedStringArray(["+x", OS.get_user_data_dir() + "/yt-dlp"]))
 	
 	_is_setup = true
@@ -70,12 +78,33 @@ func setup() -> void:
 
 func _setup_ffmpeg() -> void:
 	if not FileAccess.file_exists("user://ffmpeg.exe"):
-		_downloader.download(ffmpeg_sources["ffmpeg"], "user://ffmpeg.exe")
-		await _downloader.download_completed
+		if OS.get_name() == "Windows":
+			_downloader.download(ffmpeg_sources["ffmpeg"], "user://ffmpeg.exe")
+			await _downloader.download_completed
+			print(OS.get_distribution_name())
+		elif OS.get_distribution_name() in ["Ubuntu","Linux Mint","Debian"]:
+			var stuff = OS.execute("bash",PackedStringArray(["-c","ffmpeg"]))
+			print(stuff)
+			if stuff !=1:
+				push_error("FFMPEG NOT INSTALLED")
+			print(OS.get_distribution_name())
+		else:
+			print(OS.get_distribution_name())
 	
 	if not FileAccess.file_exists("user://ffprobe.exe"):
-		_downloader.download(ffmpeg_sources["ffprobe"], "user://ffprobe.exe")
-		await _downloader.download_completed
+		if OS.get_name() == "Windows":
+			_downloader.download(ffmpeg_sources["ffprobe"], "user://ffprobe.exe")
+			print(OS.get_distribution_name())
+			await _downloader.download_completed
+		elif OS.get_name() == "Linux":
+			var stuff = OS.execute("bash",PackedStringArray(["-c","ffprobe"]))
+			print(stuff)
+			if stuff != 1:
+				push_error("FFPROBE NOT INSTALLED")
+			print(OS.get_distribution_name())
+		else:
+			print(OS.get_distribution_name())
+	
 
 
 func _update_yt_dlp(filename: String) -> void:
@@ -109,7 +138,7 @@ class Download extends RefCounted:
 	var _renameAudioToDiffName:bool = false
 	var _video_format: Video = Video.WEBM
 	var _audio_format: Audio = Audio.MP3
-	
+	var _download_playlist:bool
 	
 	func _init(url: String):
 		_url = url
@@ -183,8 +212,13 @@ class Download extends RefCounted:
 					"destination": _destination
 				})
 		
-		options_and_arguments.append_array(["--yes-playlist","--embed-metadata","--embed-thumbnail",str("-o" + "%(title)s.%(ext)s")])
+		options_and_arguments.append_array(["--embed-metadata","--embed-thumbnail",str("-o" + "%(title)s.%(ext)s")])
 		options_and_arguments.append_array(["--no-continue", "-P", file_path, _url])
+		
+		if _download_playlist:
+			options_and_arguments.append("--yes-playlist")
+		else:
+			options_and_arguments.append("--no-playlist")
 		
 		print(options_and_arguments)
 		var output: Array = []
