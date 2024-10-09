@@ -73,8 +73,7 @@ func _on_link_button_pressed() -> void:
 		elif OS.get_name() == "Linux":
 			DownloadLink = "https://github.com/notdraimdev/Simplaudio/releases/latest/download/Linux.zip"
 		if DownloadLink.is_empty() != true:
-			var error = download_request.request(
-								DownloadLink
+			var error = download_request.request(DownloadLink
 			)
 			if error != OK:
 				print("! DOWNLOAD ERROR: " + str(error))
@@ -99,7 +98,7 @@ func _on_download_request_completed(result: int, response_code: int, headers: Pa
 		unzipper.open(GetLocalPath()+"download.zip")
 		var files:PackedStringArray = unzipper.get_files()
 		for file in files:
-			var actualfile = file.replace("MusicPlayerExports/","")
+			var actualfile = file.replace("Linux/","").replace("Windows/","").replace("Android/","")
 			print("FILE: " + actualfile)
 			var FileAcess:FileAccess = FileAccess.open(GetLocalPath() + actualfile,FileAccess.WRITE_READ)
 			

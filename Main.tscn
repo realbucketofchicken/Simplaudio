@@ -930,7 +930,6 @@ dialog_autowrap = true
 cancel_button_text = "Download Song"
 
 [node name="UpdateChecker" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
