@@ -21,7 +21,7 @@ var updateLink:String
 const UPDATE_THROTTLE = 600
 
 func _ready() -> void:
-
+	hide()
 	if CheckForUpdates:
 		check_for_updates()
 

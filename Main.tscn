@@ -832,14 +832,6 @@ offset_right = 179.0
 offset_bottom = -11.0
 grow_vertical = 0
 
-[node name="DiscordMenuHolder" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1042.0
-offset_top = 174.0
-offset_right = 1082.0
-offset_bottom = 214.0
-
 [node name="Version" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -851,7 +843,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.4.6"
+text = "v1.4.6h1"
 horizontal_alignment = 2
 
 [node name="SettingsButton" type="Button" parent="."]
