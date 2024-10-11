@@ -5,8 +5,7 @@ var HzDec = {0:"32 Hz",
 			2:"320 Hz",
 			3:"1000 Hz",
 			4:"3200 Hz",
-			5:"3200 Hz",
-			6:"10000 Hz"}
+			5:"10000 Hz"}
 
 var gainValueLabels:Array = []
 var gainValueSlider:Array = []
