@@ -170,7 +170,10 @@ func _on_select_bg_dialog_file_selected(path: String) -> void:
 	Parent.CurrentCustomBackroundImageDirectory = path
 	backround_dir_label.text = path
 	#print(path)
-	Parent.user_bg.texture = ImageTexture.create_from_image(Image.load_from_file(CurrentBGImagePath))
+	if !path.ends_with(".gif"):
+		Parent.user_bg.texture = ImageTexture.create_from_image(Image.load_from_file(CurrentBGImagePath))
+	else:
+		Parent.user_bg.texture = GifManager.animated_texture_from_file(path)
 	Parent.SaveEverything()
 
 func _on_reset_bg_pressed() -> void:
