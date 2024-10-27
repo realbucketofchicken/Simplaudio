@@ -29,6 +29,8 @@ extends Control
 @onready var album_name: Label = $Album
 @onready var playlist_or_song: ConfirmationDialog = $PlaylistOrSong
 @onready var search_results: SearchResults = $SearchResults
+@onready var delete_confirm: ConfirmationDialog = $deleteConfirm
+@onready var search_bar: LineEdit = $SearchBar
 
 
 
@@ -64,6 +66,9 @@ var PlayAllLists:bool
 @export var LoopPressed:Texture2D
 @export var LoopNotPressed:Texture2D
 
+signal ContinueDelete
+var deleteSong:bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_tree().root.min_size = Vector2(850,492)
@@ -77,6 +82,7 @@ func _ready() -> void:
 	skip.pressed.connect(Skip)
 	go_back.pressed.connect(GoBack)
 	search_results.index_pressed.connect(SetSong)
+	search_results.song_deleted.connect(deletesong)
 	var Strin:String
 	for Arg in OS.get_cmdline_args():
 		if Arg.to_lower().ends_with(".mp3") or Arg.to_lower().ends_with(".wav"):
@@ -191,6 +197,36 @@ func _ready() -> void:
 	# Always refresh after changing the values!
 	DiscordRPC.refresh() 
 
+func deletesong(idx:int):
+	var currentDir:String= CurrentDir
+	currentDir += "/" + textSongs[idx]
+	delete_confirm.show()
+	delete_confirm.dialog_text = "are you sure you want to delete \n" + textSongs[idx] +"?"
+	delete_confirm.confirmed.connect(deleteConfirmed)
+	delete_confirm.canceled.connect(deleteCancelled)
+	await ContinueDelete
+	delete_confirm.canceled.disconnect(deleteCancelled)
+	delete_confirm.confirmed.disconnect(deleteConfirmed)
+	if deleteSong:
+		print("deleted + " + currentDir)
+		deleteSong = false
+		var dir = DirAccess.remove_absolute(currentDir)
+		print("error code " +str(dir) + " (zero is good)")
+		if dir == 0:
+			textSongs.remove_at(idx)
+		if search_bar.visible:
+			search_bar.updateResults()
+		else:
+			songs_menu._pressed()
+		Playlists[CurrentPlaylist].erase(textSongs[idx])
+
+func deleteCancelled():
+	deleteSong = false
+	ContinueDelete.emit()
+
+func deleteConfirmed():
+	deleteSong = true
+	ContinueDelete.emit()
 
 func SongDragStopped(Changed:bool):
 	if Changed:

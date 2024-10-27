@@ -783,10 +783,11 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 264.5
 offset_top = 84.225
 offset_right = -264.5
-offset_bottom = 384.225
+offset_bottom = -263.775
 
 [node name="VolumeButton" type="Button" parent="."]
 texture_filter = 1
@@ -847,7 +848,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.4.7"
+text = "v1.5.0"
 horizontal_alignment = 2
 
 [node name="SettingsButton" type="Button" parent="."]
@@ -1115,6 +1116,10 @@ grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_ivhc6")
 horizontal_alignment = 1
+
+[node name="deleteConfirm" type="ConfirmationDialog" parent="."]
+initial_position = 2
+dialog_text = "Are you sure you want to delete"
 
 [connection signal="toggled" from="SelectPlaylist" to="SelectPlaylist" method="_on_toggled"]
 [connection signal="pressed" from="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist" to="PlaylistPanelHolder/PlaylistsPanel" method="_on_create_playlist_pressed"]

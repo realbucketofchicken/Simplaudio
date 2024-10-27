@@ -19,3 +19,7 @@ func _process(delta: float) -> void:
 
 func _on_songname_pressed() -> void:
 	PlayPressed.emit(idx)
+
+
+func _on_delete_pressed() -> void:
+	DeletePressed.emit(idx)

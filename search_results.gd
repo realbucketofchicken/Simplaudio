@@ -2,6 +2,7 @@ class_name SearchResults
 extends Control
 
 signal index_pressed
+signal song_deleted
 
 const SEARCH_ITEM = preload("res://search_item.tscn")
 
@@ -26,9 +27,11 @@ func add_item(text:String):
 	child.idx = parent.textSongs.find(text)
 	SongsAmount+=1
 	child.PlayPressed.connect(songSelected)
+	child.DeletePressed.connect(deletePressed)
 	item_container.add_child(child)
 
 func clear():
+	SongsAmount = 0
 	for child in item_container.get_children():
 		child.queue_free()
 
@@ -40,3 +43,6 @@ func _input(event):
 		var evLocal = make_input_local(event)
 		if !Rect2(Vector2(0,0),Vector2(size.x,size.y)).has_point(evLocal.position):
 			hide()
+
+func deletePressed(idx:int):
+	song_deleted.emit(idx)
