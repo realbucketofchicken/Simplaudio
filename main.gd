@@ -233,6 +233,7 @@ func SongDragStopped(Changed:bool):
 		music_player.play(current_progress.value * CurrentSongLenth / current_progress.max_value)
 		if Paused:
 			pausePlay()
+		
 		UpdateProgressSlider = true
 		DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system() - (current_progress.value * CurrentSongLenth / current_progress.max_value))
 		DiscordRPC.refresh()
