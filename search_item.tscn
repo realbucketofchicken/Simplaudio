@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctqcbjrmxaqsk"]
+
+[ext_resource type="Texture2D" uid="uid://cm5ps3a716wr0" path="res://XSmall.png" id="1_6wgd5"]
+[ext_resource type="Script" path="res://search_item.gd" id="1_j4126"]
+
+[node name="SearchItem" type="Control"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("1_j4126")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -19.0
+offset_right = 50.0
+offset_bottom = 19.0
+grow_vertical = 2
+
+[node name="delete" type="Button" parent="HBoxContainer"]
+modulate = Color(0.553478, 0.101429, 4.81308e-08, 1)
+layout_mode = 2
+tooltip_text = "delete song from hard-drive"
+focus_mode = 0
+icon = ExtResource("1_6wgd5")
+flat = true
+
+[node name="Songname" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+flat = true
+alignment = 0
+
+[connection signal="pressed" from="HBoxContainer/Songname" to="." method="_on_songname_pressed"]

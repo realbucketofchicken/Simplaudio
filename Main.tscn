@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=69 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -30,6 +30,8 @@
 [ext_resource type="Script" path="res://Spinning.gd" id="14_rhw4k"]
 [ext_resource type="Script" path="res://yt_tab_button.gd" id="16_2t15p"]
 [ext_resource type="Script" path="res://help_button.gd" id="17_4b8oh"]
+[ext_resource type="Script" path="res://songs_menu.gd" id="27_f8wx0"]
+[ext_resource type="PackedScene" uid="uid://bel6i6wdbexw4" path="res://search_results.tscn" id="27_g8wmp"]
 [ext_resource type="Texture2D" uid="uid://bmbxyma4ra46p" path="res://Download.png" id="29_v44vi"]
 [ext_resource type="Script" path="res://update_checker.gd" id="30_byc5i"]
 [ext_resource type="Script" path="res://patch_notes_button.gd" id="31_hjsj1"]
@@ -764,7 +766,7 @@ alignment = 1
 caret_blink = true
 script = ExtResource("12_mr42x")
 
-[node name="SongsMenu" type="MenuButton" parent="."]
+[node name="SongsMenu" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -774,15 +776,17 @@ offset_right = -328.0
 offset_bottom = 80.0
 grow_horizontal = 2
 text = "Select Songs"
-flat = false
+script = ExtResource("27_f8wx0")
 
-[node name="SearchResults" type="PopupMenu" parent="."]
-handle_input_locally = false
-position = Vector2i(265, 80)
-size = Vector2i(623, 300)
-wrap_controls = false
-max_size = Vector2i(625, 300)
-allow_search = false
+[node name="SearchResults" parent="." instance=ExtResource("27_g8wmp")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0
+anchor_right = 1.0
+offset_left = 264.5
+offset_top = 84.225
+offset_right = -264.5
+offset_bottom = 384.225
 
 [node name="VolumeButton" type="Button" parent="."]
 texture_filter = 1
@@ -843,7 +847,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.4.6h1"
+text = "v1.4.7"
 horizontal_alignment = 2
 
 [node name="SettingsButton" type="Button" parent="."]
@@ -1123,7 +1127,6 @@ horizontal_alignment = 1
 [connection signal="pressed" from="CreatePlaylistsMenu/CloseButton" to="CreatePlaylistsMenu" method="_on_close_button_pressed"]
 [connection signal="toggled" from="SearchToggle" to="SearchToggle" method="_on_toggled"]
 [connection signal="text_submitted" from="SearchBar" to="SearchBar" method="_on_text_submitted"]
-[connection signal="index_pressed" from="SearchResults" to="SearchBar" method="_on_search_results_index_pressed"]
 [connection signal="toggled" from="VolumeButton" to="VolumeButton" method="_on_toggled"]
 [connection signal="toggled" from="SettingsButton" to="SettingsButton" method="_on_toggled"]
 [connection signal="request_completed" from="UpdateChecker/HTTPRequest" to="UpdateChecker" method="_on_http_request_completed"]

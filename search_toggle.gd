@@ -1,7 +1,7 @@
 extends Button
 
 @onready var search_bar: LineEdit = $"../SearchBar"
-@onready var songs_menu: MenuButton = $"../SongsMenu"
+@onready var songs_menu: Button = $"../SongsMenu"
 
 @export var PressedIcon:Texture2D
 @export var NotPressedIcon:Texture2D

@@ -18,7 +18,7 @@ extends Control
 @onready var yt_link: LineEdit = $"YoutubeMenuHolder/Youtube menu/YTLink"
 @onready var yt_download: Button = $"YoutubeMenuHolder/Youtube menu/YTDownload"
 @onready var loading_img: Sprite2D = $"YoutubeMenuHolder/Youtube menu/LoadingIMG"
-@onready var songs_menu: MenuButton = $SongsMenu
+@onready var songs_menu: Button = $SongsMenu
 @onready var version: Label = $Version
 @onready var paused_indicator: TextureRect = $PausedIndicator
 @onready var settings_menu_child: Settings = $SettingsHolder/SettingsPopup/SettingsMenuChild
@@ -28,6 +28,7 @@ extends Control
 @onready var play_all: Button = $PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/PlayAll
 @onready var album_name: Label = $Album
 @onready var playlist_or_song: ConfirmationDialog = $PlaylistOrSong
+@onready var search_results: SearchResults = $SearchResults
 
 
 
@@ -75,7 +76,7 @@ func _ready() -> void:
 	volume_slider.value_changed.connect(SetVolume)
 	skip.pressed.connect(Skip)
 	go_back.pressed.connect(GoBack)
-	songs_menu.get_popup().index_pressed.connect(SetSong)
+	search_results.index_pressed.connect(SetSong)
 	var Strin:String
 	for Arg in OS.get_cmdline_args():
 		if Arg.to_lower().ends_with(".mp3") or Arg.to_lower().ends_with(".wav"):
@@ -357,11 +358,11 @@ func GetSongs(dir:String):
 				wav_disclaimer.show()
 				SeenWAVDisclaimer = true
 		#print(songs)
-		songs_menu.get_popup().clear(true)
+		search_results.clear()
 		textSongs = songs
 		for song in textSongs:
-			var nam = song.replace(".mp3", "")
-			songs_menu.get_popup().add_item(nam)
+			var nam = song
+			search_results.add_item(nam)
 
 func Randomize():
 	if textSongs.size() != 0:
@@ -380,10 +381,10 @@ func Randomize():
 		
 		
 		Randomized = true
-		songs_menu.get_popup().clear(true)
+		search_results.clear()
 		for song in textSongs:
-			var nam = song.replace(".mp3", "")
-			songs_menu.get_popup().add_item(nam)
+			var nam = song
+			search_results.add_item(nam)
 		#print(textSongs)
 
 func PlaylistSelected(Playlist:String,PlaylistLocation:String):
