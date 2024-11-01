@@ -6,7 +6,7 @@ extends Control
 @onready var options_dropdown: MenuButton = $HSplitContainer/HBoxContainer/OptionsDropdown
 @onready var confirmation: ConfirmationDialog = $ConfirmationDialog
 
-@onready var Parent:MainScene = get_tree().root.get_child(2)
+@onready var Parent:MainScene = get_tree().root.get_child(3)
 
 @export var Current:bool
 var PlaylistLocation:String = ""

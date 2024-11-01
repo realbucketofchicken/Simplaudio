@@ -11,7 +11,7 @@ var Target:float = 50
 var downloadList:bool = false
 signal ContinueProcess
 
-@onready var Parent:MainScene = get_tree().root.get_child(2)
+@onready var Parent:MainScene = get_tree().root.get_child(3)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

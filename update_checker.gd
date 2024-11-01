@@ -1,5 +1,5 @@
 extends Control
-@onready var Parent:MainScene = get_tree().root.get_child(2)
+@onready var Parent:MainScene = get_tree().root.get_child(3)
 @onready var version: Label = $"../Version"
 
 @onready var http_request := $HTTPRequest as HTTPRequest

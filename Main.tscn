@@ -775,10 +775,12 @@ offset_top = 24.0
 offset_right = -328.0
 offset_bottom = 80.0
 grow_horizontal = 2
+focus_mode = 0
 text = "Select Songs"
 script = ExtResource("27_f8wx0")
 
 [node name="SearchResults" parent="." instance=ExtResource("27_g8wmp")]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0

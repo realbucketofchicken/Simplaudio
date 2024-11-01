@@ -24,6 +24,7 @@ config/windows_native_icon="res://addons/godot-yt-dlp/src/favicon2.ico"
 
 YtDlp="*res://addons/godot-yt-dlp/src/yt_dlp.gd"
 MusicMetadataAutoload="*res://MusicMeta-f98d7384de3e2e658dcba3f5b06fb5b57ac2c73c/MusicMeta.gd"
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 
 [display]
 
