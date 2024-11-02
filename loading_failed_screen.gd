@@ -14,6 +14,7 @@ func Show():
 
 func Confiremed():
 	owner.LoadingSaveFailed = false
+	hide()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
