@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
-[ext_resource type="Texture2D" uid="uid://cq8jj63iyu2cs" path="res://d7hftxdivxxvm.cloudfront.webp" id="2_wf35v"]
 [ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Skip.png" id="3_4vx67"]
 [ext_resource type="Script" path="res://wallpaper_manager.gd" id="4_y372l"]
+[ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://IMG_20241015_162213_033(1).jpg" id="5_8v24s"]
 [ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Loop.png" id="5_c2g63"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Headphones.png" id="6_3mi6c"]
-[ext_resource type="Texture2D" uid="uid://snne8iiftksi" path="res://Evening_view_of_Munnar_1633.jpg" id="6_5vm0w"]
 [ext_resource type="Texture2D" uid="uid://ba5wdmchyy50n" path="res://nighttime-in-the-hills-henry-porter.jpg" id="6_8abnc"]
+[ext_resource type="Texture2D" uid="uid://2vacx4h6vn46" path="res://IMG_20241015_175925_722(1).jpg" id="6_hvupl"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Play.png" id="8_5v7u3"]
 [ext_resource type="Shader" path="res://CoverShader.gdshader" id="8_4531v"]
 [ext_resource type="Shader" path="res://Background1.gdshader" id="8_xtnau"]
@@ -190,18 +190,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_wf35v")
+texture = ExtResource("5_8v24s")
+expand_mode = 3
 stretch_mode = 6
 
 [node name="Evening" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_5vm0w")
+texture = ExtResource("6_hvupl")
+expand_mode = 3
 stretch_mode = 6
 
 [node name="Nighttime" type="TextureRect" parent="."]
@@ -850,7 +851,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.5.0.2"
+text = "v1.5.1"
 horizontal_alignment = 2
 
 [node name="SettingsButton" type="Button" parent="."]

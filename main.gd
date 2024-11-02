@@ -184,9 +184,20 @@ func setUpDiscord():
 	DiscordRPC.app_id = 1276916292170809426
 	DiscordRPC.refresh()
 	print("stiff chicks  ",DiscordRPC.get_current_user())
+	SplashStrings = ["the party just started!"]
+	var LText = SplashStrings.pick_random()
+	print(LText)
+	DiscordRPC.large_image_text = LText
+	if DiscordUsername == "vrenthusiest":
+		if randi_range(1,4) == 1:
+			DiscordRPC.large_image = "nullbody"
+			DiscordRPC.large_image_text = "I am racist against nullbodys - Vr"
+		else:
+			DiscordRPC.large_image = "logo"
+	else:
+		DiscordRPC.large_image = "logo"
 	DiscordUsername = DiscordRPC.get_current_user().get("username")
 	DiscordRPC.refresh()
-	DiscordRPC.large_image = "logo"
 	# this is boolean if everything worked
 	print("Discord working: " + str(DiscordRPC.get_is_discord_working()))
 	# Set the first custom text row of the activity here
@@ -197,10 +208,6 @@ func setUpDiscord():
 	DiscordRPC.state = ""
 	# Image key for small image from "Art Assets" from the Discord Developer website
 	# Tooltip text for the large image
-	SplashStrings = ["the party just started!"]
-	var LText = SplashStrings.pick_random()
-	print(LText)
-	DiscordRPC.large_image_text = LText
 	# Image key for large image from "Art Assets" from the Discord Developer website
 	DiscordRPC.small_image = ""
 	# Tooltip text for the small image
@@ -464,12 +471,14 @@ func _process(_delta: float) -> void:
 		SaveEverything()
 		print("yoo")
 		@warning_ignore("integer_division")
-		UpdateSplashes()
+		if DiscordRPC.large_image != "nullbody":
+			UpdateSplashes()
 		if DiscordRPC.get_is_discord_working():
 			print(DiscordRPC.get_current_user()["username"])
 		print(TimeSpentListening)
 		var LText = SplashStrings.pick_random()
-		DiscordRPC.large_image_text = LText
+		if DiscordRPC.large_image != "nullbody":
+			DiscordRPC.large_image_text = LText
 		if DiscordRPC.get_is_discord_working():
 			DiscordRPC.refresh()
 	# "59:59 remaining" timestamp for the activity
