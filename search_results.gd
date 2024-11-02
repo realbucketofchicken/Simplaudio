@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 func add_item(text:String):
 	var child = SEARCH_ITEM.instantiate()
 	child.SongName = text.replace(".mp3", "")
-	child.idx = parent.textSongs.find(text)
+	child.songidx = parent.textSongs.find(text)
 	SongsAmount+=1
 	child.PlayPressed.connect(songSelected)
 	child.DeletePressed.connect(deletePressed)
