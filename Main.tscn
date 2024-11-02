@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=74 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -36,6 +36,8 @@
 [ext_resource type="Script" path="res://update_checker.gd" id="30_byc5i"]
 [ext_resource type="Script" path="res://patch_notes_button.gd" id="31_hjsj1"]
 [ext_resource type="Script" path="res://CustomButtonColor.gd" id="32_pwgec"]
+[ext_resource type="Script" path="res://loading_failed_screen.gd" id="37_mkkhu"]
+[ext_resource type="AudioStream" uid="uid://n8g3v41u2u48" path="res://Error.wav" id="38_nkjlp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kvkfy"]
 shader = ExtResource("8_xtnau")
@@ -160,6 +162,31 @@ font_size = 31
 
 [sub_resource type="LabelSettings" id="LabelSettings_ivhc6"]
 font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_spe36"]
+font_size = 46
+outline_size = 5
+outline_color = Color(0.675524, 0.62112, 0, 1)
+shadow_size = 2
+shadow_color = Color(0.282353, 0.282353, 0.282353, 0.384314)
+shadow_offset = Vector2(3, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_amome"]
+font_size = 18
+font_color = Color(0.894922, 0.894922, 0.894922, 1)
+outline_size = 2
+outline_color = Color(0.519817, 0.439396, 0, 1)
+shadow_size = 4
+shadow_color = Color(0.290196, 0.290196, 0.290196, 0.270588)
+shadow_offset = Vector2(2, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_drf2g"]
+font_size = 20
+outline_size = 2
+outline_color = Color(0.519817, 0.439396, 0, 1)
+shadow_size = 4
+shadow_color = Color(0.290196, 0.290196, 0.290196, 0.270588)
+shadow_offset = Vector2(2, 3)
 
 [node name="Node2D" type="Control"]
 layout_mode = 3
@@ -300,6 +327,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="PlaylistsPanel" type="Control" parent="PlaylistPanelHolder"]
+visible = false
 layout_mode = 2
 anchors_preset = 0
 anchor_bottom = 1.0
@@ -493,10 +521,13 @@ color = Color(0.14902, 0.14902, 0.14902, 1)
 
 [node name="FileDialog" type="FileDialog" parent="CreatePlaylistsMenu"]
 title = "Open a Directory"
+initial_position = 2
 size = Vector2i(352, 180)
 ok_button_text = "Select Current Folder"
 file_mode = 2
 access = 2
+filters = PackedStringArray("*")
+show_hidden_files = true
 use_native_dialog = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CreatePlaylistsMenu"]
@@ -826,6 +857,7 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 1
 size_flags_vertical = 8
+tooltip_text = "use Up/Down arrow keys to adjust"
 focus_mode = 0
 value = 100.0
 
@@ -1123,6 +1155,88 @@ horizontal_alignment = 1
 [node name="deleteConfirm" type="ConfirmationDialog" parent="."]
 initial_position = 2
 dialog_text = "Are you sure you want to delete"
+
+[node name="LoadingFailedScreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -235.0
+offset_top = -159.0
+offset_right = 235.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("37_mkkhu")
+
+[node name="ColorRect" type="ColorRect" parent="LoadingFailedScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.681657, 0.492205, 3.85046e-07, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadingFailedScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_right = 187.0
+offset_bottom = 91.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="LoadingFailedLabel" type="Label" parent="LoadingFailedScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "LOADING FAILED"
+label_settings = SubResource("LabelSettings_spe36")
+
+[node name="Label2" type="Label" parent="LoadingFailedScreen/VBoxContainer"]
+layout_mode = 2
+text = "Saving is currently disabled
+Simplaudio failed to load your save,
+Simplaudio may also have failed to save,
+if you suspect this, please contact me."
+label_settings = SubResource("LabelSettings_amome")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="LoadingFailedScreen/VBoxContainer"]
+layout_mode = 2
+text = "Please restart Simplaudio,
+if the issue presists you can:"
+label_settings = SubResource("LabelSettings_drf2g")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LoadingFailedScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="ContinueAnyways" type="Button" parent="LoadingFailedScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Continue anyways"
+
+[node name="Contact" type="Button" parent="LoadingFailedScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Contact me"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="LoadingFailedScreen"]
+title = "Are you sure?"
+initial_position = 2
+size = Vector2i(242, 106)
+force_native = true
+ok_button_text = "Yes, i will take the risk"
+dialog_text = "This is *irreversable*"
+cancel_button_text = "No"
+
+[node name="FailedAudioCue" type="AudioStreamPlayer" parent="LoadingFailedScreen"]
+stream = ExtResource("38_nkjlp")
 
 [connection signal="toggled" from="SelectPlaylist" to="SelectPlaylist" method="_on_toggled"]
 [connection signal="pressed" from="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist" to="PlaylistPanelHolder/PlaylistsPanel" method="_on_create_playlist_pressed"]

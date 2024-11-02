@@ -69,6 +69,9 @@ var PlayAllLists:bool
 signal ContinueDelete
 var deleteSong:bool
 
+var LoadingSaveFailed:bool
+@onready var loading_failed_screen: Control = $LoadingFailedScreen
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_tree().root.min_size = Vector2(850,492)
@@ -88,9 +91,10 @@ func _ready() -> void:
 		if Arg.to_lower().ends_with(".mp3") or Arg.to_lower().ends_with(".wav"):
 			OS.alert("opening files like this\nis no longer supported")
 	var data:Dictionary
+	var save = loadUserdata()
+	if save != {}:
+		data = save
 	loadPlaylists()
-	if loadUserdata() != null:
-		data = loadUserdata()
 	if Strin.is_empty():
 		if !Playlists.is_empty():
 			PlaylistSelected(Playlists.keys()[0],PlaylistsLocation[Playlists.keys()[0]])
@@ -179,6 +183,8 @@ func _ready() -> void:
 	for child in get_children(true):
 		if child is Control:
 			child.focus_mode = child is LineEdit
+	if LoadingSaveFailed:
+		loading_failed_screen.Show()
 
 func setUpDiscord():
 	DiscordRPC.app_id = 1276916292170809426
@@ -277,7 +283,8 @@ func SetSong(IDX:int):
 	CurrentIDX = IDX -1
 	PlaySongs()
 	music_player.stop()
-	SaveEverything()
+	if !LoadingSaveFailed:
+		SaveEverything()
 	print("SetSong")
 
 func pausePlay():
@@ -308,13 +315,12 @@ func SetVolume(Volume:float):
 		AudioServer.set_bus_volume_db(0,volume)
 	else:
 		AudioServer.set_bus_volume_db(0,-1000)
-	print("Chnaged Volume")
-	SaveEverything()
 	volume_slider.value = Volume
 
 func SelectPlaylistDir():
 	file_dialog.show()
-	SaveEverything()
+	if !LoadingSaveFailed:
+		SaveEverything()
 	print("Select Playtlist dir")
 
 func DirectorySelected(dir:String):
@@ -388,7 +394,8 @@ func PlaySongs():
 				CurrentSongLenth = song.get_length()
 				music_player.stream = song
 				music_player.play()
-				SaveEverything()
+				if !LoadingSaveFailed:
+					SaveEverything()
 				print("set stream")
 
 
@@ -467,9 +474,8 @@ func _process(_delta: float) -> void:
 		currentSaveTime = SaveInterval
 		
 		DiscordUsername = DiscordRPC.get_current_user().get("username")
-		print(DiscordRPC.get_current_user())
-		SaveEverything()
-		print("yoo")
+		if !LoadingSaveFailed:
+			SaveEverything()
 		@warning_ignore("integer_division")
 		if DiscordRPC.large_image != "nullbody":
 			UpdateSplashes()
@@ -579,44 +585,66 @@ func SaveEverything():
 		"PlayAllLists" : PlayAllLists,
 		"DiscordUsername" : DiscordRPC.get_current_user().get("username")
 	}
+	print("saving")
 	saveUserdata(Data)
 	savePlaylists()
+
+var saveRetrys:int =0
 
 func savePlaylists():
 	var json = JSON.new()
 	var file = FileAccess.open("user://playlists.dat", FileAccess.WRITE)
 	var file2 = FileAccess.open("user://playlistsLocation.dat", FileAccess.WRITE)
 	@warning_ignore("static_called_on_instance")
-	if !Playlists == null or !Playlists == {}:
+	if !(Playlists == null) or !(Playlists == {}):
 		file.store_string(str(json.stringify(Playlists)))
-	if !PlaylistsLocation == null or !PlaylistsLocation == {}:
+	if !(PlaylistsLocation == null) or !(PlaylistsLocation == {}):
 		file2.store_string(str(json.stringify(PlaylistsLocation)))
+	if loadUserdata() == {}:
+		if saveRetrys < 3:
+			savePlaylists()
+		else:
+			printerr("saving failed")
 
 
 func saveUserdata(content):
 	var json = JSON.new()
 	var file = FileAccess.open("user://data.dat", FileAccess.WRITE)
 	@warning_ignore("static_called_on_instance")
-	file.store_string(Marshalls.utf8_to_base64(json.stringify(content)))
+	file.store_string(json.stringify(content))
 	file.close()
 
-func loadUserdata():
+var saveLoadTries:int
+
+func loadUserdata() -> Dictionary:
 	var json = JSON.new()
 	var file = FileAccess.open("user://data.dat", FileAccess.READ)
 	var filetext = file.get_as_text() if file != null else null
 	if file != null:
-		var content
+		var content:Dictionary = {}
 		if json.parse_string(file.get_as_text()) != null:
 			content = json.parse_string(filetext)
 		else:
 			@warning_ignore("static_called_on_instance")
 			content = json.parse_string(Marshalls.base64_to_utf8(file.get_as_text()))
 		file.close()
-		return content
+		if content != null:
+			return content
+		else:
+			LoadingSaveFailed = true
+			return {}
 	else: 
 		file.close()
-		return null
+		printerr("loading save failed")
+		if saveLoadTries < 3:
+			print("retrying")
+			saveLoadTries +=1
+			return loadUserdata()
+		LoadingSaveFailed = true
+		return {}
 
+
+var playlistLoadTries:int
 func loadPlaylists():
 	var json = JSON.new()
 	var file = FileAccess.open("user://playlistsLocation.dat", FileAccess.READ)
@@ -626,8 +654,17 @@ func loadPlaylists():
 	print(filetext)
 	#print("shit " + json.parse_string(filetext))
 	if file.get_as_text() != "" and file2.get_as_text() != "":
-		PlaylistsLocation = json.parse_string(file.get_as_text())
-		Playlists = {} if json.parse_string(file2.get_as_text()) == null else json.parse_string(file2.get_as_text())
+		var PlaylistsLocationTemp
+		var PlaylistsTemp
+		LoadingSaveFailed
+		PlaylistsLocationTemp = json.parse_string(file.get_as_text())
+		PlaylistsTemp = json.parse_string(file2.get_as_text())
+		if (PlaylistsTemp == null) or (PlaylistsLocationTemp == null):
+			printerr("Loading playlists failed")
+			LoadingSaveFailed = true
+		else:
+			Playlists = PlaylistsTemp
+			PlaylistsLocation = PlaylistsLocationTemp
 		print(PlaylistsLocation)
 		print(Playlists.keys())
 		print("Playlists")
