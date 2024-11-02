@@ -10,6 +10,7 @@ extends Control
 @onready var errorLabel: Label = $"../UpdatingNotification/Error"
 @onready var updating_bg: ColorRect = $"../UpdatingBG"
 @onready var paused_indicator: TextureRect = $"../PausedIndicator"
+@onready var patchnotes: RichTextLabel = $ColorRect/Patchnotes
 
 @export var errorColor:Color
 
@@ -51,6 +52,8 @@ func _on_http_request_completed(result: int, _response_code: int, _headers: Pack
 			update_available_text.text = result2["tag_name"] + " Is Out!"
 			show()
 			updateLink = result2["html_url"]
+	if result2.has("body"):
+		patchnotes.text = str(result2["body"])
 
 func _on_close_buen_pressed() -> void:
 	hide()
