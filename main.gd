@@ -181,42 +181,33 @@ func _ready() -> void:
 			child.focus_mode = child is LineEdit
 
 func setUpDiscord():
-	DiscordRPC.app_id = 13
-	print("stibidiii ",DiscordRPC.get_current_user())
-	if DiscordUsername == "vrenthusiest" or DiscordRPC.get_current_user().get("username") == "vrenthusiest":
-		DiscordRPC.app_id = 1302002529378369568
-	else:
-		DiscordRPC.app_id = 1276916292170809426
+	DiscordRPC.app_id = 1276916292170809426
 	DiscordRPC.refresh()
 	print("stiff chicks  ",DiscordRPC.get_current_user())
 	DiscordUsername = DiscordRPC.get_current_user().get("username")
 	DiscordRPC.refresh()
-	if DiscordRPC.app_id == 1302002529378369568:
-		DiscordRPC.large_image = "changed"
-		DiscordRPC.start_timestamp = Time.get_unix_time_from_system()
-	else:
-		DiscordRPC.large_image = "logo"
-		# this is boolean if everything worked
-		print("Discord working: " + str(DiscordRPC.get_is_discord_working()))
-		# Set the first custom text row of the activity here
-		if textSongs.size() >= CurrentIDX:
-			if textSongs.size() > CurrentIDX:
-				DiscordRPC.details = textSongs[CurrentIDX]
-		# Set the second custom text row of the activity here
-		DiscordRPC.state = ""
-		# Image key for small image from "Art Assets" from the Discord Developer website
-		# Tooltip text for the large image
-		SplashStrings = ["the party just started!"]
-		var LText = SplashStrings.pick_random()
-		print(LText)
-		DiscordRPC.large_image_text = LText
-		# Image key for large image from "Art Assets" from the Discord Developer website
-		DiscordRPC.small_image = ""
-		# Tooltip text for the small image
-		DiscordRPC.small_image_text = "Nothing"
-		# "02:41 elapsed" timestamp for the activity
-		# Always refresh after changing the values!
-		DiscordRPC.refresh() 
+	DiscordRPC.large_image = "logo"
+	# this is boolean if everything worked
+	print("Discord working: " + str(DiscordRPC.get_is_discord_working()))
+	# Set the first custom text row of the activity here
+	if textSongs.size() >= CurrentIDX:
+		if textSongs.size() > CurrentIDX:
+			DiscordRPC.details = textSongs[CurrentIDX]
+	# Set the second custom text row of the activity here
+	DiscordRPC.state = ""
+	# Image key for small image from "Art Assets" from the Discord Developer website
+	# Tooltip text for the large image
+	SplashStrings = ["the party just started!"]
+	var LText = SplashStrings.pick_random()
+	print(LText)
+	DiscordRPC.large_image_text = LText
+	# Image key for large image from "Art Assets" from the Discord Developer website
+	DiscordRPC.small_image = ""
+	# Tooltip text for the small image
+	DiscordRPC.small_image_text = "Nothing"
+	# "02:41 elapsed" timestamp for the activity
+	# Always refresh after changing the values!
+	DiscordRPC.refresh() 
 
 func deletesong(idx:int):
 	var currentDir:String= CurrentDir
@@ -256,9 +247,8 @@ func SongDragStopped(Changed:bool):
 			pausePlay()
 		
 		UpdateProgressSlider = true
-		if DiscordRPC.app_id != 1302002529378369568:
-			DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system() - (current_progress.value * CurrentSongLenth / current_progress.max_value))
-			DiscordRPC.refresh()
+		DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system() - (current_progress.value * CurrentSongLenth / current_progress.max_value))
+		DiscordRPC.refresh()
 
 func SongDragStarted():
 	UpdateProgressSlider = false
@@ -332,14 +322,13 @@ func PlaySongs():
 		Paused = true
 		music_player.stream_paused = true
 		play_list.icon = PLAY
-		if DiscordRPC.app_id != 1302002529378369568:
-			DiscordRPC.state = "Paused"
-			print(DiscordRPC.get_current_user())
+		DiscordRPC.state = "Paused"
+		print(DiscordRPC.get_current_user())
 	else:
-		if DiscordRPC.app_id != 1302002529378369568:
-			DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system() - (current_progress.value * CurrentSongLenth / current_progress.max_value))
-			print(DiscordRPC.get_current_user())
-			DiscordRPC.state = "Listening To Music"
+		DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system() - (current_progress.value * CurrentSongLenth / current_progress.max_value))
+		print(DiscordRPC.get_current_user())
+		
+		DiscordRPC.state = "Listening To Music"
 		Paused = false
 		music_player.stream_paused = false
 		play_list.icon = PAUSE
@@ -366,8 +355,7 @@ func PlaySongs():
 				if !CurrentDir.ends_with(CurrentPlaylist):
 					GetSongs(PlaylistsLocation[CurrentPlaylist])
 			var CurrentSongDir:String = PlaylistsLocation[CurrentPlaylist] + "/" + textSongs[index]
-			if DiscordRPC.app_id != 1302002529378369568:
-				DiscordRPC.details = textSongs[index].replace(".mp3","")
+			DiscordRPC.details = textSongs[index].replace(".mp3","")
 			print(CurrentSongDir)
 			var sonnname:String = textSongs[index]
 			sonnname = sonnname.replace(".mp3", "")
@@ -488,14 +476,12 @@ func _process(_delta: float) -> void:
 	if music_player.playing:
 		TimeSpentListening += _delta
 		CurrentPausedIndicatorShaderIntensity = lerp(CurrentPausedIndicatorShaderIntensity,0.0,0.1)
-		if DiscordRPC.app_id != 1302002529378369568:
-			DiscordRPC.state = "Listening To Music"
+		DiscordRPC.state = "Listening To Music"
 	else:
-		if DiscordRPC.app_id != 1302002529378369568:
-			DiscordRPC.start_timestamp = int(0)
-			DiscordRPC.state = "Paused"
-			if DiscordRPC.get_is_discord_working():
-				DiscordRPC.refresh()
+		DiscordRPC.start_timestamp = int(0)
+		DiscordRPC.state = "Paused"
+		if DiscordRPC.get_is_discord_working():
+			DiscordRPC.refresh()
 		CurrentPausedIndicatorShaderIntensity = lerp(CurrentPausedIndicatorShaderIntensity,1.0,0.1)
 	if DiscordRichPresenceEnabled:
 		DiscordRPC.run_callbacks()
@@ -535,31 +521,30 @@ func _process(_delta: float) -> void:
 
 
 func UpdateSplashes():
-	if DiscordRPC.app_id != 1302002529378369568:
-		if DiscordRPC.get_is_discord_working():
-			SplashStrings = ["Total listening time: %s!" % str(str(int(TimeSpentListening/60)/60 )
-				 + "h : " + str((int(TimeSpentListening) / 60) % 60) + "m : " + 
-				str(int(TimeSpentListening) % 60) + "s"),
-				"Version: %s" % version.text,"🤷‍♂️","This Changes every ~11 seconds",
-				"hello everybody my name is %s" % DiscordRPC.get_current_user()["username"],
-				"wash your dishes, i know you got some","Running on %s" % OS.get_distribution_name(),
-				"%s is cooking" % DiscordRPC.get_current_user()["username"], "debugging" if OS.has_feature("editor") else "Release build",
-				"this user chose to show you all this info","Playing a Banger",
-				":steamhappy:","This is a sign that crocodiles live in water",
-				"Space? SPACE?! SPAAAAAAAAAAAAACE!!!",
-				"i love gd colonge",
-				"listening with reverb" if settings_menu_child.reverb_check.button_pressed else
-				"not listening with reverb","the cake is edible",
-				"what a great song!","this message is useless",
-				"stop reading these","why are you reading these",
-				"hello from mars", "hello to mars","there is a fly in my room",
-				"yippee!","What, are they allergic to bathtubs or something",
-				"Did you know, a 737 can land with up to 33knots of wind!",
-				"Welcome to todays JahresSchau",
-				"ram is very useful","your cpu is tasty","main course: Nvidia GPU",
-				"SCHOTTLAND FUER IMMER","i eat airborne vehicles","linus trovalds",
-				"™","＼（〇_ｏ）／","Nuh Uh!","Yuh Huh","Breaching.",
-				"I get a narcissistic injury when the wall ignores me","totally not using %s" % version.text] 
+	if DiscordRPC.get_is_discord_working():
+		SplashStrings = ["Total listening time: %s!" % str(str(int(TimeSpentListening/60)/60 )
+			 + "h : " + str((int(TimeSpentListening) / 60) % 60) + "m : " + 
+			str(int(TimeSpentListening) % 60) + "s"),
+			"Version: %s" % version.text,"🤷‍♂️","This Changes every ~11 seconds",
+			"hello everybody my name is %s" % DiscordRPC.get_current_user()["username"],
+			"wash your dishes, i know you got some","Running on %s" % OS.get_distribution_name(),
+			"%s is cooking" % DiscordRPC.get_current_user()["username"], "debugging" if OS.has_feature("editor") else "Release build",
+			"this user chose to show you all this info","Playing a Banger",
+			":steamhappy:","This is a sign that crocodiles live in water",
+			"Space? SPACE?! SPAAAAAAAAAAAAACE!!!",
+			"i love gd colonge",
+			"listening with reverb" if settings_menu_child.reverb_check.button_pressed else
+			"not listening with reverb","the cake is edible",
+			"what a great song!","this message is useless",
+			"stop reading these","why are you reading these",
+			"hello from mars", "hello to mars","there is a fly in my room",
+			"yippee!","What, are they allergic to bathtubs or something",
+			"Did you know, a 737 can land with up to 33knots of wind!",
+			"Welcome to todays JahresSchau",
+			"ram is very useful","your cpu is tasty","main course: Nvidia GPU",
+			"SCHOTTLAND FUER IMMER","i eat airborne vehicles","linus trovalds",
+			"™","＼（〇_ｏ）／","Nuh Uh!","Yuh Huh","Breaching.",
+			"I get a narcissistic injury when the wall ignores me","totally not using %s" % version.text] 
 
 
 func SaveEverything():
@@ -638,4 +623,4 @@ func loadPlaylists():
 		print(Playlists.keys())
 		print("Playlists")
 	file.close()
-	file2.close()
+	file2.close() 
