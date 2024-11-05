@@ -312,9 +312,9 @@ func SetVolume(Volume:float):
 	
 	var volume = (-50 + (Volume/2))
 	if Volume >= 2:
-		AudioServer.set_bus_volume_db(0,volume)
+		AudioServer.set_bus_volume_db(1,volume)
 	else:
-		AudioServer.set_bus_volume_db(0,-1000)
+		AudioServer.set_bus_volume_db(1,-1000)
 	volume_slider.value = Volume
 
 func SelectPlaylistDir():

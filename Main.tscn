@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=79 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -37,6 +37,8 @@
 [ext_resource type="Script" path="res://CustomButtonColor.gd" id="32_pwgec"]
 [ext_resource type="Script" path="res://loading_failed_screen.gd" id="37_mkkhu"]
 [ext_resource type="AudioStream" uid="uid://n8g3v41u2u48" path="res://Error.wav" id="38_nkjlp"]
+[ext_resource type="Script" path="res://birthday_container.gd" id="38_pitc3"]
+[ext_resource type="AudioStream" uid="uid://bwfw3l3iyv67o" path="res://roblox win sound effect.mp3" id="39_3er0p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kvkfy"]
 shader = ExtResource("8_xtnau")
@@ -186,6 +188,33 @@ outline_color = Color(0.519817, 0.439396, 0, 1)
 shadow_size = 4
 shadow_color = Color(0.290196, 0.290196, 0.290196, 0.270588)
 shadow_offset = Vector2(2, 3)
+
+[sub_resource type="Curve" id="Curve_wqjqk"]
+_data = [Vector2(0, 0), 0.0, 16.8231, 0, 0, Vector2(0.119342, 1), 0.0, 0.0, 0, 0, Vector2(0.991769, 1), 8.04663e-07, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wg7pm"]
+curve = SubResource("Curve_wqjqk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cr82i"]
+particle_flag_disable_z = true
+angle_min = -406.2
+angle_max = 219.7
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 357.05
+initial_velocity_max = 586.59
+gravity = Vector3(0, 392, 0)
+scale_min = 10.0
+scale_max = 22.95
+scale_curve = SubResource("CurveTexture_wg7pm")
+hue_variation_min = -0.77
+hue_variation_max = 0.22
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1d3e"]
+font_size = 80
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.556863)
+shadow_offset = Vector2(6.55, 6.735)
 
 [node name="Node2D" type="Control"]
 layout_mode = 3
@@ -1233,6 +1262,47 @@ cancel_button_text = "No"
 
 [node name="FailedAudioCue" type="AudioStreamPlayer" parent="LoadingFailedScreen"]
 stream = ExtResource("38_nkjlp")
+
+[node name="BirthdayContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("38_pitc3")
+
+[node name="BirthdayParticles" type="GPUParticles2D" parent="BirthdayContainer"]
+emitting = false
+amount = 120
+process_material = SubResource("ParticleProcessMaterial_cr82i")
+lifetime = 5.0
+one_shot = true
+explosiveness = 0.9
+visibility_rect = Rect2(-750, -750, 1500, 1000)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BirthdayContainer"]
+stream = ExtResource("39_3er0p")
+volume_db = -17.885
+
+[node name="BirthdayHappy" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -11.5
+offset_right = 62.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Happy Birthday!"
+label_settings = SubResource("LabelSettings_f1d3e")
 
 [connection signal="toggled" from="SelectPlaylist" to="SelectPlaylist" method="_on_toggled"]
 [connection signal="pressed" from="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist" to="PlaylistPanelHolder/PlaylistsPanel" method="_on_create_playlist_pressed"]
