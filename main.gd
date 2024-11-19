@@ -31,6 +31,7 @@ extends Control
 @onready var search_results: SearchResults = $SearchResults
 @onready var delete_confirm: ConfirmationDialog = $deleteConfirm
 @onready var search_bar: LineEdit = $SearchBar
+@onready var playing_now: Window = $PlayingNow
 
 var DiscordUsername:String
 
@@ -62,6 +63,7 @@ var PlaylistsLocation:Dictionary
 var BackroundSetup:bool
 var CurrentPlaylist:String
 var PlayAllLists:bool
+var UsingPlayingNow:bool
 
 @export var LoopPressed:Texture2D
 @export var LoopNotPressed:Texture2D
@@ -69,11 +71,17 @@ var PlayAllLists:bool
 signal ContinueDelete
 var deleteSong:bool
 
+signal SongChanged
+var currentSongName:String
+var currentArtistName:String
+var currentAlbumName:String
+
 var LoadingSaveFailed:bool
 @onready var loading_failed_screen: Control = $LoadingFailedScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	playing_now.visible = false
 	get_tree().root.min_size = Vector2(850,492)
 	current_progress.drag_ended.connect(SongDragStopped)
 	current_progress.drag_started.connect(SongDragStarted)
@@ -156,6 +164,8 @@ func _ready() -> void:
 				PlayAllLists = data["PlayAllLists"]
 				if PlayAllLists:
 					play_all.button_pressed = true
+			if data.has("UsingPlayingNow"):
+				UsingPlayingNow = data["UsingPlayingNow"]
 	else:
 		if data != null:
 			print(data["Volume"])
@@ -350,7 +360,7 @@ func PlaySongs():
 		if LoopingSong:
 			music_player.play()
 		elif textSongs.size() != 0:
-			var index
+			var index:int
 			if OpenedSong.is_empty():
 				if PlayAllLists:
 					if CurrentIDX >= (textSongs.size()):
@@ -369,6 +379,7 @@ func PlaySongs():
 					GetSongs(PlaylistsLocation[CurrentPlaylist])
 			var CurrentSongDir:String = PlaylistsLocation[CurrentPlaylist] + "/" + textSongs[index]
 			DiscordRPC.details = textSongs[index].replace(".mp3","")
+			currentSongName = textSongs[index].replace(".mp3","")
 			print(CurrentSongDir)
 			var sonnname:String = textSongs[index]
 			sonnname = sonnname.replace(".mp3", "")
@@ -385,11 +396,13 @@ func PlaySongs():
 				if MusicMetadataAutoload.get_mp3_metadata(song).title != "":
 					song_name.text = MusicMetadataAutoload.get_mp3_metadata(song).title
 				if MusicMetadataAutoload.get_mp3_metadata(song).artist != "":
-					artist_name.text = MusicMetadataAutoload.get_mp3_metadata(song).artist
-				else: artist_name.text = ""
+					currentArtistName = MusicMetadataAutoload.get_mp3_metadata(song).artist
+				else: currentArtistName = ""
+				artist_name.text = currentArtistName
 				if MusicMetadataAutoload.get_mp3_metadata(song).album != "":
-					album_name.text = MusicMetadataAutoload.get_mp3_metadata(song).album
-				else: album_name.text = ""
+					currentAlbumName = MusicMetadataAutoload.get_mp3_metadata(song).album
+				else: currentAlbumName = ""
+				album_name.text = currentAlbumName
 			if song != null:
 				CurrentSongLenth = song.get_length()
 				music_player.stream = song
@@ -397,6 +410,7 @@ func PlaySongs():
 				if !LoadingSaveFailed:
 					SaveEverything()
 				print("set stream")
+		SongChanged.emit()
 
 
 func GetSongs(dir:String):
@@ -465,6 +479,7 @@ func PlaylistSelected(Playlist:String,PlaylistLocation:String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	playing_now.visible = UsingPlayingNow
 	currentSaveTime -= _delta
 	if !BackroundSetup:
 		if CurrentCustomBackroundImageDirectory != null and CurrentCustomBackroundImageDirectory != "":
@@ -583,7 +598,8 @@ func SaveEverything():
 		"CompressionGain" : settings_menu_child.gain_slider.value,
 		"CurrentCustomBackroundImageDirectory" : CurrentCustomBackroundImageDirectory,
 		"PlayAllLists" : PlayAllLists,
-		"DiscordUsername" : DiscordRPC.get_current_user().get("username")
+		"DiscordUsername" : DiscordRPC.get_current_user().get("username"),
+		"UsingPlayingNow" : UsingPlayingNow
 	}
 	print("saving")
 	saveUserdata(Data)

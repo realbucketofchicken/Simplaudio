@@ -2,6 +2,8 @@ class_name Settings
 extends Control
 @onready var exit: Button = $Exit
 
+# do NOT think i dont hate this codebase, it sucks man 😭
+
 @onready var discord_rich_presence_button: CheckBox = $ScrollContainer/VBoxContainer/DiscordRichPresenceButton
 
 @onready var pitch_slider: HSlider = $ScrollContainer/VBoxContainer/PitchAdjustSettings/PitchSlider
@@ -40,11 +42,14 @@ extends Control
 @onready var select_bg: Button = $ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer/SelectBG
 @onready var reset_bg: Button = $ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer/ResetBG
 
+@onready var now_playing_window_button: CheckBox = $ScrollContainer/VBoxContainer/NowPlayingWindowButton
+
+
 var CurrentBGImagePath:String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	now_playing_window_button.button_pressed = Parent.UsingPlayingNow
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -181,3 +186,9 @@ func _on_reset_bg_pressed() -> void:
 	Parent.user_bg.texture = null
 	Parent.CurrentCustomBackroundImageDirectory = ""
 	Parent.SaveEverything()
+
+
+func _on_now_playing_window_button_toggled(toggled_on: bool) -> void:
+	Parent.UsingPlayingNow = toggled_on
+	Parent.SaveEverything()
+	

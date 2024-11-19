@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=80 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -39,6 +39,7 @@
 [ext_resource type="AudioStream" uid="uid://n8g3v41u2u48" path="res://Error.wav" id="38_nkjlp"]
 [ext_resource type="Script" path="res://birthday_container.gd" id="38_pitc3"]
 [ext_resource type="AudioStream" uid="uid://bwfw3l3iyv67o" path="res://roblox win sound effect.mp3" id="39_3er0p"]
+[ext_resource type="PackedScene" uid="uid://n7cnapaftfse" path="res://playing_now_window.tscn" id="40_ismud"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kvkfy"]
 shader = ExtResource("8_xtnau")
@@ -752,7 +753,7 @@ offset_right = -200.0
 offset_bottom = -95.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Please make a Playlist "
+text = "(no song)"
 label_settings = SubResource("LabelSettings_6prit")
 clip_text = true
 text_overrun_behavior = 2
@@ -769,7 +770,6 @@ offset_right = -199.0
 offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Artist name"
 label_settings = SubResource("LabelSettings_jg5vn")
 clip_text = true
 text_overrun_behavior = 2
@@ -786,7 +786,6 @@ offset_right = -199.0
 offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Album"
 label_settings = SubResource("LabelSettings_6um0v")
 clip_text = true
 text_overrun_behavior = 2
@@ -911,7 +910,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.5.2"
+text = "v1.5.3"
 horizontal_alignment = 2
 
 [node name="SettingsButton" type="Button" parent="."]
@@ -1303,6 +1302,17 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Happy Birthday!"
 label_settings = SubResource("LabelSettings_f1d3e")
+
+[node name="PlayingNow" type="Window" parent="."]
+transparent_bg = true
+visible = false
+borderless = true
+transparent = true
+mouse_passthrough = true
+force_native = true
+
+[node name="PlayingNowWindow" parent="PlayingNow" node_paths=PackedStringArray("ParentScene") instance=ExtResource("40_ismud")]
+ParentScene = NodePath("../..")
 
 [connection signal="toggled" from="SelectPlaylist" to="SelectPlaylist" method="_on_toggled"]
 [connection signal="pressed" from="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist" to="PlaylistPanelHolder/PlaylistsPanel" method="_on_create_playlist_pressed"]
