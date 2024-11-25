@@ -11,8 +11,12 @@ extends Control
 @onready var updating_bg: ColorRect = $"../UpdatingBG"
 @onready var paused_indicator: TextureRect = $"../PausedIndicator"
 @onready var patchnotes: RichTextLabel = $ColorRect/Patchnotes
+@onready var link_bttnbg: ColorRect = $ColorRect/LinkButton/LinkBTTNBG
+@onready var patchnotes_bg: ColorRect = $ColorRect/Patchnotes/PatchnotesBG
 
 @export var errorColor:Color
+@export var IMPUpdateLinkColor:Color
+@export var IMPUpdatePatchNotesColor:Color
 
 var CheckForUpdates:bool = true
 
@@ -54,6 +58,13 @@ func _on_http_request_completed(result: int, _response_code: int, _headers: Pack
 			updateLink = result2["html_url"]
 	if result2.has("body"):
 		patchnotes.text = str(result2["body"])
+		if patchnotes.text.contains("(!IT)"):
+			patchnotes.text = patchnotes.text.erase(patchnotes.text.find("(!IT)"),7)
+			print("importaint update detected")
+			update_available_text.text = "(Important) " + result2["tag_name"] + " Is Out!"
+			patchnotes_bg.color = IMPUpdatePatchNotesColor
+			link_bttnbg.color = IMPUpdateLinkColor
+			link_bttnbg.StandardColor = IMPUpdateLinkColor
 
 func _on_close_buen_pressed() -> void:
 	hide()

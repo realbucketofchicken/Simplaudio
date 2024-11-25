@@ -910,7 +910,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.5.3"
+text = "v1.5.4"
 horizontal_alignment = 2
 
 [node name="SettingsButton" type="Button" parent="."]
@@ -1001,6 +1001,8 @@ grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("30_byc5i")
 errorColor = Color(0.981984, 0, 0.065929, 1)
+IMPUpdateLinkColor = Color(0.51, 0.31008, 0.2652, 1)
+IMPUpdatePatchNotesColor = Color(0.35, 0.27125, 0.2555, 1)
 
 [node name="HTTPRequest" type="HTTPRequest" parent="UpdateChecker"]
 timeout = 5.0
@@ -1020,8 +1022,8 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -68.0
-offset_right = 68.0
+offset_left = -136.0
+offset_right = 113.0
 offset_bottom = 23.0
 grow_horizontal = 2
 text = "Update Available!"
@@ -1037,11 +1039,12 @@ anchor_right = 1.0
 anchor_bottom = 0.820755
 grow_horizontal = 2
 grow_vertical = 2
-text = "PatchNotes"
+text = "PatchNotes
+(!IT) for importaint updates"
 context_menu_enabled = true
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="UpdateChecker/ColorRect/Patchnotes"]
+[node name="PatchnotesBG" type="ColorRect" parent="UpdateChecker/ColorRect/Patchnotes"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -1064,7 +1067,7 @@ grow_vertical = 0
 text = "Update"
 flat = true
 
-[node name="ColorRect" type="ColorRect" parent="UpdateChecker/ColorRect/LinkButton"]
+[node name="LinkBTTNBG" type="ColorRect" parent="UpdateChecker/ColorRect/LinkButton"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
