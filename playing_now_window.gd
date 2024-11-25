@@ -17,5 +17,5 @@ func SongChanged():
 	print("SongChanged: ", ParentScene.currentSongName)
 	desctibtor.text = 'Now Playing: "'  + ParentScene.currentSongName + '"'
 	if ParentScene.currentArtistName:
-		desctibtor.text += " from " + ParentScene.currentArtistName
+		desctibtor.text += " uploaded by " + ParentScene.currentArtistName
 	#ParentWindow.size = size * 2

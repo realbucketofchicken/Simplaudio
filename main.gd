@@ -76,7 +76,7 @@ var currentSongName:String
 var currentArtistName:String
 var currentAlbumName:String
 
-var LoadingSaveFailed:bool
+var LoadingSaveFailed:bool = true
 @onready var loading_failed_screen: Control = $LoadingFailedScreen
 
 # Called when the node enters the scene tree for the first time.
@@ -645,6 +645,7 @@ func loadUserdata() -> Dictionary:
 			content = json.parse_string(Marshalls.base64_to_utf8(file.get_as_text()))
 		file.close()
 		if content != null:
+			LoadingSaveFailed = false
 			return content
 		else:
 			LoadingSaveFailed = true
@@ -672,13 +673,13 @@ func loadPlaylists():
 	if file.get_as_text() != "" and file2.get_as_text() != "":
 		var PlaylistsLocationTemp
 		var PlaylistsTemp
-		LoadingSaveFailed
 		PlaylistsLocationTemp = json.parse_string(file.get_as_text())
 		PlaylistsTemp = json.parse_string(file2.get_as_text())
 		if (PlaylistsTemp == null) or (PlaylistsLocationTemp == null):
 			printerr("Loading playlists failed")
 			LoadingSaveFailed = true
 		else:
+			LoadingSaveFailed = false
 			Playlists = PlaylistsTemp
 			PlaylistsLocation = PlaylistsLocationTemp
 		print(PlaylistsLocation)
