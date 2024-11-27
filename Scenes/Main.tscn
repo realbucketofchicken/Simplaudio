@@ -1,0 +1,255 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2sygl55s6fng"]
+
+[ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
+[ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="1_jwj4i"]
+[ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="3_sspeu"]
+[ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_5xnwo"]
+[ext_resource type="Script" path="res://Scripts/scripts/audio_player_controller.gd" id="5_wjprx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_afm4c"]
+font_size = 23
+
+[sub_resource type="LabelSettings" id="LabelSettings_84kyi"]
+font_size = 20
+font_color = Color(0.808998, 0.808998, 0.808998, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dr4no"]
+font_size = 18
+font_color = Color(0.807843, 0.807843, 0.807843, 1)
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DesktopUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Seperator" type="BoxContainer" parent="DesktopUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+vertical = true
+
+[node name="TopPart" type="Control" parent="DesktopUI/Seperator"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftSideBar" type="Control" parent="DesktopUI/Seperator/TopPart"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="DesktopUI/Seperator/TopPart/LeftSideBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28, 0.26236, 0.2548, 0.176471)
+
+[node name="Container" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar/Container"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="CreatePlaylistButton" type="Button" parent="DesktopUI/Seperator/TopPart/LeftSideBar/Container/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Create playlist"
+
+[node name="AddFolderButton" type="Button" parent="DesktopUI/Seperator/TopPart/LeftSideBar/Container/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add folder"
+
+[node name="PlaylistsDisplay" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BottomBar" type="Control" parent="DesktopUI/Seperator"]
+custom_minimum_size = Vector2(0, 145)
+layout_mode = 2
+
+[node name="Sorter" type="VBoxContainer" parent="DesktopUI/Seperator/BottomBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -114.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SongInfo" type="VBoxContainer" parent="DesktopUI/Seperator/BottomBar/Sorter"]
+layout_mode = 2
+
+[node name="SongName" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+layout_mode = 2
+text = "Super mega song"
+label_settings = SubResource("LabelSettings_afm4c")
+
+[node name="ArtistName" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+layout_mode = 2
+text = "Super Artist"
+label_settings = SubResource("LabelSettings_84kyi")
+
+[node name="AlbumName" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+layout_mode = 2
+text = "the best album to exist"
+label_settings = SubResource("LabelSettings_dr4no")
+
+[node name="ProgressBar" type="HBoxContainer" parent="DesktopUI/Seperator/BottomBar/Sorter"]
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar"]
+layout_mode = 2
+
+[node name="GoBackButton" type="Button" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons/GoBackButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -14.0
+offset_right = 79.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-0.45, 0.45)
+texture = ExtResource("1_jwj4i")
+
+[node name="PlayPauseButton" type="Button" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons/PlayPauseButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -16.0
+offset_right = 47.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_gqtol")
+
+[node name="SkipButton" type="Button" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons/SkipButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -16.0
+offset_right = 47.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_jwj4i")
+
+[node name="ProgressSlider" type="HSlider" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="TimeIndicator" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/ProgressSlider"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "0:00 / 10:16"
+
+[node name="BehindButtons" type="HBoxContainer" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar"]
+layout_mode = 2
+
+[node name="LoopButton" type="Button" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/LoopButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -15.0
+offset_right = 78.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-0.45, 0.45)
+texture = ExtResource("3_sspeu")
+
+[node name="VolumeButton" type="Button" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/VolumeButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -15.0
+offset_right = 78.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-0.45, 0.45)
+texture = ExtResource("4_5xnwo")
+
+[node name="Logic" type="Node" parent="."]
+
+[node name="SongPlayer" type="AudioStreamPlayer" parent="Logic"]
+
+[node name="AudioPlayerController" type="Node" parent="Logic" node_paths=PackedStringArray("player")]
+script = ExtResource("5_wjprx")
+player = NodePath("../SongPlayer")

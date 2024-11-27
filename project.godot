@@ -11,14 +11,18 @@ config_version=5
 [application]
 
 config/name="Simplaudio"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://BigLogo.png"
+boot_splash/image="res://Icons/BigLogo.png"
 boot_splash/use_filter=false
-config/icon="res://Logo2.png"
+config/icon="res://Icons/Logo2.png"
 config/windows_native_icon="res://addons/godot-yt-dlp/src/favicon2.ico"
+
+[audio]
+
+buses/default_bus_layout="res://misc/default_bus_layout.tres"
 
 [autoload]
 
@@ -46,6 +50,19 @@ version_control/autoload_on_startup=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg", "res://addons/godot-yt-dlp/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Icons/": "orange",
+"res://MusicMeta-f98d7384de3e2e658dcba3f5b06fb5b57ac2c73c/": "green",
+"res://Pictures/": "teal",
+"res://Scenes/": "blue",
+"res://Scripts/": "purple",
+"res://Sounds/": "pink",
+"res://addons/": "red",
+"res://misc/": "yellow"
+}
 
 [rendering]
 

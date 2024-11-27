@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://c33qaelwn46f4"]
+
+[ext_resource type="Texture2D" uid="uid://dwvy6crqhardn" path="res://Icons/Dropdown.png" id="1_ks7rl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ky8oc"]
+font_size = 12
+font_color = Color(0.597176, 0.597176, 0.597176, 1)
+
+[node name="PlaylistDisplay" type="Control"]
+custom_minimum_size = Vector2(0, 67.92)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -910.0
+offset_bottom = -727.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.439049, 0.439049, 0.439049, 0.298039)
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0247678
+anchor_top = 0.0882353
+anchor_right = 0.981424
+anchor_bottom = 0.897059
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 310
+dragger_visibility = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="HSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24.395)
+layout_mode = 2
+bbcode_enabled = true
+text = "Name"
+autowrap_mode = 0
+
+[node name="Directory" type="Label" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "Directory"
+label_settings = SubResource("LabelSettings_ky8oc")
+clip_text = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="HSplitContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+focus_mode = 0
+text = "Play"
+
+[node name="OptionsDropdown" type="MenuButton" parent="HSplitContainer/HBoxContainer"]
+modulate = Color(0.724643, 0.724643, 0.724643, 1)
+custom_minimum_size = Vector2(20.505, 0)
+layout_mode = 2
+icon = ExtResource("1_ks7rl")
+expand_icon = true
+item_count = 2
+popup/item_0/text = "Change Directory"
+popup/item_1/text = "Delete"
+popup/item_1/id = 1
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+size = Vector2i(303, 180)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+position = Vector2i(445, 275)
+size = Vector2i(359, 100)
+dialog_text = "Are you sure you want to delete the playlist?"
+
+[connection signal="pressed" from="HSplitContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
