@@ -1,10 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=16 format=3 uid="uid://b2sygl55s6fng"]
 
+[ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://Pictures/BG/Default/IMG_20241015_162213_033(1).jpg" id="1_3yjo4"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
 [ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="1_jwj4i"]
 [ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="3_sspeu"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_5xnwo"]
 [ext_resource type="Script" path="res://Scripts/scripts/audio_player_controller.gd" id="5_wjprx"]
+[ext_resource type="Script" path="res://Scripts/scripts/add_folder_logic.gd" id="6_c32kh"]
+[ext_resource type="Script" path="res://Scripts/scripts/data_handler.gd" id="7_pnp6g"]
+[ext_resource type="PackedScene" uid="uid://ddcve45ijpnqm" path="res://Scenes/FolderDisplay.tscn" id="8_ac3gy"]
+[ext_resource type="Script" path="res://Scripts/scripts/side_bar_toggle.gd" id="8_cpdlc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_afm4c"]
 font_size = 23
@@ -16,6 +21,14 @@ font_color = Color(0.808998, 0.808998, 0.808998, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_dr4no"]
 font_size = 18
 font_color = Color(0.807843, 0.807843, 0.807843, 1)
+
+[sub_resource type="Curve" id="Curve_03kqe"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_r1814"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Node2D" type="Control"]
 layout_mode = 3
@@ -32,6 +45,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="DesktopUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3yjo4")
+expand_mode = 2
+stretch_mode = 6
 
 [node name="Seperator" type="BoxContainer" parent="DesktopUI"]
 layout_mode = 1
@@ -52,9 +76,22 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_right = 300.0
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="DesktopUI/Seperator/TopPart/LeftSideBar"]
+[node name="LeftBarContainer" type="HBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 24.0
+grow_vertical = 2
+
+[node name="MainBar" type="Control" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,7 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.28, 0.26236, 0.2548, 0.176471)
 
-[node name="Container" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar"]
+[node name="Container" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,22 +108,130 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Header" type="HBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar/Container"]
+[node name="Header" type="HBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar/Container"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 alignment = 1
 
-[node name="CreatePlaylistButton" type="Button" parent="DesktopUI/Seperator/TopPart/LeftSideBar/Container/Header"]
+[node name="CreatePlaylistButton" type="Button" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar/Container/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Create playlist"
 
-[node name="AddFolderButton" type="Button" parent="DesktopUI/Seperator/TopPart/LeftSideBar/Container/Header"]
+[node name="PlaylistsDisplay" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BarToggle" type="Control" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/BarToggle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
+[node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/BarToggle/Button"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 10)
+texture = ExtResource("1_jwj4i")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="RightSideBar" type="Control" parent="DesktopUI/Seperator/TopPart"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DesktopUI/Seperator/TopPart/RightSideBar"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="BarToggle" type="Control" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/BarToggle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
+[node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/BarToggle/Button"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 10)
+texture = ExtResource("1_jwj4i")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="MainBar" type="Control" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28, 0.26236, 0.2548, 0.176471)
+
+[node name="Container2" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="AddFolderButton" type="Button" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Add folder"
 
-[node name="PlaylistsDisplay" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar/Container"]
+[node name="FolderDisplay" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2"]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -188,29 +333,11 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_jwj4i")
 
-[node name="ProgressSlider" type="HSlider" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-
-[node name="TimeIndicator" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/ProgressSlider"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
-grow_vertical = 0
-text = "0:00 / 10:16"
-
-[node name="BehindButtons" type="HBoxContainer" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar"]
-layout_mode = 2
-
-[node name="LoopButton" type="Button" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons"]
+[node name="LoopButton" type="Button" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/LoopButton"]
+[node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons/LoopButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -225,6 +352,25 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(-0.45, 0.45)
 texture = ExtResource("3_sspeu")
+
+[node name="ProgressSlider" type="HSlider" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_mode = 0
+
+[node name="TimeIndicator" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/ProgressSlider"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "0:00 / 10:16"
+
+[node name="BehindButtons" type="HBoxContainer" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar"]
+layout_mode = 2
 
 [node name="VolumeButton" type="Button" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons"]
 custom_minimum_size = Vector2(48, 48)
@@ -246,10 +392,80 @@ grow_vertical = 2
 scale = Vector2(-0.45, 0.45)
 texture = ExtResource("4_5xnwo")
 
+[node name="BottomMargin" type="Control" parent="DesktopUI/Seperator"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DesktopUI/Seperator/BottomMargin"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "v2.0"
+horizontal_alignment = 2
+
 [node name="Logic" type="Node" parent="."]
 
-[node name="SongPlayer" type="AudioStreamPlayer" parent="Logic"]
+[node name="PlayerLogic" type="Node" parent="Logic"]
 
-[node name="AudioPlayerController" type="Node" parent="Logic" node_paths=PackedStringArray("player")]
+[node name="SongPlayer" type="AudioStreamPlayer" parent="Logic/PlayerLogic"]
+bus = &"Music"
+
+[node name="AudioPlayerController" type="Node" parent="Logic/PlayerLogic" node_paths=PackedStringArray("player")]
 script = ExtResource("5_wjprx")
 player = NodePath("../SongPlayer")
+
+[node name="UILogic" type="Node" parent="Logic"]
+
+[node name="SideBars" type="Node" parent="Logic/UILogic"]
+
+[node name="FolderLogic" type="Node" parent="Logic/UILogic/SideBars"]
+
+[node name="AddFolderLogic" type="Node" parent="Logic/UILogic/SideBars/FolderLogic" node_paths=PackedStringArray("Dialog", "dataHandler", "AddFolderButton", "FolderParentNode")]
+script = ExtResource("6_c32kh")
+Dialog = NodePath("../OpenDialog")
+dataHandler = NodePath("../../../../MainLogic/DataHandler")
+AddFolderButton = NodePath("../../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/Header/AddFolderButton")
+FolderParentNode = NodePath("../../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/FolderDisplay")
+folderDisplay = ExtResource("8_ac3gy")
+
+[node name="OpenDialog" type="FileDialog" parent="Logic/UILogic/SideBars/FolderLogic"]
+title = "Open a Directory"
+size = Vector2i(796, 180)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+filters = PackedStringArray("*")
+use_native_dialog = true
+
+[node name="PlaylistLogic" type="Node" parent="Logic/UILogic/SideBars"]
+
+[node name="LeftSideBarToggle" type="Node" parent="Logic/UILogic/SideBars" node_paths=PackedStringArray("bar", "button", "buttonImage")]
+script = ExtResource("8_cpdlc")
+Left = true
+bar = NodePath("../../../../DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer")
+button = NodePath("../../../../DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/BarToggle/Button")
+buttonImage = NodePath("../../../../DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/BarToggle/Button/TextureRect")
+PositionCurve = SubResource("Curve_03kqe")
+
+[node name="RightSideBarToggle2" type="Node" parent="Logic/UILogic/SideBars" node_paths=PackedStringArray("bar", "button", "buttonImage")]
+script = ExtResource("8_cpdlc")
+bar = NodePath("../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer")
+button = NodePath("../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/BarToggle/Button")
+buttonImage = NodePath("../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/BarToggle/Button/TextureRect")
+imgRotOffset = 180.0
+PositionCurve = SubResource("Curve_r1814")
+
+[node name="MainLogic" type="Node" parent="Logic"]
+
+[node name="DataHandler" type="Node" parent="Logic/MainLogic"]
+script = ExtResource("7_pnp6g")
+
+[node name="Node" type="Node" parent="Logic/MainLogic"]
