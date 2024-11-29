@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=18 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://Pictures/BG/Default/IMG_20241015_162213_033(1).jpg" id="1_3yjo4"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
 [ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="1_jwj4i"]
+[ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://Icons/search.png" id="3_qyf8y"]
 [ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="3_sspeu"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_5xnwo"]
 [ext_resource type="Script" path="res://Scripts/scripts/audio_player_controller.gd" id="5_wjprx"]
@@ -10,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/scripts/data_handler.gd" id="7_pnp6g"]
 [ext_resource type="PackedScene" uid="uid://ddcve45ijpnqm" path="res://Scenes/FolderDisplay.tscn" id="8_ac3gy"]
 [ext_resource type="Script" path="res://Scripts/scripts/side_bar_toggle.gd" id="8_cpdlc"]
+[ext_resource type="Script" path="res://Scenes/volume_button.gd" id="11_w07mf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_afm4c"]
 font_size = 23
@@ -22,12 +24,12 @@ font_color = Color(0.808998, 0.808998, 0.808998, 1)
 font_size = 18
 font_color = Color(0.807843, 0.807843, 0.807843, 1)
 
-[sub_resource type="Curve" id="Curve_03kqe"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="Curve" id="Curve_r1814"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.487632, 0.569784), 2.47031, 2.47031, 0, 0, Vector2(1, 1), 0.0802053, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_665bp"]
+_data = [Vector2(0, 0), 0.0, 2.66636, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Node2D" type="Control"]
@@ -145,6 +147,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 3.14159
 pivot_offset = Vector2(10, 10)
 texture = ExtResource("1_jwj4i")
 expand_mode = 4
@@ -234,6 +237,44 @@ text = "Add folder"
 [node name="FolderDisplay" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="SearchBar" type="Control" parent="DesktopUI/Seperator/TopPart"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="container" type="HBoxContainer" parent="DesktopUI/Seperator/TopPart/SearchBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="SearchLine" type="LineEdit" parent="DesktopUI/Seperator/TopPart/SearchBar/container"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Search"
+expand_to_text_length = true
+
+[node name="SearchConfirmButton" type="Button" parent="DesktopUI/Seperator/TopPart/SearchBar/container"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/TopPart/SearchBar/container/SearchConfirmButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_qyf8y")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="BottomBar" type="Control" parent="DesktopUI/Seperator"]
 custom_minimum_size = Vector2(0, 145)
@@ -375,6 +416,7 @@ layout_mode = 2
 [node name="VolumeButton" type="Button" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
+toggle_mode = true
 
 [node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/VolumeButton"]
 layout_mode = 1
@@ -391,6 +433,16 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(-0.45, 0.45)
 texture = ExtResource("4_5xnwo")
+
+[node name="VolumeSlider" type="VSlider" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/VolumeButton"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.025
+value = 1.0
 
 [node name="BottomMargin" type="Control" parent="DesktopUI/Seperator"]
 custom_minimum_size = Vector2(0, 15)
@@ -411,12 +463,62 @@ grow_vertical = 2
 text = "v2.0"
 horizontal_alignment = 2
 
+[node name="FloatingUI" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SearchResults" type="Control" parent="FloatingUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SearchResults" type="Control" parent="FloatingUI/SearchResults"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -250.0
+offset_right = 225.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Results" type="VBoxContainer" parent="FloatingUI/SearchResults/SearchResults"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="FloatingUI/SearchResults/SearchResults"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
 [node name="Logic" type="Node" parent="."]
 
 [node name="PlayerLogic" type="Node" parent="Logic"]
 
 [node name="SongPlayer" type="AudioStreamPlayer" parent="Logic/PlayerLogic"]
-bus = &"Music"
 
 [node name="AudioPlayerController" type="Node" parent="Logic/PlayerLogic" node_paths=PackedStringArray("player")]
 script = ExtResource("5_wjprx")
@@ -453,7 +555,7 @@ Left = true
 bar = NodePath("../../../../DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer")
 button = NodePath("../../../../DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/BarToggle/Button")
 buttonImage = NodePath("../../../../DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/BarToggle/Button/TextureRect")
-PositionCurve = SubResource("Curve_03kqe")
+PositionCurve = SubResource("Curve_r1814")
 
 [node name="RightSideBarToggle2" type="Node" parent="Logic/UILogic/SideBars" node_paths=PackedStringArray("bar", "button", "buttonImage")]
 script = ExtResource("8_cpdlc")
@@ -463,9 +565,18 @@ buttonImage = NodePath("../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBo
 imgRotOffset = 180.0
 PositionCurve = SubResource("Curve_r1814")
 
+[node name="BottomButtons" type="Node" parent="Logic/UILogic"]
+
+[node name="VolumeButton" type="Node" parent="Logic/UILogic/BottomButtons" node_paths=PackedStringArray("volumeButton", "volumeSlider", "audioPlayerController")]
+script = ExtResource("11_w07mf")
+volumeButton = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/VolumeButton")
+volumeSlider = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/VolumeButton/VolumeSlider")
+audioPlayerController = NodePath("../../../PlayerLogic/AudioPlayerController")
+PositionCurve = SubResource("Curve_665bp")
+time = 0.25
+
 [node name="MainLogic" type="Node" parent="Logic"]
 
-[node name="DataHandler" type="Node" parent="Logic/MainLogic"]
+[node name="DataHandler" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("AudioPlayer")]
 script = ExtResource("7_pnp6g")
-
-[node name="Node" type="Node" parent="Logic/MainLogic"]
+AudioPlayer = NodePath("../../PlayerLogic/AudioPlayerController")
