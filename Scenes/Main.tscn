@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=24 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://Pictures/BG/Default/IMG_20241015_162213_033(1).jpg" id="1_3yjo4"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://Scripts/scripts/skip_buttons.gd" id="16_r4ds7"]
 [ext_resource type="Script" path="res://Scripts/scripts/pause_button.gd" id="17_qeoik"]
 [ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="18_7xnl7"]
+[ext_resource type="Script" path="res://Scripts/scripts/song_metadata_handler.gd" id="19_sb8jf"]
 
 [sub_resource type="Curve" id="Curve_r1814"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.487632, 0.569784), 2.47031, 2.47031, 0, 0, Vector2(1, 1), 0.0802053, 0.0, 0, 0]
@@ -306,35 +307,26 @@ grow_vertical = 0
 clip_contents = true
 layout_mode = 2
 
-[node name="SongNameEdit" type="LineEdit" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+[node name="SongNameEdit" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
 custom_minimum_size = Vector2(385, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 4
-mouse_default_cursor_shape = 0
 theme_override_font_sizes/font_size = 23
 text = "Super mega song"
-flat = true
 
-[node name="ArtistNameEdit" type="LineEdit" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+[node name="ArtistNameEdit" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
 custom_minimum_size = Vector2(385, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 4
-mouse_default_cursor_shape = 0
 theme_override_font_sizes/font_size = 20
 text = "Super mega artist"
-flat = true
 
-[node name="AlbumNameEdit" type="LineEdit" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+[node name="AlbumNameEdit" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
 custom_minimum_size = Vector2(385, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 4
-mouse_default_cursor_shape = 0
 theme_override_font_sizes/font_size = 18
 text = "Super mega album"
-flat = true
 
 [node name="ProgressBar" type="HBoxContainer" parent="DesktopUI/Seperator/BottomBar/Sorter"]
 layout_mode = 2
@@ -468,13 +460,15 @@ texture = ExtResource("4_5xnwo")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -20.0
+offset_top = -828.0
 offset_bottom = 8.0
 grow_horizontal = 2
 focus_mode = 0
+min_value = 0.04
 max_value = 1.0
-step = 0.025
-value = 1.0
+step = 0.0
+value = 0.992
+exp_edit = true
 scrollable = false
 
 [node name="BottomMargin" type="Control" parent="DesktopUI/Seperator"]
@@ -634,6 +628,15 @@ buttonTexture = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/Progr
 audioPlayController = NodePath("../../../PlayerLogic/AudioPlayerController")
 pauseImage = ExtResource("18_7xnl7")
 playImage = ExtResource("1_gqtol")
+
+[node name="Other" type="Node" parent="Logic/UILogic"]
+
+[node name="SongMetadataHandler" type="Node" parent="Logic/UILogic/Other" node_paths=PackedStringArray("playManager", "FileNameDisplay", "ArtistDisplay", "AlbumDisplay")]
+script = ExtResource("19_sb8jf")
+playManager = NodePath("../../../MainLogic/PlayManager")
+FileNameDisplay = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/SongInfo/SongNameEdit")
+ArtistDisplay = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/SongInfo/ArtistNameEdit")
+AlbumDisplay = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/SongInfo/AlbumNameEdit")
 
 [node name="MainLogic" type="Node" parent="Logic"]
 

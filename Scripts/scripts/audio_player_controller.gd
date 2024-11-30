@@ -2,6 +2,7 @@ class_name AudioPlayerController
 extends Node
 
 @export var player:AudioStreamPlayer
+
 signal SongFinished
 
 func _ready() -> void:

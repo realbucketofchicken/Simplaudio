@@ -12,8 +12,9 @@ func _ready() -> void:
 
 func togglePlaying():
 	if !audioPlayController.player.stream_paused:
-		buttonTexture.texture = playImage
 		audioPlayController.SetSongPaused(true)
 	else:
-		buttonTexture.texture = pauseImage
 		audioPlayController.SetSongPaused(false)
+
+func _process(_delta: float) -> void:
+	buttonTexture.texture = pauseImage if !audioPlayController.player.stream_paused else playImage

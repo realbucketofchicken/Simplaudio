@@ -38,7 +38,7 @@ func get_mp3_metadata(stream: AudioStreamMP3) -> MusicMetadata:
 		return meta
 		
 	var v = "ID3v2.%d.%d" % [header[3], header[4]]
-	if v == "ID3v2.4.0" or v == "ID3v2.3.0":
+	if v == "ID3v2.4.0" or v == "ID3v2.3.0" or v == "ID3v2.2.0":
 		var flags = header[5]
 		var _unsync = flags & 0x80 > 0
 		var extended = flags & 0x40 > 0
