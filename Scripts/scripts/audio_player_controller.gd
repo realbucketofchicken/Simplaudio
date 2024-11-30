@@ -25,8 +25,8 @@ func GetCurrentProgressZeroOne() -> float:
 func PlaySong():
 	player.play()
 
-func StopSong():
-	player.playing = false
+func SetSongPaused(playing:bool):
+	player.stream_paused = playing
 
 ## must be between 0 to 1
 func SetVolume(volume:float):

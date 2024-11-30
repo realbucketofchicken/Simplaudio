@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=23 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://Pictures/BG/Default/IMG_20241015_162213_033(1).jpg" id="1_3yjo4"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
@@ -12,11 +12,14 @@
 [ext_resource type="Script" path="res://Scripts/scripts/data_handler.gd" id="7_pnp6g"]
 [ext_resource type="PackedScene" uid="uid://ddcve45ijpnqm" path="res://Scenes/FolderDisplay.tscn" id="8_ac3gy"]
 [ext_resource type="Script" path="res://Scripts/scripts/side_bar_toggle.gd" id="8_cpdlc"]
-[ext_resource type="Script" path="res://Scenes/playlist_logic.gd" id="11_vxpks"]
-[ext_resource type="Script" path="res://Scenes/volume_button.gd" id="11_w07mf"]
+[ext_resource type="Script" path="res://Scripts/scripts/playlist_logic.gd" id="11_vxpks"]
+[ext_resource type="Script" path="res://Scripts/scripts/volume_button.gd" id="11_w07mf"]
 [ext_resource type="Script" path="res://Scripts/scripts/play_manager.gd" id="13_bv4gj"]
 [ext_resource type="Script" path="res://Scripts/scripts/progress_slider.gd" id="14_ejsc5"]
 [ext_resource type="Script" path="res://Scripts/scripts/time_indicator.gd" id="15_m71fa"]
+[ext_resource type="Script" path="res://Scripts/scripts/skip_buttons.gd" id="16_r4ds7"]
+[ext_resource type="Script" path="res://Scripts/scripts/pause_button.gd" id="17_qeoik"]
+[ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="18_7xnl7"]
 
 [sub_resource type="Curve" id="Curve_r1814"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.487632, 0.569784), 2.47031, 2.47031, 0, 0, Vector2(1, 1), 0.0802053, 0.0, 0, 0]
@@ -618,12 +621,27 @@ script = ExtResource("15_m71fa")
 audioPlayerController = NodePath("../../../PlayerLogic/AudioPlayerController")
 currentTimeLabel = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/ProgressSlider/TimeIndicator")
 
+[node name="SkipButtons" type="Node" parent="Logic/UILogic/Bottom" node_paths=PackedStringArray("backbutton", "frontbutton", "playManger")]
+script = ExtResource("16_r4ds7")
+backbutton = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons/GoBackButton")
+frontbutton = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons/SkipButton")
+playManger = NodePath("../../../MainLogic/PlayManager")
+
+[node name="PauseButton" type="Node" parent="Logic/UILogic/Bottom" node_paths=PackedStringArray("button", "buttonTexture", "audioPlayController")]
+script = ExtResource("17_qeoik")
+button = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons/PlayPauseButton")
+buttonTexture = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons/PlayPauseButton/TextureRect")
+audioPlayController = NodePath("../../../PlayerLogic/AudioPlayerController")
+pauseImage = ExtResource("18_7xnl7")
+playImage = ExtResource("1_gqtol")
+
 [node name="MainLogic" type="Node" parent="Logic"]
 
 [node name="DataHandler" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("AudioPlayer")]
 script = ExtResource("7_pnp6g")
 AudioPlayer = NodePath("../../PlayerLogic/AudioPlayerController")
 
-[node name="PlayManager" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("dataHandler")]
+[node name="PlayManager" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("dataHandler", "audioPlayerController")]
 script = ExtResource("13_bv4gj")
 dataHandler = NodePath("../DataHandler")
+audioPlayerController = NodePath("../../PlayerLogic/AudioPlayerController")

@@ -1,5 +1,6 @@
 extends Node
 
+var AccentColor:Color
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,6 +19,6 @@ func SecondsToIndicator(input:int) -> String:
 	var dayStr = (str(days) + ":" if days else "")
 	var hourStr = (str(hours) + ":" if hours else "")
 	var minuteStr = (str(minutes) if minutes else "0") + ":"
-	var secondStr = (str(seconds) if seconds else "00")
+	var secondStr = ((str(seconds) if seconds > 9 else "0" + str(seconds)) if seconds else "00") 
 	var endString:String = dayStr + hourStr + minuteStr + secondStr
 	return endString

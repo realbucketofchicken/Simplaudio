@@ -5,6 +5,8 @@ var audioPaths:PackedStringArray
 var Songs:Array[SongInfo]
 @export var AudioPlayer:AudioPlayerController
 var CurrentIdx:int
+var randomized:bool
+signal NewSongsAdded
 
 func AddPath(path:String):
 	if not path in audioPaths:
@@ -29,5 +31,6 @@ func AddSongsFromFolder(path:String):
 		#	print(Songs[song-1].Location)
 		if Songs.size() >0:
 			print("songs")
+			NewSongsAdded.emit()
 	else:
 		print("An error occurred when trying to access the path.")
