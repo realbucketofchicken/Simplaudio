@@ -13,7 +13,8 @@ func _ready() -> void:
 
 func Selected(path:String):
 	print("file selected: ",path)
-	AddFolder(path)
+	if !dataHandler.audioPaths.has(path):
+		AddFolder(path)
 
 func AddFolder(path:String):
 	dataHandler.AddPath(path)

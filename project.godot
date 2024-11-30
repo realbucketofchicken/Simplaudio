@@ -29,6 +29,7 @@ buses/default_bus_layout="res://misc/default_bus_layout.tres"
 YtDlp="*res://addons/godot-yt-dlp/src/yt_dlp.gd"
 MusicMetadataAutoload="*res://MusicMeta-f98d7384de3e2e658dcba3f5b06fb5b57ac2c73c/MusicMeta.gd"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+GlobalFuncs="*res://Scripts/scripts/GlobalFuncs.gd"
 
 [display]
 

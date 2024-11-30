@@ -28,9 +28,6 @@ func AddSongsFromFolder(path:String):
 		#for song in Songs.size():
 		#	print(Songs[song-1].Location)
 		if Songs.size() >0:
-			var song:AudioStreamMP3 = AudioStreamMP3.new()
-			song.data = FileAccess.get_file_as_bytes(Songs[CurrentIdx].Location)
-			print(Songs[CurrentIdx].Location)
-			AudioPlayer.SetSong(song)
+			print("songs")
 	else:
 		print("An error occurred when trying to access the path.")

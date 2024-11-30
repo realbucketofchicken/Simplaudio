@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=20 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://Pictures/BG/Default/IMG_20241015_162213_033(1).jpg" id="1_3yjo4"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
 [ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="1_jwj4i"]
+[ext_resource type="Texture2D" uid="uid://0r1tx6l1lc6x" path="res://Icons/settingscog.png" id="3_fbu6c"]
 [ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://Icons/search.png" id="3_qyf8y"]
 [ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="3_sspeu"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_5xnwo"]
@@ -11,18 +12,11 @@
 [ext_resource type="Script" path="res://Scripts/scripts/data_handler.gd" id="7_pnp6g"]
 [ext_resource type="PackedScene" uid="uid://ddcve45ijpnqm" path="res://Scenes/FolderDisplay.tscn" id="8_ac3gy"]
 [ext_resource type="Script" path="res://Scripts/scripts/side_bar_toggle.gd" id="8_cpdlc"]
+[ext_resource type="Script" path="res://Scenes/playlist_logic.gd" id="11_vxpks"]
 [ext_resource type="Script" path="res://Scenes/volume_button.gd" id="11_w07mf"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_afm4c"]
-font_size = 23
-
-[sub_resource type="LabelSettings" id="LabelSettings_84kyi"]
-font_size = 20
-font_color = Color(0.808998, 0.808998, 0.808998, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_dr4no"]
-font_size = 18
-font_color = Color(0.807843, 0.807843, 0.807843, 1)
+[ext_resource type="Script" path="res://Scripts/scripts/play_manager.gd" id="13_bv4gj"]
+[ext_resource type="Script" path="res://Scripts/scripts/progress_slider.gd" id="14_ejsc5"]
+[ext_resource type="Script" path="res://Scripts/scripts/time_indicator.gd" id="15_m71fa"]
 
 [sub_resource type="Curve" id="Curve_r1814"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.487632, 0.569784), 2.47031, 2.47031, 0, 0, Vector2(1, 1), 0.0802053, 0.0, 0, 0]
@@ -255,6 +249,21 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="FilterButton" type="Button" parent="DesktopUI/Seperator/TopPart/SearchBar/container"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/TopPart/SearchBar/container/FilterButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_fbu6c")
+expand_mode = 2
+stretch_mode = 5
+
 [node name="SearchLine" type="LineEdit" parent="DesktopUI/Seperator/TopPart/SearchBar/container"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -277,7 +286,7 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="BottomBar" type="Control" parent="DesktopUI/Seperator"]
-custom_minimum_size = Vector2(0, 145)
+custom_minimum_size = Vector2(0, 167)
 layout_mode = 2
 
 [node name="Sorter" type="VBoxContainer" parent="DesktopUI/Seperator/BottomBar"]
@@ -291,22 +300,38 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="SongInfo" type="VBoxContainer" parent="DesktopUI/Seperator/BottomBar/Sorter"]
+clip_contents = true
 layout_mode = 2
 
-[node name="SongName" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+[node name="SongNameEdit" type="LineEdit" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+custom_minimum_size = Vector2(385, 0)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 0
+theme_override_font_sizes/font_size = 23
 text = "Super mega song"
-label_settings = SubResource("LabelSettings_afm4c")
+flat = true
 
-[node name="ArtistName" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+[node name="ArtistNameEdit" type="LineEdit" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+custom_minimum_size = Vector2(385, 0)
 layout_mode = 2
-text = "Super Artist"
-label_settings = SubResource("LabelSettings_84kyi")
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 0
+theme_override_font_sizes/font_size = 20
+text = "Super mega artist"
+flat = true
 
-[node name="AlbumName" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+[node name="AlbumNameEdit" type="LineEdit" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
+custom_minimum_size = Vector2(385, 0)
 layout_mode = 2
-text = "the best album to exist"
-label_settings = SubResource("LabelSettings_dr4no")
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 0
+theme_override_font_sizes/font_size = 18
+text = "Super mega album"
+flat = true
 
 [node name="ProgressBar" type="HBoxContainer" parent="DesktopUI/Seperator/BottomBar/Sorter"]
 layout_mode = 2
@@ -399,6 +424,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 focus_mode = 0
+max_value = 1.0
+step = 0.001
 
 [node name="TimeIndicator" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/ProgressSlider"]
 layout_mode = 1
@@ -439,10 +466,13 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = -20.0
+offset_bottom = 8.0
 grow_horizontal = 2
+focus_mode = 0
 max_value = 1.0
 step = 0.025
 value = 1.0
+scrollable = false
 
 [node name="BottomMargin" type="Control" parent="DesktopUI/Seperator"]
 custom_minimum_size = Vector2(0, 15)
@@ -547,7 +577,9 @@ access = 2
 filters = PackedStringArray("*")
 use_native_dialog = true
 
-[node name="PlaylistLogic" type="Node" parent="Logic/UILogic/SideBars"]
+[node name="PlaylistLogic" type="Node" parent="Logic/UILogic/SideBars" node_paths=PackedStringArray("dataHandler")]
+script = ExtResource("11_vxpks")
+dataHandler = NodePath("../../../MainLogic/DataHandler")
 
 [node name="LeftSideBarToggle" type="Node" parent="Logic/UILogic/SideBars" node_paths=PackedStringArray("bar", "button", "buttonImage")]
 script = ExtResource("8_cpdlc")
@@ -557,7 +589,7 @@ button = NodePath("../../../../DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarCo
 buttonImage = NodePath("../../../../DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/BarToggle/Button/TextureRect")
 PositionCurve = SubResource("Curve_r1814")
 
-[node name="RightSideBarToggle2" type="Node" parent="Logic/UILogic/SideBars" node_paths=PackedStringArray("bar", "button", "buttonImage")]
+[node name="RightSideBarToggle" type="Node" parent="Logic/UILogic/SideBars" node_paths=PackedStringArray("bar", "button", "buttonImage")]
 script = ExtResource("8_cpdlc")
 bar = NodePath("../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer")
 button = NodePath("../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/BarToggle/Button")
@@ -565,18 +597,33 @@ buttonImage = NodePath("../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBo
 imgRotOffset = 180.0
 PositionCurve = SubResource("Curve_r1814")
 
-[node name="BottomButtons" type="Node" parent="Logic/UILogic"]
+[node name="Bottom" type="Node" parent="Logic/UILogic"]
 
-[node name="VolumeButton" type="Node" parent="Logic/UILogic/BottomButtons" node_paths=PackedStringArray("volumeButton", "volumeSlider", "audioPlayerController")]
+[node name="VolumeButton" type="Node" parent="Logic/UILogic/Bottom" node_paths=PackedStringArray("volumeButton", "volumeSlider", "audioPlayerController")]
 script = ExtResource("11_w07mf")
 volumeButton = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/VolumeButton")
 volumeSlider = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/VolumeButton/VolumeSlider")
 audioPlayerController = NodePath("../../../PlayerLogic/AudioPlayerController")
+extendedLength = 100
 PositionCurve = SubResource("Curve_665bp")
 time = 0.25
+
+[node name="ProgressSlider" type="Node" parent="Logic/UILogic/Bottom" node_paths=PackedStringArray("audioPlayerController", "ProgressSlider")]
+script = ExtResource("14_ejsc5")
+audioPlayerController = NodePath("../../../PlayerLogic/AudioPlayerController")
+ProgressSlider = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/ProgressSlider")
+
+[node name="TimeIndicator" type="Node" parent="Logic/UILogic/Bottom" node_paths=PackedStringArray("audioPlayerController", "currentTimeLabel")]
+script = ExtResource("15_m71fa")
+audioPlayerController = NodePath("../../../PlayerLogic/AudioPlayerController")
+currentTimeLabel = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/ProgressSlider/TimeIndicator")
 
 [node name="MainLogic" type="Node" parent="Logic"]
 
 [node name="DataHandler" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("AudioPlayer")]
 script = ExtResource("7_pnp6g")
 AudioPlayer = NodePath("../../PlayerLogic/AudioPlayerController")
+
+[node name="PlayManager" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("dataHandler")]
+script = ExtResource("13_bv4gj")
+dataHandler = NodePath("../DataHandler")
