@@ -1,16 +1,18 @@
 class_name DataHandler
 extends Node
 
-var audioPaths:PackedStringArray
+var Folders:PackedStringArray
+var Playlists:Array[PlaylistInfo]
 var Songs:Array[SongInfo]
+
 @export var AudioPlayer:AudioPlayerController
 var CurrentIdx:int
 var randomized:bool
 signal NewSongsAdded
 
 func AddPath(path:String):
-	if not path in audioPaths:
-		audioPaths.append(path)
+	if not path in Folders:
+		Folders.append(path)
 		AddSongsFromFolder(path)
 
 func AddSongsFromFolder(path:String):

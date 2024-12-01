@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=56 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://Pictures/BG/Default/IMG_20241015_162213_033(1).jpg" id="1_3yjo4"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://Scripts/scripts/progress_slider.gd" id="14_ejsc5"]
 [ext_resource type="Shader" path="res://Scripts/shader/Blur.gdshader" id="14_imubo"]
 [ext_resource type="Script" path="res://Scripts/scripts/time_indicator.gd" id="15_m71fa"]
+[ext_resource type="Script" path="res://Scenes/OptionMenuCycleNodes.gd" id="16_b0v2o"]
 [ext_resource type="Script" path="res://Scripts/scripts/buttonHideNode.gd" id="16_ew50l"]
 [ext_resource type="Script" path="res://Scripts/scripts/skip_buttons.gd" id="16_r4ds7"]
 [ext_resource type="Script" path="res://Scripts/scripts/pause_button.gd" id="17_qeoik"]
@@ -33,6 +34,7 @@
 [ext_resource type="Script" path="res://Scripts/scripts/window_adjustments.gd" id="29_t17ir"]
 [ext_resource type="Script" path="res://Scripts/scripts/search.gd" id="31_oyhdx"]
 [ext_resource type="Script" path="res://Scenes/metadata_loader.gd" id="34_nsmrm"]
+[ext_resource type="Script" path="res://Scripts/scripts/save_handler.gd" id="34_qevdb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebbx8"]
 bg_color = Color(0.05, 0.05, 0.05, 0.615686)
@@ -77,7 +79,7 @@ Button/styles/normal = SubResource("StyleBoxFlat_qjkg6")
 Button/styles/pressed = SubResource("StyleBoxFlat_gl8wn")
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
-Label/colors/font_shadow_color = Color(0.07, 0.07, 0.07, 1)
+Label/colors/font_shadow_color = Color(0.07, 0.07, 0.07, 0.435294)
 Label/constants/line_spacing = 3
 Label/constants/outline_size = 0
 Label/constants/shadow_offset_x = 1
@@ -138,7 +140,7 @@ noise = SubResource("FastNoiseLite_x34c1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wwcp"]
 shader = ExtResource("8_dcsuc")
-shader_parameter/noiseOffset = Vector2(1681.48, 555.437)
+shader_parameter/noiseOffset = Vector2(2319.77, 764.717)
 shader_parameter/dissolve = SubResource("GradientTexture2D_r1wmd")
 shader_parameter/noise = SubResource("NoiseTexture2D_3kgd3")
 
@@ -250,8 +252,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Create playlist"
 
-[node name="PlaylistsDisplay" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar/Container"]
+[node name="ScrollContainer" type="ScrollContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar/Container"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlaylistsDisplay" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar/Container/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="BarToggle" type="Control" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer"]
@@ -728,6 +735,131 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="CreatePlaylist" type="Control" parent="DesktopUI/FloatingUI"]
+layout_mode = 1
+anchor_left = 0.329861
+anchor_top = 0.296296
+anchor_right = 0.670139
+anchor_bottom = 0.703704
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="DesktopUI/FloatingUI/CreatePlaylist"]
+material = SubResource("ShaderMaterial_dojp4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DesktopUI/FloatingUI/CreatePlaylist"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer"]
+custom_minimum_size = Vector2(0, 41.73)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/Control" node_paths=PackedStringArray("TargetNode")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+icon = ExtResource("13_txjqo")
+flat = true
+expand_icon = true
+script = ExtResource("16_ew50l")
+TargetNode = NodePath("../../..")
+
+[node name="Label" type="Label" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 22
+text = "Create Playlist"
+
+[node name="PlaylistName" type="LineEdit" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Playlist Name"
+
+[node name="PlaylistType" type="OptionButton" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer" node_paths=PackedStringArray("Nodes")]
+layout_mode = 2
+selected = 0
+allow_reselect = true
+item_count = 4
+popup/item_0/text = "Please select"
+popup/item_0/id = 5
+popup/item_0/disabled = true
+popup/item_0/separator = true
+popup/item_1/text = "Cloud"
+popup/item_1/id = 1
+popup/item_2/text = "Folder"
+popup/item_2/id = 2
+popup/item_3/text = "Custom"
+popup/item_3/id = 3
+script = ExtResource("16_b0v2o")
+Nodes = [NodePath("../Cloud"), NodePath("../Folder"), NodePath("../Custom")]
+
+[node name="Seperator" type="Control" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5.37)
+layout_mode = 2
+
+[node name="Cloud" type="VBoxContainer" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/Cloud"]
+layout_mode = 2
+text = "Set a Stream URL"
+
+[node name="URLGiver" type="LineEdit" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/Cloud"]
+layout_mode = 2
+placeholder_text = "Stream URL"
+
+[node name="Folder" type="VBoxContainer" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/Folder"]
+layout_mode = 2
+text = "Select a Folder"
+
+[node name="FolderSelector" type="OptionButton" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/Folder"]
+layout_mode = 2
+allow_reselect = true
+
+[node name="NoFoldersNotice" type="Label" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/Folder"]
+visible = false
+layout_mode = 2
+text = "Please add a folder on the right panel"
+
+[node name="Custom" type="VBoxContainer" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/Custom"]
+layout_mode = 2
+text = "Adding songs to a playlist is done with the search bar."
+
+[node name="CreateButton" type="Button" parent="DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Create"
+
 [node name="Logic" type="Node" parent="."]
 
 [node name="UILogic" type="Node" parent="Logic"]
@@ -753,9 +885,18 @@ access = 2
 filters = PackedStringArray("*")
 use_native_dialog = true
 
-[node name="PlaylistLogic" type="Node" parent="Logic/UILogic/SideBars" node_paths=PackedStringArray("dataHandler")]
+[node name="PlaylistLogic" type="Node" parent="Logic/UILogic/SideBars" node_paths=PackedStringArray("dataHandler", "CreatePlaylistButton", "CreatePlaylistMenu", "PlaylistNameEdit", "PlaylistTypeDropdown", "CreateButton", "PlaylistTypeSelector", "CloudURLInput", "FolderOptionDropdown", "NoFoldersNotice")]
 script = ExtResource("11_vxpks")
 dataHandler = NodePath("../../../MainLogic/DataHandler")
+CreatePlaylistButton = NodePath("../../../../DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar/Container/Header/CreatePlaylistButton")
+CreatePlaylistMenu = NodePath("../../../../DesktopUI/FloatingUI/CreatePlaylist")
+PlaylistNameEdit = NodePath("../../../../DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/PlaylistName")
+PlaylistTypeDropdown = NodePath("../../../../DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/PlaylistType")
+CreateButton = NodePath("../../../../DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/CreateButton")
+PlaylistTypeSelector = NodePath("../../../../DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/PlaylistType")
+CloudURLInput = NodePath("../../../../DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/Cloud/URLGiver")
+FolderOptionDropdown = NodePath("../../../../DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/Folder/FolderSelector")
+NoFoldersNotice = NodePath("../../../../DesktopUI/FloatingUI/CreatePlaylist/VBoxContainer/Folder/NoFoldersNotice")
 
 [node name="LeftSideBarToggle" type="Node" parent="Logic/UILogic/SideBars" node_paths=PackedStringArray("bar", "button", "buttonImage")]
 script = ExtResource("8_cpdlc")
@@ -862,3 +1003,6 @@ script = ExtResource("34_nsmrm")
 loadButton = NodePath("../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/MetadataLoader")
 dataHandler = NodePath("../DataHandler")
 metadataLabel = NodePath("../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/MetadataLabel")
+
+[node name="SaveHandler" type="Node" parent="Logic/MainLogic"]
+script = ExtResource("34_qevdb")

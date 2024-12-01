@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c33qaelwn46f4"]
+[gd_scene load_steps=6 format=3 uid="uid://c33qaelwn46f4"]
 
 [ext_resource type="Texture2D" uid="uid://dwvy6crqhardn" path="res://Icons/Dropdown.png" id="1_ks7rl"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ky8oc"]
-font_size = 12
-font_color = Color(0.597176, 0.597176, 0.597176, 1)
+[ext_resource type="Script" path="res://Scripts/scripts/playlist_display.gd" id="1_v38k8"]
+[ext_resource type="Texture2D" uid="uid://dr6iiamds7aoa" path="res://Icons/Cloud.png" id="2_4ipuy"]
+[ext_resource type="Texture2D" uid="uid://pgij783wgbhn" path="res://Icons/File.png" id="3_c6w5f"]
+[ext_resource type="Texture2D" uid="uid://0r1tx6l1lc6x" path="res://Icons/settingscog.png" id="4_xd7cd"]
 
 [node name="PlaylistDisplay" type="Control"]
 custom_minimum_size = Vector2(0, 67.92)
@@ -16,6 +16,8 @@ offset_right = -910.0
 offset_bottom = -727.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_v38k8")
+Icons = Array[Texture]([ExtResource("2_4ipuy"), ExtResource("3_c6w5f"), ExtResource("4_xd7cd")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -26,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.439049, 0.439049, 0.439049, 0.298039)
 
-[node name="HSplitContainer" type="HSplitContainer" parent="."]
+[node name="HSplitContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0247678
@@ -35,12 +37,18 @@ anchor_right = 0.981424
 anchor_bottom = 0.897059
 grow_horizontal = 2
 grow_vertical = 2
-split_offset = 310
-dragger_visibility = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Icon" type="TextureRect" parent="HSplitContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Name" type="RichTextLabel" parent="HSplitContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 24.395)
@@ -48,12 +56,6 @@ layout_mode = 2
 bbcode_enabled = true
 text = "Name"
 autowrap_mode = 0
-
-[node name="Directory" type="Label" parent="HSplitContainer/VBoxContainer"]
-layout_mode = 2
-text = "Directory"
-label_settings = SubResource("LabelSettings_ky8oc")
-clip_text = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer"]
 layout_mode = 2
