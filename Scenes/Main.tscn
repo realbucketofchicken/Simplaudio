@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=52 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://Pictures/BG/Default/IMG_20241015_162213_033(1).jpg" id="1_3yjo4"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
@@ -23,7 +23,9 @@
 [ext_resource type="Script" path="res://Scripts/scripts/play_manager.gd" id="13_bv4gj"]
 [ext_resource type="Texture2D" uid="uid://1rstn6r2wisy" path="res://Icons/X.png" id="13_txjqo"]
 [ext_resource type="Script" path="res://Scripts/scripts/progress_slider.gd" id="14_ejsc5"]
+[ext_resource type="Shader" path="res://Scripts/shader/Blur.gdshader" id="14_imubo"]
 [ext_resource type="Script" path="res://Scripts/scripts/time_indicator.gd" id="15_m71fa"]
+[ext_resource type="Script" path="res://Scripts/scripts/buttonHideNode.gd" id="16_ew50l"]
 [ext_resource type="Script" path="res://Scripts/scripts/skip_buttons.gd" id="16_r4ds7"]
 [ext_resource type="Script" path="res://Scripts/scripts/pause_button.gd" id="17_qeoik"]
 [ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="18_7xnl7"]
@@ -73,7 +75,7 @@ Button/styles/normal = SubResource("StyleBoxFlat_qjkg6")
 Button/styles/pressed = SubResource("StyleBoxFlat_gl8wn")
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
-Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/colors/font_shadow_color = Color(0.07, 0.07, 0.07, 1)
 Label/constants/line_spacing = 3
 Label/constants/outline_size = 0
 Label/constants/shadow_offset_x = 1
@@ -84,16 +86,29 @@ Label/fonts/font = ExtResource("1_x3rqh")
 Label/styles/normal = SubResource("StyleBoxEmpty_fstra")
 LineEdit/fonts/font = ExtResource("1_x3rqh")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k2skg"]
+shader = ExtResource("14_imubo")
+shader_parameter/strength = 1.0
+shader_parameter/darken = 0.7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_24qch"]
+shader = ExtResource("14_imubo")
+shader_parameter/strength = 1.0
+shader_parameter/darken = 0.7
+
 [sub_resource type="LabelSettings" id="LabelSettings_5t5wo"]
 font = ExtResource("6_806le")
 font_size = 24
+shadow_color = Color(0, 0, 0, 0.435294)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bmhyn"]
 font_size = 18
 font_color = Color(0.864675, 0.864675, 0.864675, 1)
+shadow_color = Color(0, 0, 0, 0.435294)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xs33p"]
 font_color = Color(0.77084, 0.770839, 0.770839, 1)
+shadow_color = Color(0, 0, 0, 0.435294)
 
 [sub_resource type="Gradient" id="Gradient_vbnqj"]
 offsets = PackedFloat32Array(0.544186, 0.711628)
@@ -121,9 +136,14 @@ noise = SubResource("FastNoiseLite_x34c1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wwcp"]
 shader = ExtResource("8_dcsuc")
-shader_parameter/noiseOffset = Vector2(501.394, 164.396)
+shader_parameter/noiseOffset = Vector2(785.474, 258.867)
 shader_parameter/dissolve = SubResource("GradientTexture2D_r1wmd")
 shader_parameter/noise = SubResource("NoiseTexture2D_3kgd3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dojp4"]
+shader = ExtResource("14_imubo")
+shader_parameter/strength = 1.0
+shader_parameter/darken = 0.7
 
 [sub_resource type="LabelSettings" id="LabelSettings_4rwxp"]
 font_size = 25
@@ -201,6 +221,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ColorRect" type="ColorRect" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar"]
+material = SubResource("ShaderMaterial_k2skg")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -314,6 +335,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ColorRect" type="ColorRect" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar"]
+material = SubResource("ShaderMaterial_24qch")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -578,11 +600,9 @@ offset_top = -16222.0
 offset_bottom = 8.0
 grow_horizontal = 2
 focus_mode = 0
-min_value = 0.04
 max_value = 1.0
 step = 0.0
-value = 0.992
-exp_edit = true
+value = 1.0
 scrollable = false
 
 [node name="BottomMargin" type="Control" parent="DesktopUI/Seperator"]
@@ -629,7 +649,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="SearchResults2" type="Control" parent="DesktopUI/FloatingUI"]
+[node name="SearchResults" type="Control" parent="DesktopUI/FloatingUI"]
 layout_mode = 1
 anchor_left = 0.287326
 anchor_top = 0.114198
@@ -639,7 +659,8 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="DesktopUI/FloatingUI/SearchResults2"]
+[node name="ColorRect" type="ColorRect" parent="DesktopUI/FloatingUI/SearchResults"]
+material = SubResource("ShaderMaterial_dojp4")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -648,7 +669,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.14902, 0.14902, 0.14902, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DesktopUI/FloatingUI/SearchResults2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DesktopUI/FloatingUI/SearchResults"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -656,11 +677,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="DesktopUI/FloatingUI/SearchResults2/VBoxContainer"]
+[node name="Control" type="Control" parent="DesktopUI/FloatingUI/SearchResults/VBoxContainer"]
 custom_minimum_size = Vector2(0, 41.73)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="DesktopUI/FloatingUI/SearchResults2/VBoxContainer/Control"]
+[node name="Button" type="Button" parent="DesktopUI/FloatingUI/SearchResults/VBoxContainer/Control" node_paths=PackedStringArray("TargetNode")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -671,19 +692,21 @@ grow_horizontal = 0
 icon = ExtResource("13_txjqo")
 flat = true
 expand_icon = true
+script = ExtResource("16_ew50l")
+TargetNode = NodePath("../../..")
 
-[node name="Label" type="Label" parent="DesktopUI/FloatingUI/SearchResults2/VBoxContainer/Control"]
+[node name="Label" type="Label" parent="DesktopUI/FloatingUI/SearchResults/VBoxContainer/Control"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 22.0
 text = "Search results"
 label_settings = SubResource("LabelSettings_4rwxp")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="DesktopUI/FloatingUI/SearchResults2/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="DesktopUI/FloatingUI/SearchResults/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Results" type="VBoxContainer" parent="DesktopUI/FloatingUI/SearchResults2/VBoxContainer/ScrollContainer"]
+[node name="Results" type="VBoxContainer" parent="DesktopUI/FloatingUI/SearchResults/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

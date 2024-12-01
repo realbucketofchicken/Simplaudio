@@ -16,3 +16,4 @@ func UpdateMetadata(songInfo:SongInfo):
 	ArtistDisplay.text = songInfo.Author
 	AlbumDisplay.text = songInfo.Album
 	CoverDisplay.texture = MusicMetadataAutoload.get_mp3_metadata(audioPlayerController.player.stream).cover
+	MusicMetadataAutoload.get_mp3_metadata(audioPlayerController.player.stream).print_info()
