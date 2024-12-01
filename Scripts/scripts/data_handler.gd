@@ -23,7 +23,7 @@ func AddSongsFromFolder(path:String):
 				if !dir.current_is_dir():
 					#print("Found file: " + file_name)
 					var Song:SongInfo = SongInfo.new()
-					Song.Name = file_name
+					Song.Name = file_name.replace(".mp3","")
 					Song.Location = path + "/" + file_name
 					Songs.append(Song)
 			file_name = dir.get_next()

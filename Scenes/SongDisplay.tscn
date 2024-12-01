@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://g567uyu0g3qv"]
+
+[ext_resource type="Texture2D" uid="uid://dwvy6crqhardn" path="res://Icons/Dropdown.png" id="1_47tpn"]
+[ext_resource type="Script" path="res://Scripts/scripts/song_display.gd" id="1_og8ll"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p5seu"]
+font_size = 12
+font_color = Color(0.597176, 0.597176, 0.597176, 1)
+
+[node name="SongDisplay" type="Control"]
+custom_minimum_size = Vector2(0, 62.845)
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_og8ll")
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.439049, 0.439049, 0.439049, 0.298039)
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+split_offset = 19
+dragger_visibility = 2
+
+[node name="OptionsDropdown" type="MenuButton" parent="HSplitContainer"]
+modulate = Color(0.724643, 0.724643, 0.724643, 1)
+layout_mode = 2
+icon = ExtResource("1_47tpn")
+icon_alignment = 1
+expand_icon = true
+item_count = 4
+popup/item_0/text = "Move"
+popup/item_1/text = "Delete"
+popup/item_1/id = 1
+popup/item_2/text = "Add to playlist"
+popup/item_2/id = 2
+popup/item_3/text = "Add to last playlist"
+popup/item_3/id = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="HSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24.395)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "Title"
+autowrap_mode = 0
+
+[node name="Artist" type="Label" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "Artist"
+label_settings = SubResource("LabelSettings_p5seu")
+clip_text = true

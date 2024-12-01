@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=54 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://Pictures/BG/Default/IMG_20241015_162213_033(1).jpg" id="1_3yjo4"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://ddcve45ijpnqm" path="res://Scenes/FolderDisplay.tscn" id="8_ac3gy"]
 [ext_resource type="Script" path="res://Scripts/scripts/side_bar_toggle.gd" id="8_cpdlc"]
 [ext_resource type="Shader" path="res://Scripts/shader/CoverShader.gdshader" id="8_dcsuc"]
-[ext_resource type="Texture2D" uid="uid://2vacx4h6vn46" path="res://Pictures/BG/Default/IMG_20241015_175925_722(1).jpg" id="9_lnaak"]
 [ext_resource type="Script" path="res://Scenes/DisplayTextureShader.gd" id="10_en2na"]
 [ext_resource type="Script" path="res://Scripts/scripts/playlist_logic.gd" id="11_vxpks"]
 [ext_resource type="Script" path="res://Scripts/scripts/volume_button.gd" id="11_w07mf"]
@@ -30,7 +29,10 @@
 [ext_resource type="Script" path="res://Scripts/scripts/pause_button.gd" id="17_qeoik"]
 [ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="18_7xnl7"]
 [ext_resource type="Script" path="res://Scripts/scripts/song_metadata_handler.gd" id="19_sb8jf"]
+[ext_resource type="Script" path="res://Scripts/scripts/search_bar.gd" id="28_k3qgr"]
 [ext_resource type="Script" path="res://Scripts/scripts/window_adjustments.gd" id="29_t17ir"]
+[ext_resource type="Script" path="res://Scripts/scripts/search.gd" id="31_oyhdx"]
+[ext_resource type="Script" path="res://Scenes/metadata_loader.gd" id="34_nsmrm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebbx8"]
 bg_color = Color(0.05, 0.05, 0.05, 0.615686)
@@ -136,7 +138,7 @@ noise = SubResource("FastNoiseLite_x34c1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wwcp"]
 shader = ExtResource("8_dcsuc")
-shader_parameter/noiseOffset = Vector2(785.474, 258.867)
+shader_parameter/noiseOffset = Vector2(1681.48, 555.437)
 shader_parameter/dissolve = SubResource("GradientTexture2D_r1wmd")
 shader_parameter/noise = SubResource("NoiseTexture2D_3kgd3")
 
@@ -363,9 +365,25 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Add folder"
 
-[node name="FolderDisplay" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="FolderDisplay" type="VBoxContainer" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MetadataLabel" type="RichTextLabel" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 13
+text = "please load the metadata"
+scroll_active = false
+
+[node name="MetadataLoader" type="Button" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2"]
+layout_mode = 2
+text = "Load all metadata"
 
 [node name="SearchBar" type="Control" parent="DesktopUI/Seperator/TopPart"]
 custom_minimum_size = Vector2(200, 40)
@@ -444,7 +462,7 @@ custom_minimum_size = Vector2(385, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 23
-text = "Super mega song"
+text = "(no song)"
 label_settings = SubResource("LabelSettings_5t5wo")
 
 [node name="ArtistNameEdit" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
@@ -452,7 +470,6 @@ custom_minimum_size = Vector2(385, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 20
-text = "Super mega artist"
 label_settings = SubResource("LabelSettings_bmhyn")
 
 [node name="AlbumNameEdit" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
@@ -460,7 +477,6 @@ custom_minimum_size = Vector2(385, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 18
-text = "Super mega album"
 label_settings = SubResource("LabelSettings_xs33p")
 
 [node name="ProgressBar" type="HBoxContainer" parent="DesktopUI/Seperator/BottomBar/Sorter"]
@@ -635,7 +651,7 @@ offset_top = -300.0
 offset_right = 399.769
 grow_vertical = 0
 mouse_filter = 2
-texture = ExtResource("9_lnaak")
+texture = ExtResource("1_3yjo4")
 expand_mode = 3
 stretch_mode = 6
 script = ExtResource("10_en2na")
@@ -650,11 +666,12 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="SearchResults" type="Control" parent="DesktopUI/FloatingUI"]
+visible = false
 layout_mode = 1
 anchor_left = 0.287326
-anchor_top = 0.114198
+anchor_top = 0.131173
 anchor_right = 0.712674
-anchor_bottom = 0.885802
+anchor_bottom = 0.868827
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -713,14 +730,6 @@ size_flags_vertical = 3
 
 [node name="Logic" type="Node" parent="."]
 
-[node name="PlayerLogic" type="Node" parent="Logic"]
-
-[node name="SongPlayer" type="AudioStreamPlayer" parent="Logic/PlayerLogic"]
-
-[node name="AudioPlayerController" type="Node" parent="Logic/PlayerLogic" node_paths=PackedStringArray("player")]
-script = ExtResource("5_wjprx")
-player = NodePath("../SongPlayer")
-
 [node name="UILogic" type="Node" parent="Logic"]
 
 [node name="SideBars" type="Node" parent="Logic/UILogic"]
@@ -732,7 +741,7 @@ script = ExtResource("6_c32kh")
 Dialog = NodePath("../OpenDialog")
 dataHandler = NodePath("../../../../MainLogic/DataHandler")
 AddFolderButton = NodePath("../../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/Header/AddFolderButton")
-FolderParentNode = NodePath("../../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/FolderDisplay")
+FolderParentNode = NodePath("../../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/ScrollContainer/FolderDisplay")
 folderDisplay = ExtResource("8_ac3gy")
 
 [node name="OpenDialog" type="FileDialog" parent="Logic/UILogic/SideBars/FolderLogic"]
@@ -770,19 +779,19 @@ PositionCurve = SubResource("Curve_r1814")
 script = ExtResource("11_w07mf")
 volumeButton = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/VolumeButton")
 volumeSlider = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/VolumeButton/VolumeSlider")
-audioPlayerController = NodePath("../../../PlayerLogic/AudioPlayerController")
+audioPlayerController = NodePath("../../../MainLogic/PlayerLogic/AudioPlayerController")
 extendedLength = 100
 PositionCurve = SubResource("Curve_665bp")
 time = 0.25
 
 [node name="ProgressSlider" type="Node" parent="Logic/UILogic/Bottom" node_paths=PackedStringArray("audioPlayerController", "ProgressSlider")]
 script = ExtResource("14_ejsc5")
-audioPlayerController = NodePath("../../../PlayerLogic/AudioPlayerController")
+audioPlayerController = NodePath("../../../MainLogic/PlayerLogic/AudioPlayerController")
 ProgressSlider = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/ProgressSlider")
 
 [node name="TimeIndicator" type="Node" parent="Logic/UILogic/Bottom" node_paths=PackedStringArray("audioPlayerController", "currentTimeLabel")]
 script = ExtResource("15_m71fa")
-audioPlayerController = NodePath("../../../PlayerLogic/AudioPlayerController")
+audioPlayerController = NodePath("../../../MainLogic/PlayerLogic/AudioPlayerController")
 currentTimeLabel = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/ProgressSlider/TimeIndicator")
 
 [node name="SkipButtons" type="Node" parent="Logic/UILogic/Bottom" node_paths=PackedStringArray("backbutton", "frontbutton", "playManger")]
@@ -795,7 +804,7 @@ playManger = NodePath("../../../MainLogic/PlayManager")
 script = ExtResource("17_qeoik")
 button = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons/PlayPauseButton")
 buttonTexture = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/Buttons/PlayPauseButton/TextureRect")
-audioPlayController = NodePath("../../../PlayerLogic/AudioPlayerController")
+audioPlayController = NodePath("../../../MainLogic/PlayerLogic/AudioPlayerController")
 pauseImage = ExtResource("18_7xnl7")
 playImage = ExtResource("1_gqtol")
 
@@ -804,22 +813,52 @@ playImage = ExtResource("1_gqtol")
 [node name="SongMetadataHandler" type="Node" parent="Logic/UILogic/Other" node_paths=PackedStringArray("playManager", "audioPlayerController", "FileNameDisplay", "ArtistDisplay", "AlbumDisplay", "CoverDisplay")]
 script = ExtResource("19_sb8jf")
 playManager = NodePath("../../../MainLogic/PlayManager")
-audioPlayerController = NodePath("../../../PlayerLogic/AudioPlayerController")
+audioPlayerController = NodePath("../../../MainLogic/PlayerLogic/AudioPlayerController")
 FileNameDisplay = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/SongInfo/SongNameEdit")
 ArtistDisplay = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/SongInfo/ArtistNameEdit")
 AlbumDisplay = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/SongInfo/AlbumNameEdit")
 CoverDisplay = NodePath("../../../../DesktopUI/Seperator/BottomMargin/CoverDisplay")
 
+[node name="Top" type="Node" parent="Logic/UILogic"]
+
+[node name="SearchBar" type="Node" parent="Logic/UILogic/Top" node_paths=PackedStringArray("searchBar", "searchButton", "resultsParent", "resultsStacker", "search", "playManager", "dataHandler")]
+script = ExtResource("28_k3qgr")
+searchBar = NodePath("../../../../DesktopUI/Seperator/TopPart/SearchBar/container/SearchLine")
+searchButton = NodePath("../../../../DesktopUI/Seperator/TopPart/SearchBar/container/SearchConfirmButton")
+resultsParent = NodePath("../../../../DesktopUI/FloatingUI/SearchResults")
+resultsStacker = NodePath("../../../../DesktopUI/FloatingUI/SearchResults/VBoxContainer/ScrollContainer/Results")
+search = NodePath("../../../MainLogic/Search")
+playManager = NodePath("../../../MainLogic/PlayManager")
+dataHandler = NodePath("../../../MainLogic/DataHandler")
+
 [node name="MainLogic" type="Node" parent="Logic"]
 
 [node name="DataHandler" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("AudioPlayer")]
 script = ExtResource("7_pnp6g")
-AudioPlayer = NodePath("../../PlayerLogic/AudioPlayerController")
+AudioPlayer = NodePath("../PlayerLogic/AudioPlayerController")
 
 [node name="PlayManager" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("dataHandler", "audioPlayerController")]
 script = ExtResource("13_bv4gj")
 dataHandler = NodePath("../DataHandler")
-audioPlayerController = NodePath("../../PlayerLogic/AudioPlayerController")
+audioPlayerController = NodePath("../PlayerLogic/AudioPlayerController")
 
 [node name="WindowAdjustments" type="Node" parent="Logic/MainLogic"]
 script = ExtResource("29_t17ir")
+
+[node name="Search" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("dataHandler")]
+script = ExtResource("31_oyhdx")
+dataHandler = NodePath("../DataHandler")
+
+[node name="PlayerLogic" type="Node" parent="Logic/MainLogic"]
+
+[node name="SongPlayer" type="AudioStreamPlayer" parent="Logic/MainLogic/PlayerLogic"]
+
+[node name="AudioPlayerController" type="Node" parent="Logic/MainLogic/PlayerLogic" node_paths=PackedStringArray("player")]
+script = ExtResource("5_wjprx")
+player = NodePath("../SongPlayer")
+
+[node name="MetadataLoader" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("loadButton", "dataHandler", "metadataLabel")]
+script = ExtResource("34_nsmrm")
+loadButton = NodePath("../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/MetadataLoader")
+dataHandler = NodePath("../DataHandler")
+metadataLabel = NodePath("../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/MetadataLabel")

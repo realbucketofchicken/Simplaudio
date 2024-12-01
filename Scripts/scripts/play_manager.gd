@@ -7,7 +7,7 @@ signal PlayingNewSong(songInfo:SongInfo)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	audioPlayerController.SongFinished.connect(CurrentSongFinished)
-	dataHandler.NewSongsAdded.connect(playSong)
+	#dataHandler.NewSongsAdded.connect(playSong)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,3 +42,12 @@ func playSong(index:int=0):
 			printerr("audio file invalid")
 	else:
 		printerr("no audio files")
+
+func playSongByDirectory(dir:String):
+	var idx:int
+	for song in dataHandler.Songs:
+		if song.Location == dir:
+			playSong(idx)
+			dataHandler.CurrentIdx = idx
+			break
+		idx +=1
