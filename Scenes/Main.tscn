@@ -1,26 +1,132 @@
-[gd_scene load_steps=24 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=47 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://Pictures/BG/Default/IMG_20241015_162213_033(1).jpg" id="1_3yjo4"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
 [ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="1_jwj4i"]
+[ext_resource type="FontFile" uid="uid://btjnqv6cbkvet" path="res://misc/Font/Geist-VariableFont_wght.ttf" id="1_x3rqh"]
+[ext_resource type="Script" path="res://Scripts/scripts/UIInitiator.gd" id="2_ql3kh"]
 [ext_resource type="Texture2D" uid="uid://0r1tx6l1lc6x" path="res://Icons/settingscog.png" id="3_fbu6c"]
 [ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://Icons/search.png" id="3_qyf8y"]
 [ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="3_sspeu"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_5xnwo"]
 [ext_resource type="Script" path="res://Scripts/scripts/audio_player_controller.gd" id="5_wjprx"]
+[ext_resource type="FontFile" uid="uid://cnr355wbqcvcw" path="res://misc/Font/Geist-Bold.ttf" id="6_806le"]
 [ext_resource type="Script" path="res://Scripts/scripts/add_folder_logic.gd" id="6_c32kh"]
 [ext_resource type="Script" path="res://Scripts/scripts/data_handler.gd" id="7_pnp6g"]
 [ext_resource type="PackedScene" uid="uid://ddcve45ijpnqm" path="res://Scenes/FolderDisplay.tscn" id="8_ac3gy"]
 [ext_resource type="Script" path="res://Scripts/scripts/side_bar_toggle.gd" id="8_cpdlc"]
+[ext_resource type="Shader" path="res://Scripts/shader/CoverShader.gdshader" id="8_dcsuc"]
+[ext_resource type="Texture2D" uid="uid://2vacx4h6vn46" path="res://Pictures/BG/Default/IMG_20241015_175925_722(1).jpg" id="9_lnaak"]
+[ext_resource type="Script" path="res://Scenes/DisplayTextureShader.gd" id="10_en2na"]
 [ext_resource type="Script" path="res://Scripts/scripts/playlist_logic.gd" id="11_vxpks"]
 [ext_resource type="Script" path="res://Scripts/scripts/volume_button.gd" id="11_w07mf"]
 [ext_resource type="Script" path="res://Scripts/scripts/play_manager.gd" id="13_bv4gj"]
+[ext_resource type="Texture2D" uid="uid://1rstn6r2wisy" path="res://Icons/X.png" id="13_txjqo"]
 [ext_resource type="Script" path="res://Scripts/scripts/progress_slider.gd" id="14_ejsc5"]
 [ext_resource type="Script" path="res://Scripts/scripts/time_indicator.gd" id="15_m71fa"]
 [ext_resource type="Script" path="res://Scripts/scripts/skip_buttons.gd" id="16_r4ds7"]
 [ext_resource type="Script" path="res://Scripts/scripts/pause_button.gd" id="17_qeoik"]
 [ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="18_7xnl7"]
 [ext_resource type="Script" path="res://Scripts/scripts/song_metadata_handler.gd" id="19_sb8jf"]
+[ext_resource type="Script" path="res://Scripts/scripts/window_adjustments.gd" id="29_t17ir"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebbx8"]
+bg_color = Color(0.05, 0.05, 0.05, 0.615686)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjkg6"]
+bg_color = Color(0.099986, 0.099986, 0.099986, 0.505882)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnb7e"]
+bg_color = Color(0.215902, 0.215902, 0.215902, 0.623529)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl8wn"]
+bg_color = Color(0.0728426, 0.0728426, 0.0728426, 0.776471)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fstra"]
+
+[sub_resource type="Theme" id="Theme_vdtvg"]
+Button/fonts/font = ExtResource("1_x3rqh")
+Button/styles/disabled = SubResource("StyleBoxFlat_ebbx8")
+Button/styles/focus = SubResource("StyleBoxFlat_qjkg6")
+Button/styles/hover = SubResource("StyleBoxFlat_jnb7e")
+Button/styles/normal = SubResource("StyleBoxFlat_qjkg6")
+Button/styles/pressed = SubResource("StyleBoxFlat_gl8wn")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_x3rqh")
+Label/styles/normal = SubResource("StyleBoxEmpty_fstra")
+LineEdit/fonts/font = ExtResource("1_x3rqh")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5t5wo"]
+font = ExtResource("6_806le")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_bmhyn"]
+font_size = 18
+font_color = Color(0.864675, 0.864675, 0.864675, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xs33p"]
+font_color = Color(0.77084, 0.770839, 0.770839, 1)
+
+[sub_resource type="Gradient" id="Gradient_vbnqj"]
+offsets = PackedFloat32Array(0.544186, 0.711628)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r1wmd"]
+gradient = SubResource("Gradient_vbnqj")
+fill = 1
+fill_from = Vector2(0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x34c1"]
+fractal_octaves = 1
+domain_warp_enabled = true
+domain_warp_type = 2
+domain_warp_amplitude = 33.81
+domain_warp_frequency = 0.015
+domain_warp_fractal_octaves = 2
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3kgd3"]
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.099
+noise = SubResource("FastNoiseLite_x34c1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wwcp"]
+shader = ExtResource("8_dcsuc")
+shader_parameter/noiseOffset = Vector2(501.394, 164.396)
+shader_parameter/dissolve = SubResource("GradientTexture2D_r1wmd")
+shader_parameter/noise = SubResource("NoiseTexture2D_3kgd3")
+
+[sub_resource type="LabelSettings" id="LabelSettings_4rwxp"]
+font_size = 25
 
 [sub_resource type="Curve" id="Curve_r1814"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.487632, 0.569784), 2.47031, 2.47031, 0, 0, Vector2(1, 1), 0.0802053, 0.0, 0, 0]
@@ -45,8 +151,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_vdtvg")
+script = ExtResource("2_ql3kh")
 
 [node name="TextureRect" type="TextureRect" parent="DesktopUI"]
+z_index = -2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -269,6 +378,7 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="SearchLine" type="LineEdit" parent="DesktopUI/Seperator/TopPart/SearchBar/container"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Search"
@@ -313,6 +423,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 23
 text = "Super mega song"
+label_settings = SubResource("LabelSettings_5t5wo")
 
 [node name="ArtistNameEdit" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
 custom_minimum_size = Vector2(385, 0)
@@ -320,6 +431,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 20
 text = "Super mega artist"
+label_settings = SubResource("LabelSettings_bmhyn")
 
 [node name="AlbumNameEdit" type="Label" parent="DesktopUI/Seperator/BottomBar/Sorter/SongInfo"]
 custom_minimum_size = Vector2(385, 0)
@@ -327,6 +439,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 18
 text = "Super mega album"
+label_settings = SubResource("LabelSettings_xs33p")
 
 [node name="ProgressBar" type="HBoxContainer" parent="DesktopUI/Seperator/BottomBar/Sorter"]
 layout_mode = 2
@@ -438,6 +551,7 @@ layout_mode = 2
 [node name="VolumeButton" type="Button" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 
 [node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/BottomBar/Sorter/ProgressBar/BehindButtons/VolumeButton"]
@@ -460,7 +574,7 @@ texture = ExtResource("4_5xnwo")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -828.0
+offset_top = -16222.0
 offset_bottom = 8.0
 grow_horizontal = 2
 focus_mode = 0
@@ -490,8 +604,23 @@ grow_vertical = 2
 text = "v2.0"
 horizontal_alignment = 2
 
-[node name="FloatingUI" type="Control" parent="."]
-visible = false
+[node name="CoverDisplay" type="TextureRect" parent="DesktopUI/Seperator/BottomMargin"]
+z_index = -1
+material = SubResource("ShaderMaterial_7wwcp")
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_right = 399.769
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("9_lnaak")
+expand_mode = 3
+stretch_mode = 6
+script = ExtResource("10_en2na")
+
+[node name="FloatingUI" type="Control" parent="DesktopUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -500,39 +629,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="SearchResults" type="Control" parent="FloatingUI"]
+[node name="SearchResults2" type="Control" parent="DesktopUI/FloatingUI"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.287326
+anchor_top = 0.114198
+anchor_right = 0.712674
+anchor_bottom = 0.885802
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="SearchResults" type="Control" parent="FloatingUI/SearchResults"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -225.0
-offset_top = -250.0
-offset_right = 225.0
-offset_bottom = 250.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Results" type="VBoxContainer" parent="FloatingUI/SearchResults/SearchResults"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="FloatingUI/SearchResults/SearchResults"]
+[node name="ColorRect" type="ColorRect" parent="DesktopUI/FloatingUI/SearchResults2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -540,6 +647,46 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DesktopUI/FloatingUI/SearchResults2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="DesktopUI/FloatingUI/SearchResults2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 41.73)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="DesktopUI/FloatingUI/SearchResults2/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+icon = ExtResource("13_txjqo")
+flat = true
+expand_icon = true
+
+[node name="Label" type="Label" parent="DesktopUI/FloatingUI/SearchResults2/VBoxContainer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 22.0
+text = "Search results"
+label_settings = SubResource("LabelSettings_4rwxp")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DesktopUI/FloatingUI/SearchResults2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Results" type="VBoxContainer" parent="DesktopUI/FloatingUI/SearchResults2/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Logic" type="Node" parent="."]
 
@@ -631,12 +778,14 @@ playImage = ExtResource("1_gqtol")
 
 [node name="Other" type="Node" parent="Logic/UILogic"]
 
-[node name="SongMetadataHandler" type="Node" parent="Logic/UILogic/Other" node_paths=PackedStringArray("playManager", "FileNameDisplay", "ArtistDisplay", "AlbumDisplay")]
+[node name="SongMetadataHandler" type="Node" parent="Logic/UILogic/Other" node_paths=PackedStringArray("playManager", "audioPlayerController", "FileNameDisplay", "ArtistDisplay", "AlbumDisplay", "CoverDisplay")]
 script = ExtResource("19_sb8jf")
 playManager = NodePath("../../../MainLogic/PlayManager")
+audioPlayerController = NodePath("../../../PlayerLogic/AudioPlayerController")
 FileNameDisplay = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/SongInfo/SongNameEdit")
 ArtistDisplay = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/SongInfo/ArtistNameEdit")
 AlbumDisplay = NodePath("../../../../DesktopUI/Seperator/BottomBar/Sorter/SongInfo/AlbumNameEdit")
+CoverDisplay = NodePath("../../../../DesktopUI/Seperator/BottomMargin/CoverDisplay")
 
 [node name="MainLogic" type="Node" parent="Logic"]
 
@@ -648,3 +797,6 @@ AudioPlayer = NodePath("../../PlayerLogic/AudioPlayerController")
 script = ExtResource("13_bv4gj")
 dataHandler = NodePath("../DataHandler")
 audioPlayerController = NodePath("../../PlayerLogic/AudioPlayerController")
+
+[node name="WindowAdjustments" type="Node" parent="Logic/MainLogic"]
+script = ExtResource("29_t17ir")

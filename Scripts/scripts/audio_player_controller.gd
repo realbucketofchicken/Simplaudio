@@ -35,4 +35,4 @@ func SetVolume(volume:float):
 
 ## must be between 0 and 1
 func SetSongPos(progress:float):
-	player.play(progress * player.stream.get_length())
+	player.play(progress * (player.stream.get_length() if player.stream !=null else 1))
