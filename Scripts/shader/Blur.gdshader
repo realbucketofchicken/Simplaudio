@@ -7,7 +7,7 @@ uniform sampler2D iChannel0:hint_screen_texture;
 uniform float strength : hint_range(0.0, 5.0, 0.1) = 1.0;
 uniform float darken;
 const float pi = atan(1.0) * 4.0;
-const int samples = 35;
+const int samples = 0;
 const float sigma = float(samples) * 0.25;
 
 float gaussian(vec2 i) {
@@ -15,21 +15,26 @@ float gaussian(vec2 i) {
 }
 
 vec3 blur(sampler2D sp, vec2 uv, vec2 scale) {
-    vec3 col = vec3(0.0);
-    float accum = 0.0;
-    float weight;
-    vec2 offset;
+	if (samples > 1){
+	    vec3 col = vec3(0.0);
+	    float accum = 0.0;
+	    float weight;
+	    vec2 offset;
 
-    for (int x = -samples / 2; x < samples / 2; ++x) {
-        for (int y = -samples / 2; y < samples / 2; ++y) {
-            offset = vec2(float(x), float(y));
-            weight = gaussian(offset);
-            col += texture(sp, uv + scale * offset).rgb * weight;
-            accum += weight;
-        }
-    }
+	    for (int x = -samples / 2; x < samples / 2; ++x) {
+	        for (int y = -samples / 2; y < samples / 2; ++y) {
+	            offset = vec2(float(x), float(y));
+	            weight = gaussian(offset);
+	            col += texture(sp, uv + scale * offset).rgb * weight;
+	            accum += weight;
+	        }
+	    }
 
-    return col / accum;
+	    return col / accum;
+	}
+	else {
+		return texture(sp,uv).rgb;
+	}
 }
 
 void fragment() {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=57 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://Pictures/BG/Default/IMG_20241015_162213_033(1).jpg" id="1_3yjo4"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
@@ -35,6 +35,7 @@
 [ext_resource type="Script" path="res://Scripts/scripts/search.gd" id="31_oyhdx"]
 [ext_resource type="Script" path="res://Scenes/metadata_loader.gd" id="34_nsmrm"]
 [ext_resource type="Script" path="res://Scripts/scripts/save_handler.gd" id="34_qevdb"]
+[ext_resource type="Script" path="res://Scripts/scripts/keyboard_input.gd" id="36_njavp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebbx8"]
 bg_color = Color(0.05, 0.05, 0.05, 0.615686)
@@ -140,7 +141,7 @@ noise = SubResource("FastNoiseLite_x34c1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wwcp"]
 shader = ExtResource("8_dcsuc")
-shader_parameter/noiseOffset = Vector2(2319.77, 764.717)
+shader_parameter/noiseOffset = Vector2(2620.01, 863.113)
 shader_parameter/dissolve = SubResource("GradientTexture2D_r1wmd")
 shader_parameter/noise = SubResource("NoiseTexture2D_3kgd3")
 
@@ -1006,3 +1007,7 @@ metadataLabel = NodePath("../../../DesktopUI/Seperator/TopPart/RightSideBar/HBox
 
 [node name="SaveHandler" type="Node" parent="Logic/MainLogic"]
 script = ExtResource("34_qevdb")
+
+[node name="KeyboardInput" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("AudioplayController")]
+script = ExtResource("36_njavp")
+AudioplayController = NodePath("../PlayerLogic/AudioPlayerController")

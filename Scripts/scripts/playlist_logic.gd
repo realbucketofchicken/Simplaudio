@@ -31,12 +31,15 @@ func _process(_delta: float) -> void:
 			NoFoldersNotice.visible = bool(FolderOptionDropdown.item_count == 0)
 		
 		3:
-			CreateButton.disabled = false
+			CreateButton.disabled = true	
 	if PlaylistNameEdit.text == "":
 		CreateButton.disabled = true
 	
 
 func showCreatePlaylist():
+	FolderOptionDropdown.clear()
+	for folder in dataHandler.Folders:
+		FolderOptionDropdown.add_item(folder)
 	CreatePlaylistMenu.show()
 	PlaylistNameEdit.clear()
 	PlaylistTypeDropdown.select(0)

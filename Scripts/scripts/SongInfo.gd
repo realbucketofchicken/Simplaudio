@@ -6,3 +6,4 @@ extends Resource
 @export var Album:String
 @export var Location:String
 @export var Playlist:String
+@export var MetadataLoaded:bool
