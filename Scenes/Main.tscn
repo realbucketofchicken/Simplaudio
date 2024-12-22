@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="1_jwj4i"]
 [ext_resource type="FontFile" uid="uid://btjnqv6cbkvet" path="res://misc/Font/Geist-VariableFont_wght.ttf" id="1_x3rqh"]
 [ext_resource type="Script" path="res://Scripts/scripts/UIInitiator.gd" id="2_ql3kh"]
-[ext_resource type="Texture2D" uid="uid://0r1tx6l1lc6x" path="res://Icons/settingscog.png" id="3_fbu6c"]
 [ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://Icons/search.png" id="3_qyf8y"]
 [ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="3_sspeu"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_5xnwo"]
 [ext_resource type="Script" path="res://Scripts/scripts/audio_player_controller.gd" id="5_wjprx"]
 [ext_resource type="FontFile" uid="uid://cnr355wbqcvcw" path="res://misc/Font/Geist-Bold.ttf" id="6_806le"]
 [ext_resource type="Script" path="res://Scripts/scripts/add_folder_logic.gd" id="6_c32kh"]
+[ext_resource type="Texture2D" uid="uid://bhonnvrg3syx4" path="res://Icons/filter.png" id="6_iuqwd"]
 [ext_resource type="Script" path="res://Scripts/scripts/data_handler.gd" id="7_pnp6g"]
 [ext_resource type="PackedScene" uid="uid://ddcve45ijpnqm" path="res://Scenes/FolderDisplay.tscn" id="8_ac3gy"]
 [ext_resource type="Texture2D" uid="uid://b5eims5ucn81r" path="res://Icons/Loding.png" id="8_aopm6"]
@@ -148,7 +148,7 @@ noise = SubResource("FastNoiseLite_x34c1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wwcp"]
 shader = ExtResource("8_dcsuc")
-shader_parameter/noiseOffset = Vector2(2938.79, 968.445)
+shader_parameter/noiseOffset = Vector2(3172.7, 1046.4)
 shader_parameter/dissolve = SubResource("GradientTexture2D_r1wmd")
 shader_parameter/noise = SubResource("NoiseTexture2D_3kgd3")
 
@@ -417,7 +417,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_fbu6c")
+texture = ExtResource("6_iuqwd")
 expand_mode = 2
 stretch_mode = 5
 
@@ -782,6 +782,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CreatePlaylist" type="Control" parent="DesktopUI/FloatingUI"]
+visible = false
 layout_mode = 1
 anchor_left = 0.329861
 anchor_top = 0.296296
@@ -905,6 +906,27 @@ text = "Adding songs to a playlist is done with the search bar."
 layout_mode = 2
 size_flags_vertical = 10
 text = "Create"
+
+[node name="FilterControls" type="Control" parent="DesktopUI/FloatingUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.0
+offset_top = 43.0
+offset_right = 145.0
+offset_bottom = 238.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="DesktopUI/FloatingUI/FilterControls"]
+material = SubResource("ShaderMaterial_dojp4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.332881, 0.332881, 0.332881, 1)
 
 [node name="Logic" type="Node" parent="."]
 
@@ -1044,9 +1066,10 @@ dataHandler = NodePath("../DataHandler")
 script = ExtResource("5_wjprx")
 player = NodePath("../SongPlayer")
 
-[node name="MetadataLoader" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("dataHandler")]
+[node name="MetadataLoader" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("dataHandler", "LoadingMetadataWindow")]
 script = ExtResource("34_nsmrm")
 dataHandler = NodePath("../DataHandler")
+LoadingMetadataWindow = NodePath("../../../DesktopUI/Seperator/BottomBar/LoadingMetadataPopup")
 
 [node name="SaveHandler" type="Node" parent="Logic/MainLogic" node_paths=PackedStringArray("dataHandler", "addFolderLogic")]
 script = ExtResource("34_qevdb")

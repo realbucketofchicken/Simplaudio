@@ -6,6 +6,7 @@ var thread:Thread
 var threading:bool
 var RedoQueued:bool
 var startTime:float
+@export var LoadingMetadataWindow:Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	thread = Thread.new()
@@ -29,9 +30,10 @@ func LoadMetadata():
 		song.Album = metadata.album
 		song.Author = metadata.artist
 		song.MetadataLoaded = true
-		print(metadata.album)
+		#print(metadata.album)
 
 func _process(_delta: float) -> void:
+	LoadingMetadataWindow.visible = threading
 	if threading:
 		if !thread.is_alive():
 			thread.wait_to_finish()

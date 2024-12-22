@@ -67,8 +67,8 @@ func get_mp3_metadata(stream: AudioStreamMP3) -> MusicMetadata:
 				"TBPM", 'TBP':
 					meta.bpm = int(get_string_from_data(data, idx, size))
 				"TIT2":
-					print("a " + str(Array(data.slice(idx, idx + 3)).hash()))
-					print([1, 0xff, 0xfe].hash())
+					#print("a " + str(Array(data.slice(idx, idx + 3)).hash()))
+					#print([1, 0xff, 0xfe].hash())
 					meta.title = get_string_from_data(data, idx, size)
 				"TALB", 'TAL':
 					meta.album = get_string_from_data(data, idx, size)
