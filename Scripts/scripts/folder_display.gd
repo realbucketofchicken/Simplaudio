@@ -6,8 +6,8 @@ extends Control
 
 @onready var options_dropdown: MenuButton = $HSplitContainer/HBoxContainer/OptionsDropdown
 
-signal RemovePressed
-signal MakePlaylistPressed
+signal RemovePressed(Folder)
+signal MakePlaylistPressed(Folder)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,4 +23,4 @@ func OptionPressed(id:int):
 		1:
 			RemovePressed.emit(self)
 		2:
-			MakePlaylistPressed.emit()
+			MakePlaylistPressed.emit(self)

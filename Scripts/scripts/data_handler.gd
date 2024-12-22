@@ -1,7 +1,7 @@
 class_name DataHandler
 extends Node
 
-var Folders:PackedStringArray
+var Folders:Array[String]
 var Playlists:Array[PlaylistInfo]
 var Songs:Array[SongInfo]
 
@@ -9,11 +9,16 @@ var Songs:Array[SongInfo]
 var CurrentIdx:int
 var randomized:bool
 signal NewSongsAdded
+signal FolderAdded
+signal FolderRemoved
+signal FoldersChanged
 
 func AddPath(path:String):
 	if not path in Folders:
 		Folders.append(path)
 		AddSongsFromFolder(path)
+		FolderAdded.emit()
+		FoldersChanged.emit()
 
 func AddSongsFromFolder(path:String):
 	var dir = DirAccess.open(path)
@@ -35,4 +40,11 @@ func AddSongsFromFolder(path:String):
 			print("songs")
 			NewSongsAdded.emit()
 	else:
-		print("An error occurred when trying to access the path.")
+		printerr("An error occurred when trying to access the path.")
+
+func RemoveSongsFromFolder(path:String):
+	Songs.clear()
+	FolderRemoved.emit()
+	FoldersChanged.emit()
+	for folder in Folders:
+		AddSongsFromFolder(folder)

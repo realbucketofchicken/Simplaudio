@@ -1,23 +1,23 @@
 extends Node
 
-@export var loadButton:Button
 @export var dataHandler:DataHandler
-@export var metadataLabel:RichTextLabel
 
 var thread:Thread
 var threading:bool
+var RedoQueued:bool
 var startTime:float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	thread = Thread.new()
-	loadButton.pressed.connect(StartLoad)
+	dataHandler.FoldersChanged.connect(StartLoad)
 
 func StartLoad():
-	thread.start(LoadMetadata)
-	threading = true
-	loadButton.disabled = true
-	metadataLabel.text = "Loading..."
-	startTime = Time.get_unix_time_from_system()
+	if !threading:
+		thread.start(LoadMetadata)
+		threading = true
+		startTime = Time.get_unix_time_from_system()
+	else:
+		RedoQueued = true
 
 func LoadMetadata():
 	for song in dataHandler.Songs:
@@ -36,6 +36,8 @@ func _process(_delta: float) -> void:
 		if !thread.is_alive():
 			thread.wait_to_finish()
 			threading = false
-			loadButton.disabled = false
 			var endTime = Time.get_unix_time_from_system()
-			metadataLabel.text = "Took " + str(roundf(endTime - startTime)) + " seconds to read the metadata of " + str(dataHandler.Songs.size()) + " Songs!"
+			print("Took " + str(roundf(endTime - startTime)) + " seconds to read the metadata of " + str(dataHandler.Songs.size()) + " Songs!")
+			if RedoQueued:
+				StartLoad()
+				RedoQueued = false
