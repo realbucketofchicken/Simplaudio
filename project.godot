@@ -12,11 +12,11 @@ config_version=5
 
 config/name="Simplaudio"
 run/main_scene="res://Main.tscn"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.3", "Forward Plus")
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/use_filter=false
 boot_splash/image="res://BigLogo.png"
+boot_splash/use_filter=false
 config/icon="res://Logo2.png"
 config/windows_native_icon="res://addons/godot-yt-dlp/src/favicon2.ico"
 
