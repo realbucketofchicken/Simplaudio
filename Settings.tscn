@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqg674t6kun4e"]
 
-[ext_resource type="Script" path="res://settings.gd" id="1_uaa7d"]
-[ext_resource type="Script" path="res://eq_settings.gd" id="2_1n4m6"]
+[ext_resource type="Script" uid="uid://vnpslgl788du" path="res://settings.gd" id="1_uaa7d"]
+[ext_resource type="Script" uid="uid://kt7n1epi3ng8" path="res://eq_settings.gd" id="2_1n4m6"]
 [ext_resource type="Texture2D" uid="uid://1rstn6r2wisy" path="res://X.png" id="2_iuivb"]
 [ext_resource type="Texture2D" uid="uid://pgij783wgbhn" path="res://File.png" id="2_jmen4"]
 
@@ -566,7 +566,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Godot GIF by b0tlanner"
 underline = 1
-uri = "https://github.com/vaporvee/discord-rpc-godot"
+uri = "https://github.com/BOTLANNER/godot-gif"
 
 [node name="Seperator7" type="Control" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 16.07)
@@ -597,6 +597,7 @@ size_flags_vertical = 0
 focus_mode = 0
 icon = ExtResource("2_iuivb")
 flat = true
+expand_icon = true
 
 [connection signal="toggled" from="ScrollContainer/VBoxContainer/DiscordRichPresenceButton" to="." method="_on_discord_rich_presence_button_toggled"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer/SelectBG" to="." method="_on_select_bg_pressed"]

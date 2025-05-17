@@ -194,7 +194,10 @@ func _ready() -> void:
 		if child is Control:
 			child.focus_mode = child is LineEdit
 	if LoadingSaveFailed:
-		loading_failed_screen.Show()
+		var file2 = FileAccess.open("user://playlists.dat", FileAccess.READ)
+		if (file2.get_error() != ERR_FILE_NOT_FOUND) or (file2.get_error() != ERR_FILE_BAD_PATH):
+			loading_failed_screen.Show()
+			ERR_PRINTER_ON_FIRE
 
 func setUpDiscord():
 	DiscordRPC.app_id = 1276916292170809426
