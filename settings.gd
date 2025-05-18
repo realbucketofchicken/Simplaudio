@@ -148,6 +148,7 @@ func _on_discord_rich_presence_button_toggled(toggled_on: bool) -> void:
 		Parent.DiscordRichPresenceEnabled = true
 	else:
 		Parent.DiscordRichPresenceEnabled = false
+	Parent.setUpDiscord()
 	Parent.SaveEverything()
 
 

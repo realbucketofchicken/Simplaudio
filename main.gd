@@ -121,9 +121,6 @@ func _ready() -> void:
 					child.PlaylistSongs = Playlists[Playlist]
 			playlists_holder.add_child(child)
 		if data != null:
-			if data.has("DiscordUsername"):
-				DiscordUsername = data["DiscordUsername"]
-				print("stiff ",data)
 			if data.has("Volume"):
 				print(data["Volume"])
 				SetVolume(data["Volume"])
@@ -141,6 +138,13 @@ func _ready() -> void:
 			if data.has("DiscordRichPresenceEnabled"):
 				settings_menu_child.discord_rich_presence_button.set_pressed_no_signal(data["DiscordRichPresenceEnabled"])
 				DiscordRichPresenceEnabled = data["DiscordRichPresenceEnabled"]
+				if data["DiscordRichPresenceEnabled"]:
+					setUpDiscord()
+			if data.has("DiscordUsername"):
+				if data["DiscordUsername"]:
+					if DiscordRichPresenceEnabled:
+						DiscordUsername = data["DiscordUsername"]
+						print("stiff ",data)
 			if data.has("ReverbEnabled") :
 				settings_menu_child.reverb_check.button_pressed = data["ReverbEnabled"]
 			if data.has("ReverbRoomSize") :
@@ -189,7 +193,6 @@ func _ready() -> void:
 		PlaySongs()
 		#PlaySongs()
 	
-	setUpDiscord()
 	for child in get_children(true):
 		if child is Control:
 			child.focus_mode = child is LineEdit
@@ -490,21 +493,22 @@ func _process(_delta: float) -> void:
 			BackroundSetup = true
 	if currentSaveTime < 0:
 		currentSaveTime = SaveInterval
-		
-		DiscordUsername = DiscordRPC.get_current_user().get("username")
+		if DiscordRichPresenceEnabled:
+			DiscordUsername = DiscordRPC.get_current_user().get("username")
 		if !LoadingSaveFailed:
 			SaveEverything()
 		@warning_ignore("integer_division")
-		if DiscordRPC.large_image != "nullbody":
-			UpdateSplashes()
-		if DiscordRPC.get_is_discord_working():
-			print(DiscordRPC.get_current_user()["username"])
-		print(TimeSpentListening)
-		var LText = SplashStrings.pick_random()
-		if DiscordRPC.large_image != "nullbody":
-			DiscordRPC.large_image_text = LText
-		if DiscordRPC.get_is_discord_working():
-			DiscordRPC.refresh()
+		if DiscordRichPresenceEnabled:
+			if DiscordRPC.large_image != "nullbody":
+				UpdateSplashes()
+			if DiscordRPC.get_is_discord_working():
+				print(DiscordRPC.get_current_user()["username"])
+			print(TimeSpentListening)
+			var LText = SplashStrings.pick_random()
+			if DiscordRPC.large_image != "nullbody":
+				DiscordRPC.large_image_text = LText
+			if DiscordRPC.get_is_discord_working():
+				DiscordRPC.refresh()
 	# "59:59 remaining" timestamp for the activity
 	if music_player.playing:
 		TimeSpentListening += _delta
