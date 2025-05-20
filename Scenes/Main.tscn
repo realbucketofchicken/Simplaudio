@@ -4,40 +4,40 @@
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="1_gqtol"]
 [ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="1_jwj4i"]
 [ext_resource type="FontFile" uid="uid://btjnqv6cbkvet" path="res://misc/Font/Geist-VariableFont_wght.ttf" id="1_x3rqh"]
-[ext_resource type="Script" path="res://Scripts/scripts/UIInitiator.gd" id="2_ql3kh"]
+[ext_resource type="Script" uid="uid://b118iq5dacsa" path="res://Scripts/scripts/UIInitiator.gd" id="2_ql3kh"]
 [ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://Icons/search.png" id="3_qyf8y"]
 [ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="3_sspeu"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_5xnwo"]
-[ext_resource type="Script" path="res://Scripts/scripts/audio_player_controller.gd" id="5_wjprx"]
+[ext_resource type="Script" uid="uid://0v5m8n5f6ug" path="res://Scripts/scripts/audio_player_controller.gd" id="5_wjprx"]
 [ext_resource type="FontFile" uid="uid://cnr355wbqcvcw" path="res://misc/Font/Geist-Bold.ttf" id="6_806le"]
-[ext_resource type="Script" path="res://Scripts/scripts/add_folder_logic.gd" id="6_c32kh"]
+[ext_resource type="Script" uid="uid://bvy57nue0owvl" path="res://Scripts/scripts/add_folder_logic.gd" id="6_c32kh"]
 [ext_resource type="Texture2D" uid="uid://bhonnvrg3syx4" path="res://Icons/filter.png" id="6_iuqwd"]
-[ext_resource type="Script" path="res://Scripts/scripts/data_handler.gd" id="7_pnp6g"]
+[ext_resource type="Script" uid="uid://dq2purypaoa2l" path="res://Scripts/scripts/data_handler.gd" id="7_pnp6g"]
 [ext_resource type="PackedScene" uid="uid://ddcve45ijpnqm" path="res://Scenes/FolderDisplay.tscn" id="8_ac3gy"]
 [ext_resource type="Texture2D" uid="uid://b5eims5ucn81r" path="res://Icons/Loding.png" id="8_aopm6"]
-[ext_resource type="Script" path="res://Scripts/scripts/side_bar_toggle.gd" id="8_cpdlc"]
-[ext_resource type="Shader" path="res://Scripts/shader/CoverShader.gdshader" id="8_dcsuc"]
-[ext_resource type="Script" path="res://Scripts/scripts/SimpleRotation.gd" id="9_3aemy"]
-[ext_resource type="Script" path="res://Scenes/DisplayTextureShader.gd" id="10_en2na"]
-[ext_resource type="Script" path="res://Scripts/scripts/playlist_logic.gd" id="11_vxpks"]
-[ext_resource type="Script" path="res://Scripts/scripts/volume_button.gd" id="11_w07mf"]
-[ext_resource type="Script" path="res://Scripts/scripts/play_manager.gd" id="13_bv4gj"]
+[ext_resource type="Script" uid="uid://cth0ndlqibmln" path="res://Scripts/scripts/side_bar_toggle.gd" id="8_cpdlc"]
+[ext_resource type="Shader" uid="uid://bbdffv5gci1fc" path="res://Scripts/shader/CoverShader.gdshader" id="8_dcsuc"]
+[ext_resource type="Script" uid="uid://bk526tu0xs136" path="res://Scripts/scripts/SimpleRotation.gd" id="9_3aemy"]
+[ext_resource type="Script" uid="uid://ctu2mesx5t2ry" path="res://Scenes/DisplayTextureShader.gd" id="10_en2na"]
+[ext_resource type="Script" uid="uid://438ijecojdbp" path="res://Scripts/scripts/playlist_logic.gd" id="11_vxpks"]
+[ext_resource type="Script" uid="uid://46h0jh03g3ta" path="res://Scripts/scripts/volume_button.gd" id="11_w07mf"]
+[ext_resource type="Script" uid="uid://bwqtiuow0kwiq" path="res://Scripts/scripts/play_manager.gd" id="13_bv4gj"]
 [ext_resource type="Texture2D" uid="uid://1rstn6r2wisy" path="res://Icons/X.png" id="13_txjqo"]
-[ext_resource type="Script" path="res://Scripts/scripts/progress_slider.gd" id="14_ejsc5"]
-[ext_resource type="Shader" path="res://Scripts/shader/Blur.gdshader" id="14_imubo"]
-[ext_resource type="Script" path="res://Scripts/scripts/time_indicator.gd" id="15_m71fa"]
-[ext_resource type="Script" path="res://Scenes/OptionMenuCycleNodes.gd" id="16_b0v2o"]
-[ext_resource type="Script" path="res://Scripts/scripts/buttonHideNode.gd" id="16_ew50l"]
-[ext_resource type="Script" path="res://Scripts/scripts/skip_buttons.gd" id="16_r4ds7"]
-[ext_resource type="Script" path="res://Scripts/scripts/pause_button.gd" id="17_qeoik"]
+[ext_resource type="Script" uid="uid://x3khflmkpdvf" path="res://Scripts/scripts/progress_slider.gd" id="14_ejsc5"]
+[ext_resource type="Shader" uid="uid://b0lpivaj3064n" path="res://Scripts/shader/Blur.gdshader" id="14_imubo"]
+[ext_resource type="Script" uid="uid://d0x1xqf6mslqq" path="res://Scripts/scripts/time_indicator.gd" id="15_m71fa"]
+[ext_resource type="Script" uid="uid://b87pxaaorec7w" path="res://Scenes/OptionMenuCycleNodes.gd" id="16_b0v2o"]
+[ext_resource type="Script" uid="uid://bubfgqtq1wt5g" path="res://Scripts/scripts/buttonHideNode.gd" id="16_ew50l"]
+[ext_resource type="Script" uid="uid://bw0ulluhyq1g2" path="res://Scripts/scripts/skip_buttons.gd" id="16_r4ds7"]
+[ext_resource type="Script" uid="uid://brbjit5ue6mds" path="res://Scripts/scripts/pause_button.gd" id="17_qeoik"]
 [ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="18_7xnl7"]
-[ext_resource type="Script" path="res://Scripts/scripts/song_metadata_handler.gd" id="19_sb8jf"]
-[ext_resource type="Script" path="res://Scripts/scripts/search_bar.gd" id="28_k3qgr"]
-[ext_resource type="Script" path="res://Scripts/scripts/window_adjustments.gd" id="29_t17ir"]
-[ext_resource type="Script" path="res://Scripts/scripts/search.gd" id="31_oyhdx"]
-[ext_resource type="Script" path="res://Scenes/metadata_loader.gd" id="34_nsmrm"]
-[ext_resource type="Script" path="res://Scripts/scripts/save_handler.gd" id="34_qevdb"]
-[ext_resource type="Script" path="res://Scripts/scripts/keyboard_input.gd" id="36_njavp"]
+[ext_resource type="Script" uid="uid://b7fr88vjyesgt" path="res://Scripts/scripts/song_metadata_handler.gd" id="19_sb8jf"]
+[ext_resource type="Script" uid="uid://lpfnb1mlku1k" path="res://Scripts/scripts/search_bar.gd" id="28_k3qgr"]
+[ext_resource type="Script" uid="uid://drmphv4c3d5xm" path="res://Scripts/scripts/window_adjustments.gd" id="29_t17ir"]
+[ext_resource type="Script" uid="uid://be0uwknxr14gq" path="res://Scripts/scripts/search.gd" id="31_oyhdx"]
+[ext_resource type="Script" uid="uid://dtef8vrmvxbcu" path="res://Scenes/metadata_loader.gd" id="34_nsmrm"]
+[ext_resource type="Script" uid="uid://ciuj6yenp7tts" path="res://Scripts/scripts/save_handler.gd" id="34_qevdb"]
+[ext_resource type="Script" uid="uid://cv4fxil3v4rgs" path="res://Scripts/scripts/keyboard_input.gd" id="36_njavp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebbx8"]
 bg_color = Color(0.05, 0.05, 0.05, 0.615686)
@@ -148,9 +148,9 @@ noise = SubResource("FastNoiseLite_x34c1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wwcp"]
 shader = ExtResource("8_dcsuc")
-shader_parameter/noiseOffset = Vector2(3172.7, 1046.4)
 shader_parameter/dissolve = SubResource("GradientTexture2D_r1wmd")
 shader_parameter/noise = SubResource("NoiseTexture2D_3kgd3")
+shader_parameter/noiseOffset = Vector2(3230.45, 1066.07)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dojp4"]
 shader = ExtResource("14_imubo")
@@ -720,6 +720,7 @@ mouse_filter = 2
 
 [node name="SearchResults" type="Control" parent="DesktopUI/FloatingUI"]
 visible = false
+z_index = 1
 layout_mode = 1
 anchor_left = 0.287326
 anchor_top = 0.131173
@@ -783,6 +784,7 @@ size_flags_vertical = 3
 
 [node name="CreatePlaylist" type="Control" parent="DesktopUI/FloatingUI"]
 visible = false
+z_index = 1
 layout_mode = 1
 anchor_left = 0.329861
 anchor_top = 0.296296

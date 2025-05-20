@@ -10,8 +10,8 @@ void vertex() {
 
 void fragment() {
 	vec4 tex = texture(dissolve,UV);
-	vec4 tex2 = texture(noise,UV + noiseOffset);
-	COLOR.a = (tex.a) - (tex2.r/1.5  * (-tex.a + 1.0));
+	vec4 tex_noise = texture(noise,UV + noiseOffset);
+	COLOR.a = (tex.a) - (1.0-(tex.r)-(tex_noise.b));
 }
 
 //void light() {

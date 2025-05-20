@@ -12,11 +12,11 @@ config_version=5
 
 config/name="Simplaudio"
 run/main_scene="res://Scenes/Main.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://Icons/BigLogo.png"
 boot_splash/use_filter=false
+boot_splash/image="res://Icons/BigLogo.png"
 config/icon="res://Icons/Logo2.png"
 config/windows_native_icon="res://addons/godot-yt-dlp/src/favicon2.ico"
 
@@ -133,7 +133,7 @@ Back={
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0.147672, 0.147672, 0.147672, 1)
 anti_aliasing/quality/msaa_2d=2
+environment/defaults/default_clear_color=Color(0.147672, 0.147672, 0.147672, 1)
 2d/snap/snap_2d_vertices_to_pixel=true
 2d/sdf/scale=0
