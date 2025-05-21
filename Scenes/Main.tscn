@@ -150,7 +150,7 @@ noise = SubResource("FastNoiseLite_x34c1")
 shader = ExtResource("8_dcsuc")
 shader_parameter/dissolve = SubResource("GradientTexture2D_r1wmd")
 shader_parameter/noise = SubResource("NoiseTexture2D_3kgd3")
-shader_parameter/noiseOffset = Vector2(3230.45, 1066.07)
+shader_parameter/noiseOffset = Vector2(3498.83, 1156.71)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dojp4"]
 shader = ExtResource("14_imubo")
@@ -211,6 +211,7 @@ vertical = true
 [node name="TopPart" type="Control" parent="DesktopUI/Seperator"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="LeftSideBar" type="Control" parent="DesktopUI/Seperator/TopPart"]
 custom_minimum_size = Vector2(300, 0)
@@ -258,6 +259,7 @@ alignment = 1
 [node name="CreatePlaylistButton" type="Button" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar/Container/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "Create playlist"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/MainBar/Container"]
@@ -280,6 +282,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 toggle_mode = true
 
 [node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/TopPart/LeftSideBar/LeftBarContainer/BarToggle/Button"]
@@ -330,6 +333,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 toggle_mode = true
 
 [node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/BarToggle/Button"]
@@ -378,6 +382,7 @@ alignment = 1
 [node name="AddFolderButton" type="Button" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "Add folder"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2"]
@@ -409,6 +414,7 @@ alignment = 1
 [node name="FilterButton" type="Button" parent="DesktopUI/Seperator/TopPart/SearchBar/container"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 
 [node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/TopPart/SearchBar/container/FilterButton"]
 layout_mode = 1
@@ -431,6 +437,7 @@ expand_to_text_length = true
 [node name="SearchConfirmButton" type="Button" parent="DesktopUI/Seperator/TopPart/SearchBar/container"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 
 [node name="TextureRect" type="TextureRect" parent="DesktopUI/Seperator/TopPart/SearchBar/container/SearchConfirmButton"]
 layout_mode = 1
@@ -710,6 +717,7 @@ stretch_mode = 6
 script = ExtResource("10_en2na")
 
 [node name="FloatingUI" type="Control" parent="DesktopUI"]
+z_index = -3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -720,7 +728,7 @@ mouse_filter = 2
 
 [node name="SearchResults" type="Control" parent="DesktopUI/FloatingUI"]
 visible = false
-z_index = 1
+z_index = 4
 layout_mode = 1
 anchor_left = 0.287326
 anchor_top = 0.131173
@@ -784,7 +792,7 @@ size_flags_vertical = 3
 
 [node name="CreatePlaylist" type="Control" parent="DesktopUI/FloatingUI"]
 visible = false
-z_index = 1
+z_index = 4
 layout_mode = 1
 anchor_left = 0.329861
 anchor_top = 0.296296
@@ -910,6 +918,7 @@ size_flags_vertical = 10
 text = "Create"
 
 [node name="FilterControls" type="Control" parent="DesktopUI/FloatingUI"]
+z_index = 3
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -919,6 +928,7 @@ offset_top = 43.0
 offset_right = 145.0
 offset_bottom = 238.0
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="DesktopUI/FloatingUI/FilterControls"]
 material = SubResource("ShaderMaterial_dojp4")

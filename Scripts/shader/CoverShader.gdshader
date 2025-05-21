@@ -11,7 +11,9 @@ void vertex() {
 void fragment() {
 	vec4 tex = texture(dissolve,UV);
 	vec4 tex_noise = texture(noise,UV + noiseOffset);
-	COLOR.a = (tex.a) - (1.0-(tex.r)-(tex_noise.b));
+	vec4 tex_noise2 = texture(noise,(UV + noiseOffset)*vec2(0.3,0.4));
+	float texure = mix(tex_noise.r,tex_noise2.r,0.5);
+	COLOR.a = (tex.a) - (1.0-(tex.r)-(texure));
 }
 
 //void light() {
