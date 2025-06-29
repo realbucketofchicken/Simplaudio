@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=81 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -189,6 +189,10 @@ outline_color = Color(0.519817, 0.439396, 0, 1)
 shadow_size = 4
 shadow_color = Color(0.290196, 0.290196, 0.290196, 0.270588)
 shadow_offset = Vector2(2, 3)
+
+[sub_resource type="Curve" id="Curve_ilc1k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.257642, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_wqjqk"]
 _data = [Vector2(0, 0), 0.0, 16.8231, 0, 0, Vector2(0.119342, 1), 0.0, 0.0, 0, 0, Vector2(0.991769, 1), 8.04663e-07, 0.0, 0, 0]
@@ -1284,6 +1288,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("38_pitc3")
+opacitycurve = SubResource("Curve_ilc1k")
 
 [node name="BirthdayParticles" type="GPUParticles2D" parent="BirthdayContainer"]
 emitting = false
@@ -1296,7 +1301,8 @@ visibility_rect = Rect2(-750, -750, 1500, 1000)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BirthdayContainer"]
 stream = ExtResource("39_3er0p")
-volume_db = -17.885
+volume_db = -10.0
+bus = &"Music"
 
 [node name="BirthdayHappy" type="Label" parent="."]
 visible = false
@@ -1312,7 +1318,7 @@ offset_right = 62.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Happy Birthday!"
+text = "Happy Birthday Simplaudio!"
 label_settings = SubResource("LabelSettings_f1d3e")
 
 [node name="PlayingNow" type="Window" parent="."]
