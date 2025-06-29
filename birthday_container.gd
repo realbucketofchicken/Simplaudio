@@ -13,8 +13,8 @@ func _ready() -> void:
 	birthday_happy.hide()
 	print("user: ",DiscordRPC.get_current_user().get("username"))
 	var bday:bool
-	if Time.get_datetime_dict_from_system().day == 29:
-		if Time.get_datetime_dict_from_system().month == 6:
+	if Time.get_datetime_dict_from_system().day == 9:
+		if Time.get_datetime_dict_from_system().month == 9:
 			await get_tree().create_timer(0.2).timeout
 			awaitingJumpscare = true
 			bday = true
@@ -35,3 +35,5 @@ func _process(delta: float) -> void:
 	if !awaitingJumpscare:
 		opacity -= delta/5
 		birthday_happy.modulate.a = opacitycurve.sample_baked(opacity)
+	if opacity <= 0.0:
+		process_mode = ProcessMode.PROCESS_MODE_DISABLED

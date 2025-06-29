@@ -191,7 +191,7 @@ shadow_color = Color(0.290196, 0.290196, 0.290196, 0.270588)
 shadow_offset = Vector2(2, 3)
 
 [sub_resource type="Curve" id="Curve_ilc1k"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.257642, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 11.3773, 0, 0, Vector2(0.253275, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_wqjqk"]
@@ -529,7 +529,7 @@ grow_vertical = 0
 focus_mode = 0
 text = "?"
 script = ExtResource("17_4b8oh")
-Open = "https://notdraimdev.github.io/SimplSite/GettingStarted.html"
+Open = "https://realbucketofchicken.github.io/SimplSite/GettingStarted.html"
 
 [node name="CreatePlaylistsMenu" type="Control" parent="."]
 visible = false

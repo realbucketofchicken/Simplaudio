@@ -34,7 +34,7 @@ func check_for_updates() -> void:
 	print("! INFO: Checking for updates…")
 
 	var error := http_request.request(
-			"https://api.github.com/repos/notdraimdev/Simplaudio/releases/latest"
+			"https://api.github.com/repos/realbucketofchicken/Simplaudio/releases/latest"
 	)
 
 	if error != OK:
