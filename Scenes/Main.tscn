@@ -141,16 +141,16 @@ domain_warp_fractal_octaves = 2
 metadata/_preview_in_3d_space_ = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3kgd3"]
-in_3d_space = true
-seamless = true
-seamless_blend_skirt = 0.099
 noise = SubResource("FastNoiseLite_x34c1")
+seamless = true
+in_3d_space = true
+seamless_blend_skirt = 0.099
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wwcp"]
 shader = ExtResource("8_dcsuc")
 shader_parameter/dissolve = SubResource("GradientTexture2D_r1wmd")
 shader_parameter/noise = SubResource("NoiseTexture2D_3kgd3")
-shader_parameter/noiseOffset = Vector2(3498.83, 1156.71)
+shader_parameter/noiseOffset = Vector2(3629.4368, 1200.866)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dojp4"]
 shader = ExtResource("14_imubo")
@@ -948,13 +948,14 @@ color = Color(0.332881, 0.332881, 0.332881, 1)
 
 [node name="FolderLogic" type="Node" parent="Logic/UILogic/SideBars"]
 
-[node name="AddFolderLogic" type="Node" parent="Logic/UILogic/SideBars/FolderLogic" node_paths=PackedStringArray("Dialog", "dataHandler", "AddFolderButton", "FolderParentNode")]
+[node name="AddFolderLogic" type="Node" parent="Logic/UILogic/SideBars/FolderLogic" node_paths=PackedStringArray("Dialog", "dataHandler", "AddFolderButton", "FolderParentNode", "playerCon")]
 script = ExtResource("6_c32kh")
 Dialog = NodePath("../OpenDialog")
 dataHandler = NodePath("../../../../MainLogic/DataHandler")
 AddFolderButton = NodePath("../../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/Header/AddFolderButton")
 FolderParentNode = NodePath("../../../../../DesktopUI/Seperator/TopPart/RightSideBar/HBoxContainer/MainBar/Container2/ScrollContainer/FolderDisplay")
 folderDisplay = ExtResource("8_ac3gy")
+playerCon = NodePath("../../../../MainLogic/PlayerLogic/AudioPlayerController")
 
 [node name="OpenDialog" type="FileDialog" parent="Logic/UILogic/SideBars/FolderLogic"]
 title = "Open a Directory"
