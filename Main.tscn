@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=81 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Script" uid="uid://cvqefw0g6ala7" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -220,14 +220,6 @@ font_size = 80
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.556863)
 shadow_offset = Vector2(6.55, 6.735)
-
-[sub_resource type="GDScript" id="GDScript_x3yn0"]
-resource_name = "sd"
-script/source = "extends Node
-
-func _ready() -> void:
-	TranslationServer.set_locale(\"de\")
-"
 
 [node name="Node2D" type="Control"]
 layout_mode = 3
@@ -1337,9 +1329,6 @@ force_native = true
 
 [node name="PlayingNowWindow" parent="PlayingNow" node_paths=PackedStringArray("ParentScene") instance=ExtResource("40_ismud")]
 ParentScene = NodePath("../..")
-
-[node name="Node" type="Node" parent="."]
-script = SubResource("GDScript_x3yn0")
 
 [connection signal="toggled" from="SelectPlaylist" to="SelectPlaylist" method="_on_toggled"]
 [connection signal="pressed" from="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist" to="PlaylistPanelHolder/PlaylistsPanel" method="_on_create_playlist_pressed"]
