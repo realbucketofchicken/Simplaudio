@@ -39,7 +39,7 @@ SongAuthorScroller = NodePath("Panel2/Panel/VBoxContainer/ScrollContainer2")
 SongAuthorLabel = NodePath("Panel2/Panel/VBoxContainer/ScrollContainer2/SongAuthor")
 
 [node name="Panel2" type="TextureRect" parent="."]
-clip_children = 2
+clip_children = 1
 z_index = -85
 layout_mode = 1
 anchors_preset = 15
