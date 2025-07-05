@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctqcbjrmxaqsk"]
 
-[ext_resource type="Script" path="res://search_item.gd" id="1_j4126"]
+[ext_resource type="Script" uid="uid://c3aaxhp0oim08" path="res://search_item.gd" id="1_j4126"]
 [ext_resource type="Texture2D" uid="uid://dwvy6crqhardn" path="res://Dropdown.png" id="2_hicj1"]
 
 [node name="SearchItem" type="Control"]

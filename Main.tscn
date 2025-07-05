@@ -1,43 +1,43 @@
 [gd_scene load_steps=81 format=3 uid="uid://b2sygl55s6fng"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_ubs1p"]
+[ext_resource type="Script" uid="uid://cvqefw0g6ala7" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
 [ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Skip.png" id="3_4vx67"]
-[ext_resource type="Script" path="res://wallpaper_manager.gd" id="4_y372l"]
+[ext_resource type="Script" uid="uid://b4mmbu4weiab5" path="res://wallpaper_manager.gd" id="4_y372l"]
 [ext_resource type="Texture2D" uid="uid://cmr1ij4s7xa27" path="res://IMG_20241015_162213_033(1).jpg" id="5_8v24s"]
 [ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Loop.png" id="5_c2g63"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Headphones.png" id="6_3mi6c"]
 [ext_resource type="Texture2D" uid="uid://ba5wdmchyy50n" path="res://nighttime-in-the-hills-henry-porter.jpg" id="6_8abnc"]
 [ext_resource type="Texture2D" uid="uid://2vacx4h6vn46" path="res://IMG_20241015_175925_722(1).jpg" id="6_hvupl"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Play.png" id="8_5v7u3"]
-[ext_resource type="Shader" path="res://CoverShader.gdshader" id="8_4531v"]
-[ext_resource type="Shader" path="res://Background1.gdshader" id="8_xtnau"]
-[ext_resource type="Shader" path="res://Main.gdshader" id="10_20857"]
+[ext_resource type="Shader" uid="uid://cv5aoaprqfuhx" path="res://CoverShader.gdshader" id="8_4531v"]
+[ext_resource type="Shader" uid="uid://dgwslfj43mu1y" path="res://Background1.gdshader" id="8_xtnau"]
+[ext_resource type="Shader" uid="uid://b8g2xx06g626m" path="res://Main.gdshader" id="10_20857"]
 [ext_resource type="Texture2D" uid="uid://b00wlqid2jdvi" path="res://BigLogo.png" id="10_xnj6a"]
 [ext_resource type="Texture2D" uid="uid://0r1tx6l1lc6x" path="res://settingscog.png" id="11_esjel"]
-[ext_resource type="Script" path="res://cover.gd" id="12_3v50a"]
-[ext_resource type="Script" path="res://playlists_panel.gd" id="12_8ie8y"]
-[ext_resource type="Script" path="res://settings_button.gd" id="12_073mb"]
+[ext_resource type="Script" uid="uid://dg68hvw773xu6" path="res://cover.gd" id="12_3v50a"]
+[ext_resource type="Script" uid="uid://bxc2fqwlm5ea5" path="res://playlists_panel.gd" id="12_8ie8y"]
+[ext_resource type="Script" uid="uid://xnlvpxy2jwxb" path="res://settings_button.gd" id="12_073mb"]
 [ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://search.png" id="12_cv2gm"]
-[ext_resource type="Script" path="res://search_bar.gd" id="12_mr42x"]
-[ext_resource type="Script" path="res://select_playlist.gd" id="12_of5fe"]
-[ext_resource type="Script" path="res://search_toggle.gd" id="13_5illk"]
+[ext_resource type="Script" uid="uid://cchutywgopaq4" path="res://search_bar.gd" id="12_mr42x"]
+[ext_resource type="Script" uid="uid://dv2vjibopktug" path="res://select_playlist.gd" id="12_of5fe"]
+[ext_resource type="Script" uid="uid://c2t3ignwqoplj" path="res://search_toggle.gd" id="13_5illk"]
 [ext_resource type="PackedScene" uid="uid://dqg674t6kun4e" path="res://Settings.tscn" id="13_7atry"]
-[ext_resource type="Script" path="res://create_playlists_menu.gd" id="13_asgvh"]
+[ext_resource type="Script" uid="uid://bsnt1irskti8d" path="res://create_playlists_menu.gd" id="13_asgvh"]
 [ext_resource type="Texture2D" uid="uid://b5eims5ucn81r" path="res://Loding.png" id="13_de5ej"]
-[ext_resource type="Script" path="res://volume_button.gd" id="14_7q3ja"]
+[ext_resource type="Script" uid="uid://ctj7miuviibin" path="res://volume_button.gd" id="14_7q3ja"]
 [ext_resource type="Texture2D" uid="uid://1rstn6r2wisy" path="res://X.png" id="14_mioc4"]
-[ext_resource type="Script" path="res://Spinning.gd" id="14_rhw4k"]
-[ext_resource type="Script" path="res://yt_tab_button.gd" id="16_2t15p"]
-[ext_resource type="Script" path="res://help_button.gd" id="17_4b8oh"]
-[ext_resource type="Script" path="res://songs_menu.gd" id="27_f8wx0"]
+[ext_resource type="Script" uid="uid://bx75h6xic1hi7" path="res://Spinning.gd" id="14_rhw4k"]
+[ext_resource type="Script" uid="uid://chdf40dyj73pq" path="res://yt_tab_button.gd" id="16_2t15p"]
+[ext_resource type="Script" uid="uid://bn0iqqmor3b2b" path="res://help_button.gd" id="17_4b8oh"]
+[ext_resource type="Script" uid="uid://dkjp64f01dpf4" path="res://songs_menu.gd" id="27_f8wx0"]
 [ext_resource type="PackedScene" uid="uid://bel6i6wdbexw4" path="res://search_results.tscn" id="27_g8wmp"]
 [ext_resource type="Texture2D" uid="uid://bmbxyma4ra46p" path="res://Download.png" id="29_v44vi"]
-[ext_resource type="Script" path="res://update_checker.gd" id="30_byc5i"]
-[ext_resource type="Script" path="res://CustomButtonColor.gd" id="32_pwgec"]
-[ext_resource type="Script" path="res://loading_failed_screen.gd" id="37_mkkhu"]
+[ext_resource type="Script" uid="uid://drqx8pjalsxqr" path="res://update_checker.gd" id="30_byc5i"]
+[ext_resource type="Script" uid="uid://cf1rsngucr7e2" path="res://CustomButtonColor.gd" id="32_pwgec"]
+[ext_resource type="Script" uid="uid://cbdcs7oie12g5" path="res://loading_failed_screen.gd" id="37_mkkhu"]
 [ext_resource type="AudioStream" uid="uid://n8g3v41u2u48" path="res://Error.wav" id="38_nkjlp"]
-[ext_resource type="Script" path="res://birthday_container.gd" id="38_pitc3"]
+[ext_resource type="Script" uid="uid://n3koklp0funr" path="res://birthday_container.gd" id="38_pitc3"]
 [ext_resource type="AudioStream" uid="uid://bwfw3l3iyv67o" path="res://roblox win sound effect.mp3" id="39_3er0p"]
 [ext_resource type="PackedScene" uid="uid://n7cnapaftfse" path="res://playing_now_window.tscn" id="40_ismud"]
 
@@ -345,7 +345,7 @@ offset_bottom = 80.0
 focus_mode = 0
 toggle_mode = true
 shortcut = SubResource("Shortcut_vp2fh")
-text = "Playlists"
+text = "PLAYLIST"
 script = ExtResource("12_of5fe")
 
 [node name="PlaylistPanelHolder" type="Control" parent="."]
@@ -360,7 +360,6 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="PlaylistsPanel" type="Control" parent="PlaylistPanelHolder"]
-visible = false
 anchors_preset = 0
 anchor_bottom = 1.0
 offset_left = 19.0
@@ -415,8 +414,7 @@ alignment = 1
 custom_minimum_size = Vector2(155, 42.335)
 layout_mode = 2
 focus_mode = 0
-text = "Create
-Playlist"
+text = "CREATE_PLAYLIST"
 
 [node name="Control" type="Control" parent="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(7.55, 0)
@@ -427,7 +425,7 @@ custom_minimum_size = Vector2(155, 42.335)
 layout_mode = 2
 focus_mode = 0
 toggle_mode = true
-text = "Play all"
+text = "PLAYALL"
 
 [node name="PlaylistsHolder" type="VBoxContainer" parent="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer"]
 layout_mode = 2
@@ -486,7 +484,7 @@ color = Color(0.14902, 0.14902, 0.14902, 1)
 layout_mode = 1
 offset_right = 229.0
 offset_bottom = 47.0
-placeholder_text = "Link to download"
+placeholder_text = "DOWNLOAD_LINK"
 
 [node name="YTDownload" type="Button" parent="YoutubeMenuHolder/Youtube menu"]
 layout_mode = 1
@@ -495,7 +493,7 @@ offset_top = 70.0
 offset_right = 88.0
 offset_bottom = 110.0
 focus_mode = 0
-text = "Download"
+text = "DOWNLOAD"
 
 [node name="LoadingIMG" type="Sprite2D" parent="YoutubeMenuHolder/Youtube menu"]
 position = Vector2(108, 91)
@@ -510,7 +508,7 @@ offset_left = 1.99998
 offset_top = 49.0
 offset_right = 227.0
 offset_bottom = 72.0
-text = "NOTE: speed depends on your internet"
+text = "DOWNLOAD_NOTE"
 label_settings = SubResource("LabelSettings_fiiw4")
 
 [node name="HelpButton" type="Button" parent="YoutubeMenuHolder/Youtube menu"]
@@ -646,7 +644,7 @@ offset_bottom = 80.0
 grow_horizontal = 0
 focus_mode = 0
 shortcut = SubResource("Shortcut_axi6u")
-text = "Randomize"
+text = "RANDOMIZE"
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a Directory"
@@ -844,7 +842,7 @@ offset_right = -328.0
 offset_bottom = 80.0
 grow_horizontal = 2
 focus_mode = 0
-text = "Select Songs"
+text = "SONG_SELECT"
 script = ExtResource("27_f8wx0")
 
 [node name="SearchResults" parent="." instance=ExtResource("27_g8wmp")]
@@ -1074,7 +1072,7 @@ anchor_bottom = 1.0
 offset_top = -38.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Update"
+text = "UPDATE"
 flat = true
 
 [node name="LinkBTTNBG" type="ColorRect" parent="UpdateChecker/ColorRect/LinkButton"]
@@ -1293,11 +1291,11 @@ opacitycurve = SubResource("Curve_ilc1k")
 [node name="BirthdayParticles" type="GPUParticles2D" parent="BirthdayContainer"]
 emitting = false
 amount = 120
-process_material = SubResource("ParticleProcessMaterial_cr82i")
 lifetime = 5.0
 one_shot = true
 explosiveness = 0.9
 visibility_rect = Rect2(-750, -750, 1500, 1000)
+process_material = SubResource("ParticleProcessMaterial_cr82i")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BirthdayContainer"]
 stream = ExtResource("39_3er0p")

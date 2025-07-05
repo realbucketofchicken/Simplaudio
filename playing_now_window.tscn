@@ -1,16 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://n7cnapaftfse"]
+[gd_scene load_steps=8 format=3 uid="uid://n7cnapaftfse"]
 
-[ext_resource type="Script" path="res://playing_now_window.gd" id="1_f0rac"]
+[ext_resource type="Script" uid="uid://q2gdlr10ncnb" path="res://playing_now_window.gd" id="1_f0rac"]
+[ext_resource type="Shader" uid="uid://byan4wmg2pjl6" path="res://playing_now_window.gdshader" id="2_yr2ao"]
+[ext_resource type="Texture2D" uid="uid://cq8jj63iyu2cs" path="res://d7hftxdivxxvm.cloudfront.webp" id="3_haeb5"]
 
-[sub_resource type="Gradient" id="Gradient_5icyh"]
-offsets = PackedFloat32Array(0.960432, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="Gradient" id="Gradient_haeb5"]
+offsets = PackedFloat32Array(0.670732, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wqq75"]
-gradient = SubResource("Gradient_5icyh")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nf0dg"]
+gradient = SubResource("Gradient_haeb5")
 fill = 1
-fill_from = Vector2(0.487179, 0.482906)
-fill_to = Vector2(0.491453, 0)
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_haeb5"]
+shader = ExtResource("2_yr2ao")
+shader_parameter/alpha = SubResource("GradientTexture2D_nf0dg")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew3gl"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -19,7 +26,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 10
-shadow_color = Color(0, 0, 0, 0.631373)
+shadow_color = Color(0, 0, 0, 0.435294)
 shadow_size = 45
 
 [node name="PlayingNowWindow" type="Control" node_paths=PackedStringArray("SongImage", "SongNameLabel", "SongNameScroller", "SongAuthorScroller", "SongAuthorLabel")]
@@ -32,35 +39,15 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_f0rac")
-SongImage = NodePath("Panel2/TextureRect")
-SongNameLabel = NodePath("Panel2/Panel/VBoxContainer/ScrollContainer/SongName")
-SongNameScroller = NodePath("Panel2/Panel/VBoxContainer/ScrollContainer")
-SongAuthorScroller = NodePath("Panel2/Panel/VBoxContainer/ScrollContainer2")
-SongAuthorLabel = NodePath("Panel2/Panel/VBoxContainer/ScrollContainer2/SongAuthor")
+SongImage = NodePath("TextureRect")
+SongNameLabel = NodePath("Panel/VBoxContainer/ScrollContainer/SongName")
+SongNameScroller = NodePath("Panel/VBoxContainer/ScrollContainer")
+SongAuthorScroller = NodePath("Panel/VBoxContainer/ScrollContainer2")
+SongAuthorLabel = NodePath("Panel/VBoxContainer/ScrollContainer2/SongAuthor")
 
-[node name="Panel2" type="TextureRect" parent="."]
-clip_children = 1
-z_index = -85
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_wqq75")
-
-[node name="ColorRect" type="ColorRect" parent="Panel2"]
-z_index = -3
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.114897, 0.114897, 0.114897, 1)
-
-[node name="TextureRect" type="TextureRect" parent="Panel2"]
+[node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
+material = SubResource("ShaderMaterial_haeb5")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,10 +55,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-expand_mode = 5
-stretch_mode = 6
+texture = ExtResource("3_haeb5")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="Panel" type="Panel" parent="Panel2"]
+[node name="Panel" type="Panel" parent="."]
 z_index = -1
 custom_minimum_size = Vector2(206.815, 60.71)
 layout_mode = 1
@@ -88,26 +76,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ew3gl")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -1.645
-offset_bottom = 1.645
+offset_right = 6.10352e-05
+offset_bottom = 1.64503
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel2/Panel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
-[node name="SongName" type="RichTextLabel" parent="Panel2/Panel/VBoxContainer/ScrollContainer"]
+[node name="SongName" type="RichTextLabel" parent="Panel/VBoxContainer/ScrollContainer"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -118,14 +107,14 @@ scroll_active = false
 autowrap_mode = 0
 visible_characters_behavior = 3
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="Panel2/Panel/VBoxContainer"]
+[node name="ScrollContainer2" type="ScrollContainer" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
-[node name="SongAuthor" type="RichTextLabel" parent="Panel2/Panel/VBoxContainer/ScrollContainer2"]
+[node name="SongAuthor" type="RichTextLabel" parent="Panel/VBoxContainer/ScrollContainer2"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 size_flags_horizontal = 4

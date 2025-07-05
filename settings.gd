@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 		compression_container.show()
 	else:
 		compression_container.hide()
-	time_listening_label.text = "Total listening time: %s!" % str(str(int(Parent.TimeSpentListening/60)/60 )
+	time_listening_label.text = tr("LISTENING_TIME") + " %s!" % str(str(int(Parent.TimeSpentListening/60)/60 )
 						 + "h : " + str((int(Parent.TimeSpentListening) / 60) % 60) + "m : " + 
 						str(int(Parent.TimeSpentListening) % 60) + "s")
 

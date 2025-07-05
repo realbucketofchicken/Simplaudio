@@ -1,0 +1,38 @@
+key,en,de
+DOWNLOAD,Download,Herunterladen
+DOWNLOAD_NOTE,NOTE: speed depends on your internet,Kann etwas dauern
+DOWNLOAD_LINK,Link to download,Link zum herunterladen
+RANDOMIZE,Randomize,Mischen
+SONG_SELECT,Select a song,Lied auswälen
+PLAYLIST,Playlist,Playlist
+PLAYLISTS,PLAYLISTS,PLAYLISTEN
+CREATE_PLAYLIST,"Create
+Playlist","Playlist
+Erstellen"
+PLAYALL,Play all,alle abspielen
+UPDATE,Update,Updaten
+SETTINGS,SETTINGS,EINSTELLUNGEN
+INTIGRATIONS,INTIGRATIONS,INTIGRATIONEN
+DRPC,discord rich presense,discord aktivitäten
+DRPC_NOTE,NOTE: After disableing a restart is needed,Nach deaktivieren neustarten
+LOOKS,LOOKS,AUSEHEN
+BS_SELECT,Select Background,Hintergrund auswählen
+RESET_BG,Reset,Zurücksetzen
+SETTINGS_SOUND,SOUND SETTINGS,AUDIO EINSTELLUNGEN
+PITCH_SPEED,pitch/speed,Ton höhe/geschwindigkeit
+REVERB,Reverb,Hall
+EQ,EQ,EQ
+COMPRESSION,Compression,Compression
+THRESHOLD,Threshold,Threshold
+SPREAD,Spread,Verbreitung
+DAMPENING,Damping,Damping
+ROOM_SIZE,Room size,Raum größe
+MISC,MISC,WEITERES
+STREAMER_WINDOW,Streamer window,Streamer fenster
+STREAMER_NOTE,This setting enables a dedicated window for displaying the currently playing song. This can be useful when streaming ,"Diese eistellung aktiviert ein fenster das das grade speilende lied zeigt, ist hauptzächlich für streamer nützlich"
+CREDITS,CREDITS,CREDITS
+YT_DL,Godot YT-DL by Noé Le Cam,Godot YT-DL von Noé Le Cam
+DRPCL,Discord RPC by vaporee,Discord RPC von vaporee
+GDGIF,Godot GIF by b0tlanner,Godot GIF von b0tlanner
+RESET_SETTINGS,RESET SETTINGS,EINSTELLUNGEN ZURÜCKSETZEN
+LISTENING_TIME,Total listening time:,Gesamte hörzeit

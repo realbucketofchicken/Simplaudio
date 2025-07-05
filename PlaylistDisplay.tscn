@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c33qaelwn46f4"]
 
-[ext_resource type="Script" path="res://playlist_display.gd" id="1_h0jh1"]
+[ext_resource type="Script" uid="uid://cs12qambyvou8" path="res://playlist_display.gd" id="1_h0jh1"]
 [ext_resource type="Texture2D" uid="uid://dwvy6crqhardn" path="res://Dropdown.png" id="2_im6ur"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ky8oc"]
