@@ -927,7 +927,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.7"
+text = "v1.6"
 horizontal_alignment = 2
 
 [node name="SettingsButton" type="Button" parent="."]
