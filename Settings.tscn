@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqg674t6kun4e"]
+[gd_scene load_steps=11 format=3 uid="uid://dqg674t6kun4e"]
 
 [ext_resource type="Script" uid="uid://vnpslgl788du" path="res://settings.gd" id="1_uaa7d"]
 [ext_resource type="Script" uid="uid://kt7n1epi3ng8" path="res://eq_settings.gd" id="2_1n4m6"]
 [ext_resource type="Texture2D" uid="uid://1rstn6r2wisy" path="res://X.png" id="2_iuivb"]
 [ext_resource type="Texture2D" uid="uid://pgij783wgbhn" path="res://File.png" id="2_jmen4"]
+[ext_resource type="Script" uid="uid://cej7efsj2cyen" path="res://language_button.gd" id="2_sfvul"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ouq8m"]
 font_size = 30
@@ -103,6 +104,25 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
+
+[node name="Seperator8" type="Control" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16.07)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "LANGUAGE"
+
+[node name="LanguageButton" type="MenuButton" parent="ScrollContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("settings")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "SELECT"
+flat = false
+script = ExtResource("2_sfvul")
+settings = NodePath("../../../..")
 
 [node name="Seperator3" type="Control" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 16.07)

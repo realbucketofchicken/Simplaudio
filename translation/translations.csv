@@ -82,3 +82,5 @@ CONFIRM,Please Confirm…,Bitte bestimme…
 DL_SONG,Download Song,Nur Lied Herunterladen
 DL_LIST,Download Playlist,Playliste Herunterladen
 DL_DIALOG,Do you want to download the song or the Entire playlist?,Willst du die playlist herunterladen?
+LANGUAGE,Language:,Sprache:
+SELECT,Select ,Auswählen

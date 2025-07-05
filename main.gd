@@ -32,6 +32,7 @@ extends Control
 @onready var delete_confirm: ConfirmationDialog = $deleteConfirm
 @onready var search_bar: LineEdit = $SearchBar
 @onready var playing_now: Window = $PlayingNow
+@export var overridden_locale:String
 
 var DiscordUsername:String
 
@@ -167,6 +168,9 @@ func _ready() -> void:
 					play_all.button_pressed = true
 			if data.has("UsingPlayingNow"):
 				UsingPlayingNow = data["UsingPlayingNow"]
+			if data.has("OverriddenLocale"):
+				TranslationServer.set_locale(data["OverriddenLocale"])
+				overridden_locale = data["OverriddenLocale"]
 	else:
 		if data != null:
 			print(data["Volume"])
@@ -592,7 +596,8 @@ func SaveEverything():
 		"CurrentCustomBackroundImageDirectory" : CurrentCustomBackroundImageDirectory,
 		"PlayAllLists" : PlayAllLists,
 		"DiscordUsername" : DiscordRPC.get_current_user().get("username"),
-		"UsingPlayingNow" : UsingPlayingNow
+		"UsingPlayingNow" : UsingPlayingNow,
+		"OverriddenLocale" : overridden_locale
 	}
 	print("saving")
 	saveUserdata(Data)

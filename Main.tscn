@@ -550,10 +550,10 @@ grow_vertical = 2
 color = Color(0.14902, 0.14902, 0.14902, 1)
 
 [node name="FileDialog" type="FileDialog" parent="CreatePlaylistsMenu"]
-title = "DIR_OPEN"
+title = "Open a Directory"
 initial_position = 2
 size = Vector2i(352, 180)
-ok_button_text = "DIR_OPEN"
+ok_button_text = "Select Current Folder"
 cancel_button_text = "CANCEL"
 file_mode = 2
 access = 2
@@ -648,10 +648,10 @@ shortcut = SubResource("Shortcut_axi6u")
 text = "RANDOMIZE"
 
 [node name="FileDialog" type="FileDialog" parent="."]
-title = "DIR_OPEN"
+title = "Open a Directory"
 position = Vector2i(28, 115)
 size = Vector2i(833, 507)
-ok_button_text = "DIR_OPEN"
+ok_button_text = "Select Current Folder"
 cancel_button_text = "CANCEL"
 file_mode = 2
 access = 2
@@ -919,7 +919,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.6"
+text = "v1.6h1"
 horizontal_alignment = 2
 
 [node name="SettingsButton" type="Button" parent="."]
