@@ -95,9 +95,6 @@ func _ready() -> void:
 	search_results.index_pressed.connect(SetSong)
 	search_results.song_deleted.connect(deletesong)
 	var Strin:String
-	for Arg in OS.get_cmdline_args():
-		if Arg.to_lower().ends_with(".mp3") or Arg.to_lower().ends_with(".wav"):
-			OS.alert("opening files like this\nis no longer supported")
 	var data:Dictionary
 	var save = loadUserdata()
 	if save != {}:
@@ -210,14 +207,7 @@ func setUpDiscord():
 	var LText = SplashStrings.pick_random()
 	print(LText)
 	DiscordRPC.large_image_text = LText
-	if DiscordUsername == "vrenthusiest":
-		if randi_range(1,4) == 1:
-			DiscordRPC.large_image = "nullbody"
-			DiscordRPC.large_image_text = "I am racist against nullbodys - Vr"
-		else:
-			DiscordRPC.large_image = "logo"
-	else:
-		DiscordRPC.large_image = "logo"
+	DiscordRPC.large_image = "logo"
 	DiscordUsername = DiscordRPC.get_current_user().get("username")
 	DiscordRPC.refresh()
 	# this is boolean if everything worked
@@ -242,7 +232,7 @@ func deletesong(idx:int):
 	var currentDir:String= CurrentDir
 	currentDir += "/" + textSongs[idx]
 	delete_confirm.show()
-	delete_confirm.dialog_text = "are you sure you want to delete \n" + textSongs[idx] +"?"
+	delete_confirm.dialog_text = tr("DELETE_DIALOG") + textSongs[idx] +"?"
 	delete_confirm.confirmed.connect(deleteConfirmed)
 	delete_confirm.canceled.connect(deleteCancelled)
 	await ContinueDelete
@@ -351,13 +341,13 @@ func PlaySongs():
 		Paused = true
 		music_player.stream_paused = true
 		play_list.icon = PLAY
-		DiscordRPC.state = "Paused"
+		DiscordRPC.state = tr("DELETE_DIALOG")
 		print(DiscordRPC.get_current_user())
 	else:
 		DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system() - (current_progress.value * CurrentSongLenth / current_progress.max_value))
 		print(DiscordRPC.get_current_user())
 		
-		DiscordRPC.state = "Listening To Music"
+		DiscordRPC.state = tr("STATE_LISTENING")
 		Paused = false
 		music_player.stream_paused = false
 		play_list.icon = PAUSE
@@ -371,14 +361,12 @@ func PlaySongs():
 				if PlayAllLists:
 					if CurrentIDX >= (textSongs.size()):
 						CurrentPlaylist = Playlists.keys()[(Playlists.keys().find(CurrentPlaylist)+1) % Playlists.keys().size()]
-						print("ASSS")
 						print(CurrentPlaylist)
 				index = CurrentIDX % textSongs.size()
 			else:
 				if PlayAllLists:
 					if CurrentIDX+1 >= (textSongs.size()-1):
 						CurrentPlaylist = Playlists.keys()[(Playlists.keys().find(CurrentPlaylist)+1) % Playlists.keys().size()]
-						print("AS")
 				index = textSongs.find(OpenedSong) % textSongs.size()
 			if PlayAllLists:
 				if !CurrentDir.ends_with(CurrentPlaylist):
@@ -499,24 +487,22 @@ func _process(_delta: float) -> void:
 			SaveEverything()
 		@warning_ignore("integer_division")
 		if DiscordRichPresenceEnabled:
-			if DiscordRPC.large_image != "nullbody":
-				UpdateSplashes()
+			UpdateSplashes()
 			if DiscordRPC.get_is_discord_working():
 				print(DiscordRPC.get_current_user()["username"])
 			print(TimeSpentListening)
 			var LText = SplashStrings.pick_random()
-			if DiscordRPC.large_image != "nullbody":
-				DiscordRPC.large_image_text = LText
+			DiscordRPC.large_image_text = LText
 			if DiscordRPC.get_is_discord_working():
 				DiscordRPC.refresh()
 	# "59:59 remaining" timestamp for the activity
 	if music_player.playing:
 		TimeSpentListening += _delta
 		CurrentPausedIndicatorShaderIntensity = lerp(CurrentPausedIndicatorShaderIntensity,0.0,0.1)
-		DiscordRPC.state = "Listening To Music"
+		DiscordRPC.state = tr("STATE_LISTENING")
 	else:
 		DiscordRPC.start_timestamp = int(0)
-		DiscordRPC.state = "Paused"
+		DiscordRPC.state = tr("STATE_PAUSED")
 		if DiscordRPC.get_is_discord_working():
 			DiscordRPC.refresh()
 		CurrentPausedIndicatorShaderIntensity = lerp(CurrentPausedIndicatorShaderIntensity,1.0,0.1)

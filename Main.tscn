@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://b2sygl55s6fng"]
+[gd_scene load_steps=82 format=3 uid="uid://b2sygl55s6fng"]
 
 [ext_resource type="Script" uid="uid://cvqefw0g6ala7" path="res://main.gd" id="1_ubs1p"]
 [ext_resource type="Texture2D" uid="uid://b8on1case224h" path="res://LoopPressed.png" id="2_iolk5"]
@@ -221,6 +221,14 @@ shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.556863)
 shadow_offset = Vector2(6.55, 6.735)
 
+[sub_resource type="GDScript" id="GDScript_x3yn0"]
+resource_name = "sd"
+script/source = "extends Node
+
+func _ready() -> void:
+	TranslationServer.set_locale(\"de\")
+"
+
 [node name="Node2D" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -414,7 +422,7 @@ alignment = 1
 custom_minimum_size = Vector2(155, 42.335)
 layout_mode = 2
 focus_mode = 0
-text = "CREATE_PLAYLIST"
+text = "PLAYLIST_CREATE"
 
 [node name="Control" type="Control" parent="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(7.55, 0)
@@ -550,10 +558,11 @@ grow_vertical = 2
 color = Color(0.14902, 0.14902, 0.14902, 1)
 
 [node name="FileDialog" type="FileDialog" parent="CreatePlaylistsMenu"]
-title = "Open a Directory"
+title = "DIR_OPEN"
 initial_position = 2
 size = Vector2i(352, 180)
-ok_button_text = "Select Current Folder"
+ok_button_text = "DIR_OPEN"
+cancel_button_text = "CANCEL"
 file_mode = 2
 access = 2
 filters = PackedStringArray("*")
@@ -579,14 +588,14 @@ size_flags_horizontal = 3
 [node name="Title" type="Label" parent="CreatePlaylistsMenu/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "CREATE PLAYLIST"
+text = "PLAYLIST_CREATE"
 label_settings = SubResource("LabelSettings_v1ivf")
 
 [node name="PlaylistName" type="LineEdit" parent="CreatePlaylistsMenu/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(325.08, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-placeholder_text = "Playlist name"
+placeholder_text = "PLAYLIST_NAME"
 
 [node name="GoodIndicator" type="Label" parent="CreatePlaylistsMenu/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -600,12 +609,12 @@ layout_mode = 2
 [node name="SelectDirButton" type="Button" parent="CreatePlaylistsMenu/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Select directory"
+text = "DIR_SELECT"
 
 [node name="CurrentDirectory" type="Label" parent="CreatePlaylistsMenu/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "No directory selected"
+text = "DIR_NONE"
 
 [node name="Seperator2" type="Control" parent="CreatePlaylistsMenu/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 14.865)
@@ -617,7 +626,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 disabled = true
-text = "Create Playlist"
+text = "PLAYLIST_CREATE"
 
 [node name="CloseButton" type="Button" parent="CreatePlaylistsMenu"]
 layout_mode = 1
@@ -647,10 +656,11 @@ shortcut = SubResource("Shortcut_axi6u")
 text = "RANDOMIZE"
 
 [node name="FileDialog" type="FileDialog" parent="."]
-title = "Open a Directory"
+title = "DIR_OPEN"
 position = Vector2i(28, 115)
-size = Vector2i(576, 507)
-ok_button_text = "Select Current Folder"
+size = Vector2i(833, 507)
+ok_button_text = "DIR_OPEN"
+cancel_button_text = "CANCEL"
 file_mode = 2
 access = 2
 use_native_dialog = true
@@ -827,7 +837,7 @@ offset_right = -328.0
 offset_bottom = 80.0
 grow_horizontal = 2
 focus_mode = 1
-placeholder_text = "Search"
+placeholder_text = "SONG_SEARCH"
 alignment = 1
 caret_blink = true
 script = ExtResource("12_mr42x")
@@ -917,7 +927,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.5.6"
+text = "v1.7"
 horizontal_alignment = 2
 
 [node name="SettingsButton" type="Button" parent="."]
@@ -980,21 +990,22 @@ offset_bottom = 501.0
 
 [node name="WavDisclaimer" type="AcceptDialog" parent="."]
 transparent_bg = true
-title = "WAV disclaimer"
+title = "!"
 initial_position = 4
 size = Vector2i(256, 100)
 transparent = true
 popup_window = true
 force_native = true
-dialog_text = "wav files are not supported yet"
+dialog_text = "WAV_DISCLAIMER"
 
 [node name="PlaylistOrSong" type="ConfirmationDialog" parent="."]
+title = "CONFIRM"
 initial_position = 2
 size = Vector2i(473, 106)
-ok_button_text = "Download Playlist"
-dialog_text = "Do you want to download the song or the Entire playlist?"
+ok_button_text = "DL_LIST"
+dialog_text = "DL_DIALOG"
 dialog_autowrap = true
-cancel_button_text = "Download Song"
+cancel_button_text = "DL_SONG"
 
 [node name="UpdateChecker" type="Control" parent="."]
 layout_mode = 1
@@ -1034,7 +1045,7 @@ offset_left = -136.0
 offset_right = 113.0
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "Update Available!"
+text = "UPDATE_AVAILABLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1144,7 +1155,7 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "Simplaudio is Updating!"
+text = "S_UPDATING"
 label_settings = SubResource("LabelSettings_b1152")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1159,10 +1170,7 @@ offset_top = 52.0
 offset_right = 142.0
 offset_bottom = 153.0
 grow_horizontal = 2
-text = "Please wait.
-Simplaudio will restart automatically
-
-this wont take long"
+text = "S_UPT_NOTE"
 horizontal_alignment = 1
 
 [node name="LoadingIMG" type="Sprite2D" parent="UpdatingNotification"]
@@ -1189,9 +1197,11 @@ label_settings = SubResource("LabelSettings_ivhc6")
 horizontal_alignment = 1
 
 [node name="deleteConfirm" type="ConfirmationDialog" parent="."]
+title = "CONFIRM"
 initial_position = 2
 size = Vector2i(263, 100)
-dialog_text = "Are you sure you want to delete"
+dialog_text = "DELETE_DIALOG"
+cancel_button_text = "CANCEL"
 
 [node name="LoadingFailedScreen" type="Control" parent="."]
 visible = false
@@ -1232,22 +1242,18 @@ alignment = 1
 [node name="LoadingFailedLabel" type="Label" parent="LoadingFailedScreen/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "LOADING FAILED"
+text = "LOADINGF_NOTE1"
 label_settings = SubResource("LabelSettings_spe36")
 
 [node name="Label2" type="Label" parent="LoadingFailedScreen/VBoxContainer"]
 layout_mode = 2
-text = "Saving is currently disabled
-Simplaudio failed to load your save,
-Simplaudio may also have failed to save,
-if you suspect this, please contact me."
+text = "LOADINGF_NOTE1"
 label_settings = SubResource("LabelSettings_amome")
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="LoadingFailedScreen/VBoxContainer"]
 layout_mode = 2
-text = "Please restart Simplaudio,
-if the issue presists you can:"
+text = "LOADINGF_NOTE2"
 label_settings = SubResource("LabelSettings_drf2g")
 horizontal_alignment = 1
 
@@ -1258,11 +1264,11 @@ alignment = 1
 
 [node name="ContinueAnyways" type="Button" parent="LoadingFailedScreen/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Continue anyways"
+text = "LOADINGF_CONTINUE"
 
 [node name="Contact" type="Button" parent="LoadingFailedScreen/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Contact me"
+text = "LOADINGF_CONTACT"
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="LoadingFailedScreen"]
 title = "Are you sure?"
@@ -1316,11 +1322,12 @@ offset_right = 62.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Happy Birthday Simplaudio!"
+text = "BDAY"
 label_settings = SubResource("LabelSettings_f1d3e")
 
 [node name="PlayingNow" type="Window" parent="."]
 transparent_bg = true
+initial_position = 4
 size = Vector2i(400, 200)
 visible = false
 unresizable = true
@@ -1330,6 +1337,9 @@ force_native = true
 
 [node name="PlayingNowWindow" parent="PlayingNow" node_paths=PackedStringArray("ParentScene") instance=ExtResource("40_ismud")]
 ParentScene = NodePath("../..")
+
+[node name="Node" type="Node" parent="."]
+script = SubResource("GDScript_x3yn0")
 
 [connection signal="toggled" from="SelectPlaylist" to="SelectPlaylist" method="_on_toggled"]
 [connection signal="pressed" from="PlaylistPanelHolder/PlaylistsPanel/PlaylistsContainer/VBoxContainer/HBoxContainer/CreatePlaylist" to="PlaylistPanelHolder/PlaylistsPanel" method="_on_create_playlist_pressed"]

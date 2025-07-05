@@ -11,7 +11,6 @@ var IsFocused:bool
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	birthday_happy.hide()
-	print("user: ",DiscordRPC.get_current_user().get("username"))
 	var bday:bool
 	if Time.get_datetime_dict_from_system().day == 9:
 		if Time.get_datetime_dict_from_system().month == 9:

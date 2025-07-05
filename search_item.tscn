@@ -47,7 +47,8 @@ alignment = 0
 
 [node name="PopupMenu" type="PopupMenu" parent="."]
 item_count = 1
-item_0/text = "delete"
+item_0/text = "DELETE"
+item_0/id = 0
 
 [connection signal="pressed" from="HBoxContainer/Dropdown" to="." method="_on_dropdown_pressed"]
 [connection signal="pressed" from="HBoxContainer/Songname" to="." method="_on_songname_pressed"]

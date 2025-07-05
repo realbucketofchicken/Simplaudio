@@ -13,7 +13,7 @@ PLAYALL,Play all,alle abspielen
 UPDATE,Update,Updaten
 SETTINGS,SETTINGS,EINSTELLUNGEN
 INTIGRATIONS,INTIGRATIONS,INTIGRATIONEN
-DRPC,discord rich presense,discord aktivitäten
+DRPC,discord rich presense,Discord aktivitäten
 DRPC_NOTE,NOTE: After disableing a restart is needed,Nach deaktivieren neustarten
 LOOKS,LOOKS,AUSEHEN
 BS_SELECT,Select Background,Hintergrund auswählen
@@ -30,9 +30,55 @@ ROOM_SIZE,Room size,Raum größe
 MISC,MISC,WEITERES
 STREAMER_WINDOW,Streamer window,Streamer fenster
 STREAMER_NOTE,This setting enables a dedicated window for displaying the currently playing song. This can be useful when streaming ,"Diese eistellung aktiviert ein fenster das das grade speilende lied zeigt, ist hauptzächlich für streamer nützlich"
-CREDITS,CREDITS,CREDITS
+CREDITS,CREDITS,dankesagung
 YT_DL,Godot YT-DL by Noé Le Cam,Godot YT-DL von Noé Le Cam
 DRPCL,Discord RPC by vaporee,Discord RPC von vaporee
 GDGIF,Godot GIF by b0tlanner,Godot GIF von b0tlanner
 RESET_SETTINGS,RESET SETTINGS,EINSTELLUNGEN ZURÜCKSETZEN
 LISTENING_TIME,Total listening time:,Gesamte hörzeit
+CREATE_PLAYLIST,CREATE PLAYLIST,PLAYLIST ERSTELLEN
+PLAYLIST_NAME,Playlist name,Playlist name
+DIR_SELECT,Select directory,Pfad auswählen
+NAME_USED,Name Already used,Name ist schon genutzt
+NAME_EMPTY,Name is empty,Name ist leer
+NAME_VALID,Name Valid,Name ist verfügbar
+DIR_NONE,No directory selected,Kein pfad ausgewählt
+PLAYLIST_CREATE,Create Playlist,Playlist erstellen
+SEARCH,Search,Suchen
+S_UPDATING,Simplaudio is Updating!,Simlaudio updated…
+S_UPT_NOTE,"Please wait.
+Simplaudio will restart automatically
+
+this wont take long","Bitte warten.
+Simplaudio started automatisch neu
+
+Dies dauert nicht lange"
+LOADINGF_TITLE,LOADING FAILED,LADEN GESCHEITERT
+LOADINGF_NOTE1,Simplaudio failed to load your save.,Simplaudio konnte deinen speicher nicht laden.
+LOADINGF_NOTE2,"Please restart Simplaudio,
+if the issue presists you can:","Bitte starte simplaudio neu,
+Wenn das problem weiterhin besteht kannst du:"
+LOADINGF_CONTINUE,Continue anyways,Trozdem weiter
+LOADINGF_CONTACT,Contact me,Kontaktiere mich
+UPDATE_AVAILABLEUpdate Available!,,Update Verfügbar!
+CANCEL,Cancel,Abbrechen
+OK,OK,OK
+DELETE_DIALOG,Are you sure you want to delete \n,Bist du dir sicher das du das folgende lied löschen willst:\n
+BDAY,Happy Birthday Simplaudio!,Glückwunsch zum geburtstag Simplaudio!
+STATE_PAUSED,Paused,Pausiert
+STATE_LISTENING,Listening To Music,Hört sich musik an
+WAV_DISCLAIMER,wav files are not supported yet,WAV dateien sind nicht supportet
+UPD_ERR_CLT,a client error occurred,ein client error ist passiert
+UPDT_OUT_END, Is Out!, Ist raus!
+IMPORTANT,(Important),(Wichtig)
+UPD_UPDATING,Updating…,Updated…
+UPD_ERR_CODE,DOWNLOAD FAILED ERROR CODE: ,DOWLOAD FEHLER CODE: 
+UPD_UNZIP_PANT,unzipping…,entpacken…
+SONG_SEARCH,Search…,Suchen…
+FOLDER_SELECT,Select Current Folder,Wähle einen ordner aus
+DIR_OPEN,Open a Directory,Öffne einen pfad
+DELETE,delete,löschen
+CONFIRM,Please Confirm…,Bitte bestimme…
+DL_SONG,Download Song,Nur Lied Herunterladen
+DL_LIST,Download Playlist,Playliste Herunterladen
+DL_DIALOG,Do you want to download the song or the Entire playlist?,Willst du die playlist herunterladen?

@@ -33,15 +33,15 @@ func _on_playlist_name_text_changed(new_text: String) -> void:
 	#elif new_text.unicode_at()
 	if !Parent.Playlists.has(new_text):
 		if new_text != "":
-			good_indicator.text = "Name Valid"
+			good_indicator.text = tr("NAME_VALID")
 			good_indicator.label_settings.font_color = Color(0,1,0,1)
 			NameValid =true
 		else:
-			good_indicator.text = "Name needs to be something"
+			good_indicator.text = tr("NAME_EMPTY")
 			good_indicator.label_settings.font_color = Color(1,0,0,1)
 			NameValid = false
 	else:
-		good_indicator.text = "Name Already used"
+		good_indicator.text = tr("NAME_USED")
 		good_indicator.label_settings.font_color = Color(1,0,0,1)
 		NameValid = false
 	IsValid()

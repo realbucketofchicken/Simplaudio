@@ -39,7 +39,7 @@ func check_for_updates() -> void:
 
 	if error != OK:
 		push_error("! a client error occurred")
-		errorLabel.text = "a client error occurred"
+		errorLabel.text = tr("UPD_ERR_CLT")
 
 func _on_http_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS:
@@ -53,15 +53,15 @@ func _on_http_request_completed(result: int, _response_code: int, _headers: Pack
 	print("! AHHH  " + str(result2))
 	if result2.has("tag_name"):
 		if result2["tag_name"] != version.text:
-			update_available_text.text = result2["tag_name"] + " Is Out!"
+			update_available_text.text = result2["tag_name"] + tr("UPDT_OUT_END")
 			show()
 			updateLink = result2["html_url"]
 	if result2.has("body"):
 		patchnotes.text = str(result2["body"])
 		if patchnotes.text.contains("(!IT)"):
 			patchnotes.text = patchnotes.text.erase(patchnotes.text.find("(!IT)"),7)
-			print("importaint update detected")
-			update_available_text.text = "(Important) " + result2["tag_name"] + " Is Out!"
+			print("import-aint update detected")
+			update_available_text.text = tr("IMPORTANT") + " " + result2["tag_name"] + tr("UPDT_OUT_END")
 			patchnotes_bg.color = IMPUpdatePatchNotesColor
 			link_bttnbg.color = IMPUpdateLinkColor
 			link_bttnbg.StandardColor = IMPUpdateLinkColor
@@ -72,7 +72,7 @@ func _on_close_buen_pressed() -> void:
 
 func _on_link_button_pressed() -> void:
 	link_button.disabled = true
-	link_button.text = "Updating..."
+	link_button.text = tr("UPD_UPDATING")
 	updating_notification.show()
 	updating_bg.show()
 	paused_indicator.hide()
@@ -91,7 +91,7 @@ func _on_link_button_pressed() -> void:
 			)
 			if error != OK:
 				print("! DOWNLOAD ERROR: " + str(error))
-				errorLabel.text = "DOWNLOAD FAILED ERROR CODE: " + str(error)
+				errorLabel.text = tr("UPD_ERR_CODE") + str(error)
 				errorLabel.label_settings.font_color = errorColor
 			else:
 				errorLabel.text = "downloading..."
@@ -102,11 +102,11 @@ func _on_link_button_pressed() -> void:
 func _on_download_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS:
 		print("! Something went wrong server side: " + str(result))
-		errorLabel.text = "DOWNLOAD FAILED ERROR CODE: " + str(result)
+		errorLabel.text = tr("UPD_ERR_CODE") + str(result)
 		errorLabel.label_settings.font_color = errorColor
 		return
 	else:
-		errorLabel.text = "unzipping..."
+		errorLabel.text = tr("UPD_UNZIP_PANT")
 		print("works as expected brotha")
 		var unzipper:ZIPReader = ZIPReader.new() # sus
 		unzipper.open(GetLocalPath()+"download.zip")
