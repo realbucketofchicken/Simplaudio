@@ -1,11 +1,135 @@
-[gd_scene load_steps=2 format=3 uid="uid://n7cnapaftfse"]
+[gd_scene load_steps=5 format=3 uid="uid://n7cnapaftfse"]
 
 [ext_resource type="Script" path="res://playing_now_window.gd" id="1_f0rac"]
 
-[node name="PlayingNowWindow" type="AspectRatioContainer"]
-offset_right = 160.0
-offset_bottom = 23.0
-script = ExtResource("1_f0rac")
+[sub_resource type="Gradient" id="Gradient_5icyh"]
+offsets = PackedFloat32Array(0.960432, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Desctibtor" type="Label" parent="."]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wqq75"]
+gradient = SubResource("Gradient_5icyh")
+fill = 1
+fill_from = Vector2(0.487179, 0.482906)
+fill_to = Vector2(0.491453, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew3gl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 10
+shadow_color = Color(0, 0, 0, 0.631373)
+shadow_size = 45
+
+[node name="PlayingNowWindow" type="Control" node_paths=PackedStringArray("SongImage", "SongNameLabel", "SongNameScroller", "SongAuthorScroller", "SongAuthorLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_f0rac")
+SongImage = NodePath("Panel2/TextureRect")
+SongNameLabel = NodePath("Panel2/Panel/VBoxContainer/ScrollContainer/SongName")
+SongNameScroller = NodePath("Panel2/Panel/VBoxContainer/ScrollContainer")
+SongAuthorScroller = NodePath("Panel2/Panel/VBoxContainer/ScrollContainer2")
+SongAuthorLabel = NodePath("Panel2/Panel/VBoxContainer/ScrollContainer2/SongAuthor")
+
+[node name="Panel2" type="TextureRect" parent="."]
+clip_children = 2
+z_index = -85
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_wqq75")
+
+[node name="ColorRect" type="ColorRect" parent="Panel2"]
+z_index = -3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Panel2"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="Panel2"]
+z_index = -1
+custom_minimum_size = Vector2(206.815, 60.71)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.408
+offset_top = -30.355
+offset_right = 103.407
+offset_bottom = 30.355
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ew3gl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.645
+offset_bottom = 1.645
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
+size_flags_horizontal = 4
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="SongName" type="RichTextLabel" parent="Panel2/Panel/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Playing now TOOOOOOOOOOTT"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+visible_characters_behavior = 3
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="Panel2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="SongAuthor" type="RichTextLabel" parent="Panel2/Panel/VBoxContainer/ScrollContainer2"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "from protein ribosome"
+autowrap_mode = 0
+visible_characters_behavior = 3

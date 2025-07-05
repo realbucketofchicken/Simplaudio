@@ -1323,10 +1323,11 @@ label_settings = SubResource("LabelSettings_f1d3e")
 
 [node name="PlayingNow" type="Window" parent="."]
 transparent_bg = true
+size = Vector2i(400, 200)
 visible = false
+unresizable = true
 borderless = true
 transparent = true
-mouse_passthrough = true
 force_native = true
 
 [node name="PlayingNowWindow" parent="PlayingNow" node_paths=PackedStringArray("ParentScene") instance=ExtResource("40_ismud")]
