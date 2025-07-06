@@ -270,8 +270,9 @@ func SongDragStopped(Changed:bool):
 			pausePlay()
 		
 		UpdateProgressSlider = true
-		DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system() - (current_progress.value * CurrentSongLenth / current_progress.max_value))
-		DiscordRPC.refresh()
+		if DiscordRichPresenceEnabled:
+			DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system() - (current_progress.value * CurrentSongLenth / current_progress.max_value))
+			DiscordRPC.refresh()
 
 func SongDragStarted():
 	UpdateProgressSlider = false
@@ -376,7 +377,8 @@ func PlaySongs():
 				if !CurrentDir.ends_with(CurrentPlaylist):
 					GetSongs(PlaylistsLocation[CurrentPlaylist])
 			var CurrentSongDir:String = PlaylistsLocation[CurrentPlaylist] + "/" + textSongs[index]
-			DiscordRPC.details = textSongs[index].replace(".mp3","")
+			if DiscordRichPresenceEnabled:
+				DiscordRPC.details = textSongs[index].replace(".mp3","")
 			currentSongName = textSongs[index].replace(".mp3","")
 			print(CurrentSongDir)
 			var sonnname:String = textSongs[index]
@@ -503,12 +505,14 @@ func _process(_delta: float) -> void:
 	if music_player.playing:
 		TimeSpentListening += _delta
 		CurrentPausedIndicatorShaderIntensity = lerp(CurrentPausedIndicatorShaderIntensity,0.0,0.1)
-		DiscordRPC.state = tr("STATE_LISTENING")
+		if DiscordRichPresenceEnabled:
+			DiscordRPC.state = tr("STATE_LISTENING")
 	else:
-		DiscordRPC.start_timestamp = int(0)
-		DiscordRPC.state = tr("STATE_PAUSED")
-		if DiscordRPC.get_is_discord_working():
-			DiscordRPC.refresh()
+		if DiscordRichPresenceEnabled:
+			DiscordRPC.start_timestamp = int(0)
+			DiscordRPC.state = tr("STATE_PAUSED")
+			if DiscordRPC.get_is_discord_working():
+				DiscordRPC.refresh()
 		CurrentPausedIndicatorShaderIntensity = lerp(CurrentPausedIndicatorShaderIntensity,1.0,0.1)
 	if DiscordRichPresenceEnabled:
 		DiscordRPC.run_callbacks()
@@ -544,11 +548,12 @@ func _process(_delta: float) -> void:
 			LoopingSong = true
 			ReactivateLoop = false
 			loop.icon = LoopPressed
-		DiscordRPC.refresh()
+		if DiscordRichPresenceEnabled:
+			DiscordRPC.refresh()
 
 
 func UpdateSplashes():
-	if DiscordRPC.get_is_discord_working():
+	if DiscordRPC.get_is_discord_working() && DiscordRichPresenceEnabled:
 		SplashStrings = ["Total listening time: %s!" % str(str(int(TimeSpentListening/60)/60 )
 			 + "h : " + str((int(TimeSpentListening) / 60) % 60) + "m : " + 
 			str(int(TimeSpentListening) % 60) + "s"),
