@@ -8,6 +8,7 @@ extends Control
 @export var SongAuthorLabel: RichTextLabel
 @onready var ParentWindow:Window = $".."
 @export var update_tick:float = 0.1
+@export var slider:HSlider
 var ticktime:float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,6 +25,7 @@ func scroll(scroller:ScrollContainer,incriment:float):
 func _process(delta: float) -> void:
 	ticktime -= delta
 	ParentWindow.size = size 
+	slider.value = ParentScene.current_progress.value
 	if ticktime <= 0:
 		ticktime = update_tick
 		if scroll(SongNameScroller,1):
@@ -36,4 +38,6 @@ func SongChanged():
 	SongNameLabel.text = ParentScene.currentSongName
 	if ParentScene.currentArtistName:
 		SongAuthorLabel.text = ParentScene.currentArtistName
+	else:
+		SongAuthorLabel.text = ""
 	#ParentWindow.size = size * 2

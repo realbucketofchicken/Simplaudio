@@ -1,35 +1,54 @@
-[gd_scene load_steps=8 format=3 uid="uid://n7cnapaftfse"]
+[gd_scene load_steps=11 format=3 uid="uid://n7cnapaftfse"]
 
 [ext_resource type="Script" uid="uid://q2gdlr10ncnb" path="res://playing_now_window.gd" id="1_f0rac"]
-[ext_resource type="Shader" uid="uid://byan4wmg2pjl6" path="res://playing_now_window.gdshader" id="2_yr2ao"]
 [ext_resource type="Texture2D" uid="uid://cq8jj63iyu2cs" path="res://d7hftxdivxxvm.cloudfront.webp" id="3_haeb5"]
 
-[sub_resource type="Gradient" id="Gradient_haeb5"]
-offsets = PackedFloat32Array(0.670732, 1)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+[sub_resource type="Gradient" id="Gradient_yr2ao"]
+offsets = PackedFloat32Array(0.992806, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nf0dg"]
-gradient = SubResource("Gradient_haeb5")
-fill = 1
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_haeb5"]
+gradient = SubResource("Gradient_yr2ao")
+width = 512
+height = 512
+fill = 2
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 metadata/_snap_enabled = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_haeb5"]
-shader = ExtResource("2_yr2ao")
-shader_parameter/alpha = SubResource("GradientTexture2D_nf0dg")
+[sub_resource type="Gradient" id="Gradient_nf0dg"]
+offsets = PackedFloat32Array(0.410072, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew3gl"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 10
-shadow_color = Color(0, 0, 0, 0.435294)
-shadow_size = 45
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kcqx3"]
+gradient = SubResource("Gradient_nf0dg")
 
-[node name="PlayingNowWindow" type="Control" node_paths=PackedStringArray("SongImage", "SongNameLabel", "SongNameScroller", "SongAuthorScroller", "SongAuthorLabel")]
+[sub_resource type="Theme" id="Theme_yr2ao"]
+RichTextLabel/colors/font_shadow_color = Color(0.0768358, 0.0768358, 0.0768358, 0.52549)
+RichTextLabel/constants/shadow_outline_size = 10
+
+[sub_resource type="ImageTexture" id="ImageTexture_yr2ao"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_haeb5"]
+bg_color = Color(0.28485, 0.28485, 0.28485, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 0.443137)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yr2ao"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[node name="PlayingNowWindow" type="Control" node_paths=PackedStringArray("SongImage", "SongNameLabel", "SongNameScroller", "SongAuthorScroller", "SongAuthorLabel", "slider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,15 +58,27 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_f0rac")
-SongImage = NodePath("TextureRect")
-SongNameLabel = NodePath("Panel/VBoxContainer/ScrollContainer/SongName")
-SongNameScroller = NodePath("Panel/VBoxContainer/ScrollContainer")
-SongAuthorScroller = NodePath("Panel/VBoxContainer/ScrollContainer2")
-SongAuthorLabel = NodePath("Panel/VBoxContainer/ScrollContainer2/SongAuthor")
+SongImage = NodePath("ColorRect/TextureRect")
+SongNameLabel = NodePath("VBoxContainer/ScrollContainer/SongName")
+SongNameScroller = NodePath("VBoxContainer/ScrollContainer")
+SongAuthorScroller = NodePath("VBoxContainer/ScrollContainer2")
+SongAuthorLabel = NodePath("VBoxContainer/ScrollContainer2/SongAuthor")
+slider = NodePath("VBoxContainer/Slider")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
+clip_children = 1
 z_index = -1
-material = SubResource("ShaderMaterial_haeb5")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_haeb5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,46 +88,32 @@ grow_vertical = 2
 size_flags_horizontal = 3
 texture = ExtResource("3_haeb5")
 expand_mode = 3
-stretch_mode = 5
+stretch_mode = 6
 
-[node name="Panel" type="Panel" parent="."]
-z_index = -1
-custom_minimum_size = Vector2(206.815, 60.71)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -103.408
-offset_top = -30.355
-offset_right = 103.407
-offset_bottom = 30.355
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ew3gl")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+clip_children = 1
+position = Vector2(-95.3115, -216)
+texture = SubResource("GradientTexture2D_kcqx3")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -1.645
-offset_right = 6.10352e-05
-offset_bottom = 1.64503
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+theme = SubResource("Theme_yr2ao")
 alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
-[node name="SongName" type="RichTextLabel" parent="Panel/VBoxContainer/ScrollContainer"]
+[node name="SongName" type="RichTextLabel" parent="VBoxContainer/ScrollContainer"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -105,20 +122,34 @@ text = "Playing now TOOOOOOOOOOTT"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-visible_characters_behavior = 3
+horizontal_alignment = 1
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="Panel/VBoxContainer"]
+[node name="ScrollContainer2" type="ScrollContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
-[node name="SongAuthor" type="RichTextLabel" parent="Panel/VBoxContainer/ScrollContainer2"]
+[node name="SongAuthor" type="RichTextLabel" parent="VBoxContainer/ScrollContainer2"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "from protein ribosome"
 autowrap_mode = 0
+horizontal_alignment = 1
 visible_characters_behavior = 3
+
+[node name="Slider" type="HSlider" parent="VBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_yr2ao")
+theme_override_styles/slider = SubResource("StyleBoxFlat_haeb5")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_yr2ao")
+max_value = 1000.0
+value = 500.0
+editable = false
+scrollable = false

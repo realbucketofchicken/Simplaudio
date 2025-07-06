@@ -1319,8 +1319,8 @@ label_settings = SubResource("LabelSettings_f1d3e")
 
 [node name="PlayingNow" type="Window" parent="."]
 transparent_bg = true
-initial_position = 4
-size = Vector2i(400, 200)
+initial_position = 2
+size = Vector2i(300, 300)
 visible = false
 unresizable = true
 borderless = true

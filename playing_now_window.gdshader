@@ -6,6 +6,7 @@ void vertex() {
 }
 
 void fragment() {
+	
 	COLOR.a = texture(alpha,UV).a;
 	//COLOR.a = 1.0-((cos((UV.x)*PI*2.0)+1.0)/2.0);
 	//COLOR.a -= ((cos(UV.y*PI*2.0)+1.0)/2.0);
