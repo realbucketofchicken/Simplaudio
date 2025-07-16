@@ -33,6 +33,7 @@ extends Control
 @onready var search_bar: LineEdit = $SearchBar
 @onready var playing_now: Window = $PlayingNow
 @export var overridden_locale:String
+@onready var playing_now_window: Control = $PlayingNow/PlayingNowWindow
 
 var DiscordUsername:String
 
@@ -168,6 +169,7 @@ func _ready() -> void:
 					play_all.button_pressed = true
 			if data.has("UsingPlayingNow"):
 				UsingPlayingNow = data["UsingPlayingNow"]
+				settings_menu_child.now_playing_window_button.button_pressed = true
 			if data.has("OverriddenLocale"):
 				TranslationServer.set_locale(data["OverriddenLocale"])
 				overridden_locale = data["OverriddenLocale"]
