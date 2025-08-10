@@ -6,7 +6,8 @@ the music player is very functual though
 
 ## Translations
 I would apprechiate if you could help out with translations,
-if you want to help you can find a .csv under the folder called "translation"
-create a fork of the repo and modify the translations.csv file with a program like excel or libreoffice calc to include your language
-then create a pull request including your translations
+if you want to help you can find a .csv under the folder called "translation",
+create a fork of the repo and modify the translations.csv file with a program like excel or libreoffice calc to include your language.
+
+After that create a pull request including your translations.
 I will then merge the translations(annoy me if i forget)
