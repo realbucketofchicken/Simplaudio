@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://q2gdlr10ncnb" path="res://Scripts/playing_now_window.gd" id="1_f0rac"]
 [ext_resource type="Texture2D" uid="uid://bp4ipephewcrn" path="res://SmoothEdges.png" id="2_haeb5"]
-[ext_resource type="Texture2D" uid="uid://cq8jj63iyu2cs" path="res://Images/d7hftxdivxxvm.cloudfront.webp" id="3_haeb5"]
+[ext_resource type="Texture2D" uid="uid://0jo87vtoeheu" path="res://Images/pole2.jpg" id="3_j8vo6"]
 
 [sub_resource type="Gradient" id="Gradient_nf0dg"]
 offsets = PackedFloat32Array(0.410072, 1)
@@ -74,7 +74,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-texture = ExtResource("3_haeb5")
+texture = ExtResource("3_j8vo6")
 expand_mode = 3
 stretch_mode = 6
 
