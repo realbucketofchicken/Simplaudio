@@ -169,7 +169,8 @@ func _ready() -> void:
 					play_all.button_pressed = true
 			if data.has("UsingPlayingNow"):
 				UsingPlayingNow = data["UsingPlayingNow"]
-				settings_menu_child.now_playing_window_button.button_pressed = true
+				if UsingPlayingNow:
+					settings_menu_child.now_playing_window_button.button_pressed = true
 			if data.has("OverriddenLocale"):
 				TranslationServer.set_locale(data["OverriddenLocale"])
 				overridden_locale = data["OverriddenLocale"]
