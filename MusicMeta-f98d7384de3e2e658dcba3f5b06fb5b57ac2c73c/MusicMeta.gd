@@ -38,7 +38,7 @@ func get_mp3_metadata(stream: AudioStreamMP3) -> MusicMetadata:
 		return meta
 		
 	var v = "ID3v2.%d.%d" % [header[3], header[4]]
-	if v == "ID3v2.4.0" or v == "ID3v2.3.0":
+	if v == "ID3v2.4.0" or v == "ID3v2.3.0" or v == "ID3v2.2.0":
 		var flags = header[5]
 		var _unsync = flags & 0x80 > 0
 		var extended = flags & 0x40 > 0
@@ -66,15 +66,18 @@ func get_mp3_metadata(stream: AudioStreamMP3) -> MusicMetadata:
 			match frame_id:
 				"TBPM", 'TBP':
 					meta.bpm = int(get_string_from_data(data, idx, size))
-				"TIT2":
+				"TIT2","TT2":
 					print("a " + str(Array(data.slice(idx, idx + 3)).hash()))
 					print([1, 0xff, 0xfe].hash())
 					meta.title = get_string_from_data(data, idx, size)
 				"TALB", 'TAL':
 					meta.album = get_string_from_data(data, idx, size)
-				"COMM":
-					meta.comments = get_string_from_data(data, idx, size)
-				"TYER":
+				"COMM","COM":
+					var string:String = get_string_from_data(data, idx, size)
+					print("got comment " + string)
+					if string:
+						meta.comments = string
+				"TYER","TYE":
 					meta.year = int(get_string_from_data(data, idx, size))
 				"TPE1", 'TP1':
 					meta.artist = get_string_from_data(data, idx, size)

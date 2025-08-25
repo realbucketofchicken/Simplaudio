@@ -16,8 +16,18 @@ func _ready() -> void:
 	popup_menu.index_pressed.connect(popupPressed)
 
 func popupPressed(idx:int):
-	if idx == 0:
-		DeletePressed.emit(songidx)
+	match idx:
+		0:
+			DeletePressed.emit(songidx)
+		1:
+			var songdir = MainScene.instance.CurrentDir + "/" + MainScene.instance.textSongs[songidx]
+			var song = AudioStreamMP3.load_from_file(songdir)
+			var meta:MusicMeta.MusicMetadata =  MusicMeta.new().get_mp3_metadata(song)
+			print(songdir)
+			meta.print_info()
+			if meta.comments:
+				OS.shell_open(meta.comments)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

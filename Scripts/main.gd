@@ -1,5 +1,6 @@
 class_name MainScene
 extends Control
+static var instance:MainScene
 @onready var file_dialog: FileDialog = $FileDialog
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 @onready var randomize_list: Button = $RandomizeList
@@ -83,6 +84,7 @@ var LoadingSaveFailed:bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	instance = self
 	playing_now.visible = false
 	get_tree().root.min_size = Vector2(850,492)
 	current_progress.drag_ended.connect(SongDragStopped)
