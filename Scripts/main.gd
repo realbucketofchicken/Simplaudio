@@ -540,9 +540,9 @@ func _process(_delta: float) -> void:
 	
 	#time_listening_song.text = str(music_player.get_playback_position())
 	
-	if Input.is_key_pressed(KEY_DOWN):
+	if Input.is_action_pressed("ui_down"):
 		volume_slider.value -= 1*_delta *50
-	if Input.is_key_pressed(KEY_UP):
+	if Input.is_action_pressed("ui_up"):
 		volume_slider.value += 1*_delta *50
 	
 	if CurrentLenght == 0:
