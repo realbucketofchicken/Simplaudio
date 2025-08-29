@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daq8wnhtscpjl"
-path="res://.godot/imported/Skip.png-a3595e1eea6e30e9583829cd1e79191f.ctex"
+uid="uid://df2e70jxwrmjs"
+path="res://.godot/imported/BackOne.png-420a39df0abee2599d5df56efa24c072.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Icons/Skip.png"
-dest_files=["res://.godot/imported/Skip.png-a3595e1eea6e30e9583829cd1e79191f.ctex"]
+source_file="res://Icons/BackOne.png"
+dest_files=["res://.godot/imported/BackOne.png-420a39df0abee2599d5df56efa24c072.ctex"]
 
 [params]
 

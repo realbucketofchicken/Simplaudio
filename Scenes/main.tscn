@@ -1,7 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://mfcbf2sfino6"]
+[gd_scene load_steps=12 format=3 uid="uid://mfcbf2sfino6"]
 
+[ext_resource type="Texture2D" uid="uid://0jo87vtoeheu" path="res://Images/pole2.jpg" id="1_6bp64"]
+[ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="1_8gbba"]
+[ext_resource type="Texture2D" uid="uid://0r1tx6l1lc6x" path="res://Icons/settingscog.png" id="2_344ge"]
 [ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="2_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="2_jjvhh"]
+[ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://Icons/search.png" id="2_ynf5e"]
 [ext_resource type="Script" uid="uid://bq55jftgugexl" path="res://Scripts/Context.cs" id="3_8gbba"]
+[ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="4_21xkr"]
+[ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_kry3j"]
 
 [sub_resource type="GDScript" id="GDScript_bo1nx"]
 resource_name = "OpenDirGlue"
@@ -19,6 +26,20 @@ func dirsel(dir:String):
 	Context.call(\"LoadDirectory\",dir)
 "
 
+[sub_resource type="GDScript" id="GDScript_ynf5e"]
+resource_name = "Toggle"
+script/source = "extends Button
+@export var searchbar:LineEdit
+@export var showbutton:Button
+
+func _ready() -> void:
+	toggled.connect(update)
+
+func update(on:bool):
+	searchbar.visible = on == true
+	showbutton.visible = on != true
+"
+
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -27,16 +48,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6bp64")
+expand_mode = 5
+stretch_mode = 6
+
 [node name="Padding" type="Control" parent="."]
 layout_mode = 1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -547.0
-offset_top = -293.0
-offset_right = 547.0
-offset_bottom = 293.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = 31.0
+offset_right = -29.0
+offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -49,26 +79,66 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Top" type="Control" parent="Padding/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-size_flags_vertical = 0
 
-[node name="Button" type="Button" parent="Padding/VBoxContainer/Top" node_paths=PackedStringArray("file_dialog", "Context")]
+[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Top"]
 layout_mode = 1
-anchors_preset = -1
-offset_right = 76.0
-offset_bottom = 31.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer" node_paths=PackedStringArray("file_dialog", "Context")]
+layout_mode = 2
 text = "Open dir"
 script = SubResource("GDScript_bo1nx")
-file_dialog = NodePath("../../../../FileDialog")
-Context = NodePath("../../../../Context")
+file_dialog = NodePath("../../../../../FileDialog")
+Context = NodePath("../../../../../Context")
+
+[node name="Control" type="HBoxContainer" parent="Padding/VBoxContainer/Top/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SearchBar" type="LineEdit" parent="Padding/VBoxContainer/Top/HBoxContainer/Control"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+placeholder_text = "Search..."
+max_length = 50
+expand_to_text_length = true
+
+[node name="ShowSongs" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer/Control"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "show songs"
+
+[node name="SearchToggle" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer/Control" node_paths=PackedStringArray("searchbar", "showbutton")]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("2_ynf5e")
+alignment = 0
+expand_icon = true
+script = SubResource("GDScript_ynf5e")
+searchbar = NodePath("../SearchBar")
+showbutton = NodePath("../ShowSongs")
+
+[node name="Settings" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+icon = ExtResource("2_344ge")
+expand_icon = true
 
 [node name="Control" type="Control" parent="Padding/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Bottom" type="Control" parent="Padding/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Bottom"]
@@ -80,19 +150,45 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BackButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+icon = ExtResource("1_8gbba")
+expand_icon = true
+
+[node name="PlayButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+icon = ExtResource("2_jjvhh")
+expand_icon = true
+
+[node name="SkipButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 icon = ExtResource("2_bo1nx")
 expand_icon = true
 
-[node name="PlayButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
 layout_mode = 2
-text = "play"
+size_flags_horizontal = 3
+size_flags_vertical = 4
+tick_count = 5
+ticks_position = 3
 
-[node name="SkipButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+[node name="Loop" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
-icon = ExtResource("2_bo1nx")
+toggle_mode = true
+icon = ExtResource("4_21xkr")
+expand_icon = true
+
+[node name="Shuffle" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+layout_mode = 2
+text = "shuffle"
+
+[node name="Volume" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+icon = ExtResource("4_kry3j")
 expand_icon = true
 
 [node name="FileDialog" type="FileDialog" parent="."]
@@ -105,3 +201,16 @@ use_native_dialog = true
 
 [node name="Context" type="Node" parent="."]
 script = ExtResource("3_8gbba")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "v2.0"

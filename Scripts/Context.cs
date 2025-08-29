@@ -4,13 +4,19 @@ using System;
 public partial class Context : Node
 {
 	
-	String[] Songs;
+	Song[] Songs;
+	AudioStreamPlayer[] StreamPlayers;
 	DirectoryManager manager = new();
 
-	 
+	
 
 	public void LoadDirectory(String path){
 		GD.Print(path);
-		manager.LoadDirectory(path);
+		Songs = manager.LoadDirectory(path);
+		GD.Print("got here");
+		foreach (Song song in Songs){
+			GD.Print("got ", song.Name);
+		}
+
 	}
 }
