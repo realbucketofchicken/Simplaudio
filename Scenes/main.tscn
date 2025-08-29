@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://mfcbf2sfino6"]
+[gd_scene load_steps=4 format=3 uid="uid://mfcbf2sfino6"]
 
-[ext_resource type="Script" uid="uid://c8bqyed2abyoy" path="res://Scripts/Test.cs" id="1_jjgbg"]
+[ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://bq55jftgugexl" path="res://Scripts/Context.cs" id="3_8gbba"]
+
+[sub_resource type="GDScript" id="GDScript_bo1nx"]
+resource_name = "OpenDirGlue"
+script/source = "extends Button
+@export var file_dialog: FileDialog
+@export var Context:Node
+func _ready() -> void:
+	file_dialog.dir_selected.connect(dirsel)
+
+func _pressed() -> void:
+	file_dialog.show()
+
+func dirsel(dir:String):
+	print(dir)
+	Context.call(\"LoadDirectory\",dir)
+"
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -22,7 +39,6 @@ offset_right = 547.0
 offset_bottom = 293.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jjgbg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Padding"]
 layout_mode = 1
@@ -36,6 +52,16 @@ grow_vertical = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 0
+
+[node name="Button" type="Button" parent="Padding/VBoxContainer/Top" node_paths=PackedStringArray("file_dialog", "Context")]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 76.0
+offset_bottom = 31.0
+text = "Open dir"
+script = SubResource("GDScript_bo1nx")
+file_dialog = NodePath("../../../../FileDialog")
+Context = NodePath("../../../../Context")
 
 [node name="Control" type="Control" parent="Padding/VBoxContainer"]
 layout_mode = 2
@@ -53,6 +79,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="BackButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+icon = ExtResource("2_bo1nx")
+expand_icon = true
+
 [node name="PlayButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
 layout_mode = 2
 text = "play"
+
+[node name="SkipButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+icon = ExtResource("2_bo1nx")
+expand_icon = true
+
+[node name="FileDialog" type="FileDialog" parent="."]
+oversampling_override = 1.0
+title = "Open a Directory"
+size = Vector2i(807, 360)
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="Context" type="Node" parent="."]
+script = ExtResource("3_8gbba")
