@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Simplaudio"
-run/main_scene="res://Scenes/Main.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="uid://mfcbf2sfino6"
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/use_filter=false
