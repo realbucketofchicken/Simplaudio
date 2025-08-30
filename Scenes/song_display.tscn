@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://c21wc1bq2pnm"]
+
+[ext_resource type="Script" uid="uid://bs55rsv7eh4l5" path="res://Scripts/SongDisplay.cs" id="1_76jf4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_swnt4"]
+font_size = 20
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.5647059)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8tgr4"]
+font_color = Color(0.7919991, 0.79199916, 0.7919991, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.5647059)
+
+[node name="SongDisplay" type="Control" node_paths=PackedStringArray("background", "NameLabel", "ArtistLabel")]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 3
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_76jf4")
+background = NodePath("TextureRect")
+NameLabel = NodePath("VBoxContainer/Name")
+ArtistLabel = NodePath("VBoxContainer/Artist")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 3
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Name"
+label_settings = SubResource("LabelSettings_swnt4")
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Artist" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Artist"
+label_settings = SubResource("LabelSettings_8tgr4")
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Playbutton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true

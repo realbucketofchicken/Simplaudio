@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://mfcbf2sfino6"]
+[gd_scene load_steps=14 format=3 uid="uid://mfcbf2sfino6"]
 
 [ext_resource type="Texture2D" uid="uid://0jo87vtoeheu" path="res://Images/pole2.jpg" id="1_6bp64"]
 [ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="1_8gbba"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://Icons/search.png" id="2_ynf5e"]
 [ext_resource type="Script" uid="uid://bq55jftgugexl" path="res://Scripts/Context.cs" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="4_21xkr"]
+[ext_resource type="Script" uid="uid://dq3yj21reqk80" path="res://Scripts/SearchDisplay.cs" id="4_hptm8"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_kry3j"]
+[ext_resource type="PackedScene" uid="uid://c21wc1bq2pnm" path="res://Scenes/song_display.tscn" id="5_d1ilt"]
 
 [sub_resource type="GDScript" id="GDScript_bo1nx"]
 resource_name = "OpenDirGlue"
@@ -49,6 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="TextureRect" parent="."]
+z_index = -2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,9 +136,47 @@ layout_mode = 2
 icon = ExtResource("2_344ge")
 expand_icon = true
 
-[node name="Control" type="Control" parent="Padding/VBoxContainer"]
+[node name="Center" type="Control" parent="Padding/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="SearchResults" type="Panel" parent="Padding/VBoxContainer/Center"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28500003
+anchor_right = 0.71500003
+anchor_bottom = 0.93700004
+offset_left = 0.20996094
+offset_right = -0.21002197
+offset_bottom = 0.12197876
+grow_horizontal = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Padding/VBoxContainer/Center/SearchResults"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/SearchResults/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="UpperMargin" type="Control" parent="Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SongContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LowerMargin" type="Control" parent="Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="Bottom" type="Control" parent="Padding/VBoxContainer"]
 custom_minimum_size = Vector2(0, 42)
@@ -214,3 +255,11 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "v2.0"
+
+[node name="SearchDisplay" type="Node" parent="." node_paths=PackedStringArray("UpperMargin", "SongContainer", "LowerMargin", "Scroll")]
+script = ExtResource("4_hptm8")
+display = ExtResource("5_d1ilt")
+UpperMargin = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer/UpperMargin")
+SongContainer = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer/SongContainer")
+LowerMargin = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer/LowerMargin")
+Scroll = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollContainer")
