@@ -9,6 +9,7 @@ public partial class SongDisplay : Control
 	[Export] TextureRect background;
 	[Export] Label NameLabel;
 	[Export] Label ArtistLabel;
+	[Export] Button PlayButton;
 	public void Setup(Song info){
 		SavedInfo = info;
 		Image image = info.LoadImage();
@@ -21,5 +22,10 @@ public partial class SongDisplay : Control
 			ArtistLabel.Text = SavedInfo.Artists[0];
 
 		}
+		PlayButton.Pressed += ButtonPressed;
+	}
+	void ButtonPressed(){
+		Context.instance.LoadSong(SavedInfo.Directory);
+		Context.instance.PlaySong();
 	}
 }

@@ -12,15 +12,17 @@ font_color = Color(0.7919991, 0.79199916, 0.7919991, 1)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.5647059)
 
-[node name="SongDisplay" type="Control" node_paths=PackedStringArray("background", "NameLabel", "ArtistLabel")]
+[node name="SongDisplay" type="Control" node_paths=PackedStringArray("background", "NameLabel", "ArtistLabel", "PlayButton")]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 3
+anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 script = ExtResource("1_76jf4")
 background = NodePath("TextureRect")
 NameLabel = NodePath("VBoxContainer/Name")
 ArtistLabel = NodePath("VBoxContainer/Artist")
+PlayButton = NodePath("Playbutton")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

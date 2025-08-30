@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://mfcbf2sfino6"]
+[gd_scene load_steps=15 format=3 uid="uid://mfcbf2sfino6"]
 
 [ext_resource type="Texture2D" uid="uid://0jo87vtoeheu" path="res://Images/pole2.jpg" id="1_6bp64"]
 [ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="1_8gbba"]
@@ -40,6 +40,15 @@ func _ready() -> void:
 func update(on:bool):
 	searchbar.visible = on == true
 	showbutton.visible = on != true
+"
+
+[sub_resource type="GDScript" id="GDScript_d1ilt"]
+resource_name = "Slider"
+script/source = "extends VSlider
+
+func _process(delta: float) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(\"Music\"),linear_to_db(value))
+	
 "
 
 [node name="Main" type="Control"]
@@ -231,6 +240,25 @@ custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 icon = ExtResource("4_kry3j")
 expand_icon = true
+
+[node name="VolumeSlider" type="VSlider" parent="Padding/VBoxContainer/Bottom/HBoxContainer/Volume"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -9.0
+offset_top = -50.0
+offset_right = 7.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+step = 0.010000000009313226
+value = 1.0
+script = SubResource("GDScript_d1ilt")
 
 [node name="FileDialog" type="FileDialog" parent="."]
 oversampling_override = 1.0

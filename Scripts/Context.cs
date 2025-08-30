@@ -35,6 +35,33 @@ public partial class Context : Node
 		SongsUpdated.Invoke(this,e);
 	}
 
+	AudioStreamPlayer Player;
+	public void PlaySong(){
+		GD.Print("PlaySongFromDisk");
+		Player?.Play();
+	}
+	public void LoadSong(String Path){
+		Player?.QueueFree();
+		if (Path.ToLower().EndsWith(".mp3")){
+			AudioStreamMP3 stream = AudioStreamMP3.LoadFromFile(Path);
+			Player = new AudioStreamPlayer();
+			Player.Stream = stream;
+			AddChild(Player);
+		}
+		else if(Path.ToLower().EndsWith(".wav")){
+			AudioStreamWav stream = AudioStreamWav.LoadFromFile(Path);
+			Player = new AudioStreamPlayer();
+			Player.Stream = stream;
+			AddChild(Player);
+		}
+		else if(Path.ToLower().EndsWith(".ogg")){
+			AudioStreamOggVorbis stream = AudioStreamOggVorbis.LoadFromFile(Path);
+			Player = new AudioStreamPlayer();
+			Player.Stream = stream;
+			AddChild(Player);
+		}
+		Player.Bus = "Music";
+	}
 }
 
 public class SongsUpdatedEventArgs : EventArgs
