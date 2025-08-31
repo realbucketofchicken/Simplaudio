@@ -18,10 +18,9 @@ public partial class SearchDisplay : Node
 
 	}
 	IEnumerable<Song> DisplayedSongs = [];
-	void UpdateDisplay(object sender,EventArgs eventArgs){
-		SongsUpdatedEventArgs args = (SongsUpdatedEventArgs)eventArgs;
-		DisplayedSongs = args.songs;
-		GD.Print("Updated, songs ",args.songs.Count());
+	void UpdateDisplay(IEnumerable<Song> songs){
+		DisplayedSongs = songs;
+		GD.Print("Updated, songs ",songs.Count());
 		
 	}
 
@@ -67,7 +66,6 @@ public partial class SearchDisplay : Node
 				scene.Setup(Songinfo);
 				scene.DisplayId = i;
 				SongContainer.MoveChild(scene,i - CurrentIndex);
-				GD.Print("IDKENX ", i - CurrentIndex );
 				GD.Print("CurrentIndex ", CurrentIndex);
 				displays = displays.Append(scene);
 			}
@@ -79,10 +77,10 @@ public partial class SearchDisplay : Node
 		}	
 		update_margins(CurrentIndex);
 	}
-	void update_margins(int CurrentIndex){
-		int ChildSize = SongContainer.GetChildren().Count * 75;
-		int TotalSize = 75 * DisplayedSongs.Count();
-		int TopMarginSize = CurrentIndex*75;
+	void update_margins(int CurrentIndex,int songsize = 75){
+		int ChildSize = SongContainer.GetChildren().Count * songsize;
+		int TotalSize = songsize * DisplayedSongs.Count();
+		int TopMarginSize = CurrentIndex*songsize;
 		int LowMarginSize = TotalSize-ChildSize-TopMarginSize;
 		UpperMargin.CustomMinimumSize = new Vector2(0,TopMarginSize);
 		LowerMargin.CustomMinimumSize = new Vector2(0, LowMarginSize);

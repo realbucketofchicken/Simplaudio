@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://mfcbf2sfino6"]
+[gd_scene load_steps=18 format=3 uid="uid://mfcbf2sfino6"]
 
 [ext_resource type="Texture2D" uid="uid://0jo87vtoeheu" path="res://Images/pole2.jpg" id="1_6bp64"]
 [ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="1_8gbba"]
 [ext_resource type="Texture2D" uid="uid://0r1tx6l1lc6x" path="res://Icons/settingscog.png" id="2_344ge"]
 [ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://csihi5ila47ga" path="res://Scenes/Metadatatest.cs" id="2_fdnlq"]
 [ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="2_jjvhh"]
 [ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://Icons/search.png" id="2_ynf5e"]
 [ext_resource type="Script" uid="uid://bq55jftgugexl" path="res://Scripts/Context.cs" id="3_8gbba"]
@@ -11,6 +12,8 @@
 [ext_resource type="Script" uid="uid://dq3yj21reqk80" path="res://Scripts/SearchDisplay.cs" id="4_hptm8"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://c21wc1bq2pnm" path="res://Scenes/song_display.tscn" id="5_d1ilt"]
+[ext_resource type="Script" uid="uid://ci5h1wwbedkbt" path="res://Scripts/UIManager.cs" id="12_6iyac"]
+[ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="14_jkdf5"]
 
 [sub_resource type="GDScript" id="GDScript_bo1nx"]
 resource_name = "OpenDirGlue"
@@ -81,6 +84,7 @@ offset_right = -29.0
 offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_fdnlq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Padding"]
 layout_mode = 1
@@ -208,6 +212,7 @@ expand_icon = true
 [node name="PlayButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
+toggle_mode = true
 icon = ExtResource("2_jjvhh")
 expand_icon = true
 
@@ -221,6 +226,8 @@ expand_icon = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+max_value = 1.0
+step = 0.0010000000038417056
 tick_count = 5
 ticks_position = 3
 
@@ -256,7 +263,7 @@ offset_bottom = -42.0
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 1.0
-step = 0.010000000009313226
+step = 0.01000000000931322
 value = 1.0
 script = SubResource("GDScript_d1ilt")
 
@@ -291,3 +298,14 @@ UpperMargin = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollCont
 SongContainer = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer/SongContainer")
 LowerMargin = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer/LowerMargin")
 Scroll = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollContainer")
+
+[node name="UiManager" type="Node" parent="." node_paths=PackedStringArray("PlayPauseButton", "ProgressIndicator", "SkipButton", "GoBackButton", "LoopButton", "RandomizeButton")]
+script = ExtResource("12_6iyac")
+PlayPauseButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/PlayButton")
+PauseImage = ExtResource("14_jkdf5")
+PlayImage = ExtResource("2_jjvhh")
+ProgressIndicator = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/HSlider")
+SkipButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/SkipButton")
+GoBackButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/BackButton")
+LoopButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Loop")
+RandomizeButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Shuffle")

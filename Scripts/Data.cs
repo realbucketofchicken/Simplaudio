@@ -6,26 +6,32 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
-using TagLib;
-using TagLib.Riff;
+
+using ATL.AudioData;
+using ATL;
 
 
 public class Song{
 	public String Name;
 	public bool LoadedMetadata;
-	public String[] Artists;
+	public String Artist;
 	public String Album;
 	public float Length;
 	public String Comment;
+	public String URL;
 	public String Directory;
 	public void LoadMetadata(){
 		var TLfile = TagLib.File.Create(Directory);
-		Album ??= TLfile.Tag.Album;
-		Artists ??= TLfile.Tag.Performers;
-		Name ??= TLfile.Tag.Title;
-		Length = TLfile.Length;
-		Comment ??= TLfile.Tag.Comment;
-		TLfile.Dispose();
+		Track theTrack = new Track(Directory);
+		if (theTrack.AdditionalFields.ContainsKey("comment")){
+			URL = theTrack.AdditionalFields["comment"];
+
+		}
+		Album ??= theTrack.Album;
+		Artist ??= theTrack.Artist;
+		Name = String.IsNullOrEmpty(TLfile.Tag.Title) ?  Name : theTrack.Title;
+		Length = theTrack.Duration;
+		Comment = theTrack.Comment;
 	}
 	public Image LoadImage(){
 		var TLfile = TagLib.File.Create(Directory);
@@ -73,13 +79,12 @@ public class DirectoryLoader{
 			{
 				Directory = file,
 			};
-			//TLfile.Tag.CopyTo(Tag)
-			
-
-			//GD.Print("File Valid, file path ",song.Directory);
+			String[] parts = file.Split("/");
+			String LastPart = parts[^1 ];
+			song.Name = LastPart;
 			Songs = Songs.Append(song);
 
-			//if (file.EndsWith(".mp3"))
+
 		}
 
 		return Songs;

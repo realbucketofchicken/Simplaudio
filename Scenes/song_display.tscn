@@ -12,7 +12,7 @@ font_color = Color(0.7919991, 0.79199916, 0.7919991, 1)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.5647059)
 
-[node name="SongDisplay" type="Control" node_paths=PackedStringArray("background", "NameLabel", "ArtistLabel", "PlayButton")]
+[node name="SongDisplay" type="Control" node_paths=PackedStringArray("background", "NameLabel", "ArtistLabel", "PlayButton", "OpenURLButton")]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 3
 anchors_preset = 10
@@ -23,6 +23,7 @@ background = NodePath("TextureRect")
 NameLabel = NodePath("VBoxContainer/Name")
 ArtistLabel = NodePath("VBoxContainer/Artist")
 PlayButton = NodePath("Playbutton")
+OpenURLButton = NodePath("OpenURl")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -81,3 +82,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
+
+[node name="OpenURl" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -73.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "open url"

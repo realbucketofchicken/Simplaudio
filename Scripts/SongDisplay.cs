@@ -10,6 +10,7 @@ public partial class SongDisplay : Control
 	[Export] Label NameLabel;
 	[Export] Label ArtistLabel;
 	[Export] Button PlayButton;
+	[Export] Button OpenURLButton;
 	public void Setup(Song info){
 		SavedInfo = info;
 		Image image = info.LoadImage();
@@ -18,14 +19,16 @@ public partial class SongDisplay : Control
 			background.Texture = tex;
 		}
 		NameLabel.Text = SavedInfo.Name;
-		if (SavedInfo.Artists.Any()){
-			ArtistLabel.Text = SavedInfo.Artists[0];
+		ArtistLabel.Text = SavedInfo.Artist;
 
-		}
 		PlayButton.Pressed += ButtonPressed;
+		OpenURLButton.Pressed += URLOpen;
 	}
 	void ButtonPressed(){
-		Context.instance.LoadSong(SavedInfo.Directory);
-		Context.instance.PlaySong();
+		Context.ISongPlayer.LoadSong(SavedInfo);
+		Context.ISongPlayer.PlaySong();
+	}
+	void URLOpen(){
+		OS.ShellOpen(SavedInfo.URL);
 	}
 }
