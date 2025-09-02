@@ -11,6 +11,6 @@ public partial class Metadatatest : Control
 	public override void _Ready()
 	{
 		base._Ready();
-		
+		URLImageGetter.GetImageURL("https://www.youtube.com/watch?v=ImqhHLlPfZg&list=WL");
 	}
 }

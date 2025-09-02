@@ -9,6 +9,7 @@ using Godot;
 
 using ATL.AudioData;
 using ATL;
+using System.Net.Http;
 
 
 public class Song{
@@ -88,5 +89,23 @@ public class DirectoryLoader{
 		}
 
 		return Songs;
+	}
+}
+
+class URLImageGetter{
+	public static String GetImageURL(String source){
+		String cleansource = source;
+		String ImageURL = "";
+		if (cleansource.StartsWith("https://")){
+			cleansource = cleansource.Remove(0,7);
+		}
+		GD.Print(cleansource);
+		if (source.StartsWith("www.youtube.com")){
+			ImageURL = "https://i.ytimg.com/vi/";
+			ImageURL += cleansource.Split("?")[1].Split("?")[0].Replace("v=","");
+			ImageURL += "/hqdefault.jpg";
+		}
+		GD.Print("converted ", source, " to ", ImageURL);
+		return ImageURL;
 	}
 }
