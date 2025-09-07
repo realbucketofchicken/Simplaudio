@@ -1,18 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://c21wc1bq2pnm"]
+[gd_scene load_steps=5 format=3 uid="uid://c21wc1bq2pnm"]
 
 [ext_resource type="Script" uid="uid://bs55rsv7eh4l5" path="res://Scripts/SongDisplay.cs" id="1_76jf4"]
+[ext_resource type="Texture2D" uid="uid://dwvy6crqhardn" path="res://Icons/Dropdown.png" id="2_x33bo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_swnt4"]
 font_size = 20
 shadow_size = 2
-shadow_color = Color(0, 0, 0, 0.5647059)
+shadow_color = Color(0, 0, 0, 0.564706)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8tgr4"]
-font_color = Color(0.7919991, 0.79199916, 0.7919991, 1)
+font_color = Color(0.791999, 0.791999, 0.791999, 1)
 shadow_size = 2
-shadow_color = Color(0, 0, 0, 0.5647059)
+shadow_color = Color(0, 0, 0, 0.564706)
 
-[node name="SongDisplay" type="Control" node_paths=PackedStringArray("background", "NameLabel", "ArtistLabel", "PlayButton", "OpenURLButton")]
+[node name="SongDisplay" type="Control" node_paths=PackedStringArray("background", "NameLabel", "ArtistLabel", "PlayButton")]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 3
 anchors_preset = 10
@@ -23,7 +24,6 @@ background = NodePath("TextureRect")
 NameLabel = NodePath("VBoxContainer/Name")
 ArtistLabel = NodePath("VBoxContainer/Artist")
 PlayButton = NodePath("Playbutton")
-OpenURLButton = NodePath("OpenURl")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -83,13 +83,22 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="OpenURl" type="Button" parent="."]
+[node name="MenuButton" type="MenuButton" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 6
 anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -73.0
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -31.5
+offset_bottom = 31.5
 grow_horizontal = 0
 grow_vertical = 2
-text = "open url"
+icon = ExtResource("2_x33bo")
+expand_icon = true
+item_count = 2
+popup/item_0/text = "Open URL"
+popup/item_0/id = 0
+popup/item_1/text = "Delete"
+popup/item_1/id = 1

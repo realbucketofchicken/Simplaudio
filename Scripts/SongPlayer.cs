@@ -17,6 +17,7 @@ public partial class SongPlayer : Node{
 		}
 		Player.StreamPaused = true;
 		SongStateUpdated?.Invoke(true);
+		
 	}
 	public void UnpauseSong(){
 		GD.Print("UnpauseSong");
@@ -28,35 +29,22 @@ public partial class SongPlayer : Node{
 	}
 	public void LoadSong(Song song){
 		Player?.QueueFree();
-		if (song.Directory.ToLower().EndsWith(".mp3")){
-			AudioStreamMP3 stream = AudioStreamMP3.LoadFromFile(song.Directory);
-			Player = new AudioStreamPlayer();
-			Player.Stream = stream;
-			AddChild(Player);
-		}
-		else if(song.Directory.ToLower().EndsWith(".wav")){
-			AudioStreamWav stream = AudioStreamWav.LoadFromFile(song.Directory);
-			Player = new AudioStreamPlayer();
-			Player.Stream = stream;
-			AddChild(Player);
-		}
-		else if(song.Directory.ToLower().EndsWith(".ogg")){
-			AudioStreamOggVorbis stream = AudioStreamOggVorbis.LoadFromFile(song.Directory);
-			Player = new AudioStreamPlayer();
-			Player.Stream = stream;
-			AddChild(Player);
-		}
+		Player = new AudioStreamPlayer();
+		Player.Stream = song.LoadSong();
+		AddChild(Player);
 		GD.Print("Playing ", song.Directory);
 		SongChanged?.Invoke(song);
 		Player.Bus = "Music";
+		RichPresenceManager.instance?.SetPresence(song);
 	}
 	// 0 - 1 range
 	public void SetPosition(float Position){
 		if (Player == null || Player.Stream == null){
 			return;
 		}
-		float length = (float)Player.Stream.GetLength();
-		Player.Play(length*Position);
+		double length = Player.Stream.GetLength();
+		Player.Play((float)length*Position);
+		RichPresenceManager.instance.UpdateTime((double)Position*length,(double)length,false);
 	}
 	public float GetPosition(){
 		if (Player == null || Player.Stream == null){

@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://dds3tnltcg0sg"]
+
+[ext_resource type="Script" uid="uid://23jo0gxt4s8r" path="res://Scripts/PerformanceDisplay.cs" id="1_ytklf"]
+[ext_resource type="PackedScene" uid="uid://c21wc1bq2pnm" path="res://Scenes/song_display.tscn" id="2_5dy3w"]
+
+[node name="SearchResults" type="Panel" node_paths=PackedStringArray("UpperMargin", "SongContainer", "LowerMargin", "Scroll")]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = -1
+anchor_left = 0.285
+anchor_right = 0.715
+anchor_bottom = 0.937
+offset_left = 0.209961
+offset_right = -0.210022
+offset_bottom = 0.121979
+grow_horizontal = 2
+script = ExtResource("1_ytklf")
+display = ExtResource("2_5dy3w")
+UpperMargin = NodePath("ScrollContainer/VBoxContainer/UpperMargin")
+SongContainer = NodePath("ScrollContainer/VBoxContainer/SongContainer")
+LowerMargin = NodePath("ScrollContainer/VBoxContainer/LowerMargin")
+Scroll = NodePath("ScrollContainer")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="UpperMargin" type="Control" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SongContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LowerMargin" type="Control" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2

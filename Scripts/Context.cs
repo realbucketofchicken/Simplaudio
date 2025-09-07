@@ -19,8 +19,17 @@ public partial class Context : Node
 		instance = this;
 		ISongPlayer = new SongPlayer();
 		AddChild(ISongPlayer);
+		RichPresenceManager.instance = new();
+		RichPresenceManager.instance.Setup();
+	}
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+		RichPresenceManager.instance.Update();
 	}
 
+
+	
 	
 
 	public void LoadDirectory(String path){

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://mfcbf2sfino6"]
+[gd_scene load_steps=17 format=3 uid="uid://mfcbf2sfino6"]
 
 [ext_resource type="Texture2D" uid="uid://0jo87vtoeheu" path="res://Images/pole2.jpg" id="1_6bp64"]
 [ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="1_8gbba"]
@@ -9,9 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://Icons/search.png" id="2_ynf5e"]
 [ext_resource type="Script" uid="uid://bq55jftgugexl" path="res://Scripts/Context.cs" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="4_21xkr"]
-[ext_resource type="Script" uid="uid://dq3yj21reqk80" path="res://Scripts/SearchDisplay.cs" id="4_hptm8"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_kry3j"]
-[ext_resource type="PackedScene" uid="uid://c21wc1bq2pnm" path="res://Scenes/song_display.tscn" id="5_d1ilt"]
+[ext_resource type="PackedScene" uid="uid://dds3tnltcg0sg" path="res://Scenes/PerformanceDisplay.tscn" id="5_fdnlq"]
 [ext_resource type="Script" uid="uid://ci5h1wwbedkbt" path="res://Scripts/UIManager.cs" id="12_6iyac"]
 [ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="14_jkdf5"]
 
@@ -62,6 +61,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Context" type="Node" parent="."]
+script = ExtResource("3_8gbba")
+
+[node name="UiManager" type="Node" parent="." node_paths=PackedStringArray("PlayPauseButton", "ProgressIndicator", "SkipButton", "GoBackButton", "LoopButton", "RandomizeButton")]
+script = ExtResource("12_6iyac")
+PlayPauseButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/PlayButton")
+PauseImage = ExtResource("14_jkdf5")
+PlayImage = ExtResource("2_jjvhh")
+ProgressIndicator = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Progress")
+SkipButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/SkipButton")
+GoBackButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/BackButton")
+LoopButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Loop")
+RandomizeButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Shuffle")
+
 [node name="Background" type="TextureRect" parent="."]
 z_index = -2
 layout_mode = 1
@@ -76,6 +89,7 @@ stretch_mode = 6
 
 [node name="Padding" type="Control" parent="."]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 29.0
@@ -153,43 +167,16 @@ expand_icon = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SearchResults" type="Panel" parent="Padding/VBoxContainer/Center"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.28500003
-anchor_right = 0.71500003
-anchor_bottom = 0.93700004
-offset_left = 0.20996094
-offset_right = -0.21002197
-offset_bottom = 0.12197876
-grow_horizontal = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Padding/VBoxContainer/Center/SearchResults"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+[node name="SearchResults" parent="Padding/VBoxContainer/Center" instance=ExtResource("5_fdnlq")]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.339
+anchor_right = 0.661
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-follow_focus = true
-horizontal_scroll_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/SearchResults/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-
-[node name="UpperMargin" type="Control" parent="Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="SongContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="LowerMargin" type="Control" parent="Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer"]
-layout_mode = 2
+offset_left = 0.133972
+offset_right = -0.134033
+offset_bottom = 0.0
 
 [node name="Bottom" type="Control" parent="Padding/VBoxContainer"]
 custom_minimum_size = Vector2(0, 42)
@@ -222,14 +209,12 @@ layout_mode = 2
 icon = ExtResource("2_bo1nx")
 expand_icon = true
 
-[node name="HSlider" type="HSlider" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+[node name="Progress" type="HSlider" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
-step = 0.0010000000038417
-tick_count = 5
-ticks_position = 3
+step = 0.001
 
 [node name="Loop" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
 custom_minimum_size = Vector2(42, 0)
@@ -263,20 +248,17 @@ offset_bottom = -42.0
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 1.0
-step = 0.01000000000931322
+step = 0.01
 value = 1.0
 script = SubResource("GDScript_d1ilt")
 
 [node name="FileDialog" type="FileDialog" parent="."]
-oversampling_override = 1.0
 title = "Open a Directory"
 size = Vector2i(807, 360)
+ok_button_text = "Select Current Folder"
 file_mode = 2
 access = 2
 use_native_dialog = true
-
-[node name="Context" type="Node" parent="."]
-script = ExtResource("3_8gbba")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -290,22 +272,3 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "v2.0"
-
-[node name="SearchDisplay" type="Node" parent="." node_paths=PackedStringArray("UpperMargin", "SongContainer", "LowerMargin", "Scroll")]
-script = ExtResource("4_hptm8")
-display = ExtResource("5_d1ilt")
-UpperMargin = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer/UpperMargin")
-SongContainer = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer/SongContainer")
-LowerMargin = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollContainer/VBoxContainer/LowerMargin")
-Scroll = NodePath("../Padding/VBoxContainer/Center/SearchResults/ScrollContainer")
-
-[node name="UiManager" type="Node" parent="." node_paths=PackedStringArray("PlayPauseButton", "ProgressIndicator", "SkipButton", "GoBackButton", "LoopButton", "RandomizeButton")]
-script = ExtResource("12_6iyac")
-PlayPauseButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/PlayButton")
-PauseImage = ExtResource("14_jkdf5")
-PlayImage = ExtResource("2_jjvhh")
-ProgressIndicator = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/HSlider")
-SkipButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/SkipButton")
-GoBackButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/BackButton")
-LoopButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Loop")
-RandomizeButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Shuffle")

@@ -10,7 +10,7 @@ public partial class SongDisplay : Control
 	[Export] Label NameLabel;
 	[Export] Label ArtistLabel;
 	[Export] Button PlayButton;
-	[Export] Button OpenURLButton;
+	[Export] MenuButton OpenURLButton;
 	public void Setup(Song info){
 		SavedInfo = info;
 		Image image = info.LoadImage();
@@ -22,7 +22,7 @@ public partial class SongDisplay : Control
 		ArtistLabel.Text = SavedInfo.Artist;
 
 		PlayButton.Pressed += ButtonPressed;
-		OpenURLButton.Pressed += URLOpen;
+		//OpenURLButton.GetPopup().Connect("id_pressed", new Callable(this, "id_pressed"));
 	}
 	void ButtonPressed(){
 		Context.ISongPlayer.LoadSong(SavedInfo);
@@ -30,5 +30,8 @@ public partial class SongDisplay : Control
 	}
 	void URLOpen(){
 		OS.ShellOpen(SavedInfo.URL);
+	}
+	public void id_pressed(int idx){
+
 	}
 }

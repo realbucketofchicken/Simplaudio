@@ -13,30 +13,48 @@ using System.Net.Http;
 
 
 public class Song{
-	public String Name;
+	public String Name = "";
 	public bool LoadedMetadata;
-	public String Artist;
-	public String Album;
-	public float Length;
-	public String Comment;
-	public String URL;
-	public String Directory;
+	public String Artist = "";
+	public String Album = "";
+	public double Length;
+	public String Comment = "";
+	public String URL = "";
+	public String Directory = "";
 	public void LoadMetadata(){
-		var TLfile = TagLib.File.Create(Directory);
-		Track theTrack = new Track(Directory);
-		if (theTrack.AdditionalFields.ContainsKey("comment")){
-			URL = theTrack.AdditionalFields["comment"];
-
+		if (Directory == ""){
+			return;
 		}
-		Album ??= theTrack.Album;
-		Artist ??= theTrack.Artist;
-		Name = String.IsNullOrEmpty(TLfile.Tag.Title) ?  Name : theTrack.Title;
+		Track theTrack = new(Directory);
+		if (theTrack.AdditionalFields.TryGetValue("comment", out string value)){
+			URL = value;
+		}
+		Album = theTrack.Album;
+		Artist = theTrack.Artist;
+		Name = String.IsNullOrEmpty(theTrack.Title) ?  Name : theTrack.Title;
 		Length = theTrack.Duration;
 		Comment = theTrack.Comment;
 	}
+	public AudioStream LoadSong(){
+		AudioStream Stream = new();
+		if (Directory.ToLower().EndsWith(".mp3")){
+			AudioStreamMP3 stream = AudioStreamMP3.LoadFromFile(Directory);
+			Stream = stream;
+		}
+		else if(Directory.ToLower().EndsWith(".wav")){
+			AudioStreamWav stream = AudioStreamWav.LoadFromFile(Directory);
+			Stream = stream;
+		}
+		else if(Directory.ToLower().EndsWith(".ogg")){
+			AudioStreamOggVorbis stream = AudioStreamOggVorbis.LoadFromFile(Directory);
+			Stream = stream;
+		}
+		Length = Stream.GetLength();
+		return Stream;
+	}
 	public Image LoadImage(){
 		var TLfile = TagLib.File.Create(Directory);
-		if (TLfile.Tag.Pictures.Count() == 0){
+		if (TLfile.Tag.Pictures.Length == 0){
 			return null;
 		}
 		String type = TLfile.Tag.Pictures[0].MimeType;
@@ -97,13 +115,16 @@ class URLImageGetter{
 		String cleansource = source;
 		String ImageURL = "";
 		if (cleansource.StartsWith("https://")){
-			cleansource = cleansource.Remove(0,7);
+			cleansource = cleansource.Remove(0,8);
 		}
 		GD.Print(cleansource);
-		if (source.StartsWith("www.youtube.com")){
+		if (cleansource.StartsWith("www.youtube")){
 			ImageURL = "https://i.ytimg.com/vi/";
-			ImageURL += cleansource.Split("?")[1].Split("?")[0].Replace("v=","");
-			ImageURL += "/hqdefault.jpg";
+			ImageURL += cleansource.Split("?")[1].Split("&")[0].Replace("v=","");
+			ImageURL += "/hq720.jpg";
+		}
+		else{
+			GD.Print("Dosent start wi yt ");
 		}
 		GD.Print("converted ", source, " to ", ImageURL);
 		return ImageURL;
