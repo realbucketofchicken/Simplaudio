@@ -11,4 +11,7 @@ public class SaveManager{
         }
         return loaded;
     }
+    public static void SaveSettings(SimplaudioSettings settings){
+        ResourceSaver.Save(settings, SaveLocation);
+    }
 }
