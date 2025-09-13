@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SimplaudioSettings" load_steps=2 format=3 uid="uid://dn1yyh3jwlvf5"]
+
+[ext_resource type="Script" uid="uid://dbelngrrq8x2s" path="res://Scripts/SimplaudioSettings.cs" id="1_by5j6"]
+
+[resource]
+script = ExtResource("1_by5j6")
+Shuffled = false
+Sources = {
+"Cogs": true,
+"dafdaf": true,
+"dfagg": false
+}
+metadata/_custom_type_script = "uid://dbelngrrq8x2s"

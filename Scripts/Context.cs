@@ -1,3 +1,4 @@
+using ATL;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,13 @@ public partial class Context : Node
 	DirectoryLoader manager = new();
 	static public SongPlayer ISongPlayer;
 	public event Action<IEnumerable<Song>> SongsUpdated;
+	public SimplaudioSettings Setting;
 
 	public override void _Ready()
 	{
 		base._Ready();
+		Setting = SaveManager.LoadSettings();
+		GD.Print("keys: ", Setting.Sources.Keys);
 		instance = this;
 		ISongPlayer = new SongPlayer();
 		AddChild(ISongPlayer);

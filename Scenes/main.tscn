@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://mfcbf2sfino6"]
+[gd_scene load_steps=18 format=3 uid="uid://mfcbf2sfino6"]
 
 [ext_resource type="Texture2D" uid="uid://0jo87vtoeheu" path="res://Images/pole2.jpg" id="1_6bp64"]
 [ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="1_8gbba"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://dds3tnltcg0sg" path="res://Scenes/PerformanceDisplay.tscn" id="5_fdnlq"]
 [ext_resource type="Script" uid="uid://ci5h1wwbedkbt" path="res://Scripts/UIManager.cs" id="12_6iyac"]
+[ext_resource type="Texture2D" uid="uid://dumymuj4w4si0" path="res://Icons/shuffle.png" id="13_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="14_jkdf5"]
 
 [sub_resource type="GDScript" id="GDScript_bo1nx"]
@@ -224,8 +225,10 @@ icon = ExtResource("4_21xkr")
 expand_icon = true
 
 [node name="Shuffle" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
-text = "shuffle"
+icon = ExtResource("13_jkdf5")
+expand_icon = true
 
 [node name="Volume" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
 custom_minimum_size = Vector2(42, 0)
