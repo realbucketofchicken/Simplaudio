@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://mfcbf2sfino6"]
+[gd_scene load_steps=20 format=3 uid="uid://mfcbf2sfino6"]
 
 [ext_resource type="Texture2D" uid="uid://0jo87vtoeheu" path="res://Images/pole2.jpg" id="1_6bp64"]
 [ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="1_8gbba"]
+[ext_resource type="Theme" uid="uid://cpd5cym1d4tde" path="res://DefaultTheme.tres" id="1_k12tt"]
 [ext_resource type="Texture2D" uid="uid://0r1tx6l1lc6x" path="res://Icons/settingscog.png" id="2_344ge"]
 [ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://csihi5ila47ga" path="res://Scenes/Metadatatest.cs" id="2_fdnlq"]
@@ -11,25 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="4_21xkr"]
 [ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://dds3tnltcg0sg" path="res://Scenes/PerformanceDisplay.tscn" id="5_fdnlq"]
+[ext_resource type="Script" uid="uid://y1d7cbmhmllf" path="res://Scripts/SourcetabUI.cs" id="5_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://bam5mbsffdryc" path="res://Scenes/SourceDisplay.tscn" id="7_h1bgf"]
 [ext_resource type="Script" uid="uid://ci5h1wwbedkbt" path="res://Scripts/UIManager.cs" id="12_6iyac"]
 [ext_resource type="Texture2D" uid="uid://dumymuj4w4si0" path="res://Icons/shuffle.png" id="13_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="14_jkdf5"]
-
-[sub_resource type="GDScript" id="GDScript_bo1nx"]
-resource_name = "OpenDirGlue"
-script/source = "extends Button
-@export var file_dialog: FileDialog
-@export var Context:Node
-func _ready() -> void:
-	file_dialog.dir_selected.connect(dirsel)
-
-func _pressed() -> void:
-	file_dialog.show()
-
-func dirsel(dir:String):
-	print(dir)
-	Context.call(\"LoadDirectory\",dir)
-"
 
 [sub_resource type="GDScript" id="GDScript_ynf5e"]
 resource_name = "Toggle"
@@ -61,6 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_k12tt")
 
 [node name="Context" type="Node" parent="."]
 script = ExtResource("3_8gbba")
@@ -75,6 +63,18 @@ SkipButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/SkipButton"
 GoBackButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/BackButton")
 LoopButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Loop")
 RandomizeButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Shuffle")
+
+[node name="Sourcetab" type="Node" parent="UiManager" node_paths=PackedStringArray("AddSourceButton", "Adder", "Namer", "DirOpenButton", "DirLabel", "AddButton", "Dialog", "SourceContainer")]
+script = ExtResource("5_wsu2k")
+AddSourceButton = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/HBoxContainer/Button")
+Adder = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource")
+Namer = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/LineEdit")
+DirOpenButton = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/Button")
+DirLabel = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/RichTextLabel2")
+AddButton = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/Button2")
+Dialog = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/FileDialog")
+SourceContainer = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/ScrollContainer/SourceContainer")
+SourceScene = ExtResource("7_h1bgf")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -2
@@ -121,13 +121,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer" node_paths=PackedStringArray("file_dialog", "Context")]
-layout_mode = 2
-text = "Open dir"
-script = SubResource("GDScript_bo1nx")
-file_dialog = NodePath("../../../../../FileDialog")
-Context = NodePath("../../../../../Context")
-
 [node name="Control" type="HBoxContainer" parent="Padding/VBoxContainer/Top/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
@@ -145,7 +138,7 @@ expand_to_text_length = true
 [node name="ShowSongs" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer/Control"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "show songs"
+text = "SHOW_SONGS"
 
 [node name="SearchToggle" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer/Control" node_paths=PackedStringArray("searchbar", "showbutton")]
 custom_minimum_size = Vector2(42, 0)
@@ -168,16 +161,101 @@ expand_icon = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SearchResults" parent="Padding/VBoxContainer/Center" instance=ExtResource("5_fdnlq")]
+[node name="HSplitContainer" type="HSplitContainer" parent="Padding/VBoxContainer/Center"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sources" type="Control" parent="Padding/VBoxContainer/Center/HSplitContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SOURCE_TAB"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "ADD"
+
+[node name="AddSource" type="PanelContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddNew" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+layout_mode = 2
+text = "ADD_SOURCE"
+fit_content = true
+scroll_active = false
+
+[node name="LineEdit" type="LineEdit" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+layout_mode = 2
+placeholder_text = "NAME"
+
+[node name="Button" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+layout_mode = 2
+text = "SELECT_DIR"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+layout_mode = 2
+fit_content = true
+scroll_active = false
+
+[node name="Button2" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+layout_mode = 2
+text = "ADD"
+
+[node name="FileDialog" type="FileDialog" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+title = "Open a Directory"
+size = Vector2i(827, 360)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="HSeparator" type="HSeparator" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SourceContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SearchResults" parent="Padding/VBoxContainer/Center/HSplitContainer" instance=ExtResource("5_fdnlq")]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-anchors_preset = 0
-anchor_left = 0.339
-anchor_right = 0.661
-anchor_bottom = 1.0
-offset_left = 0.133972
-offset_right = -0.134033
-offset_bottom = 0.0
 
 [node name="Bottom" type="Control" parent="Padding/VBoxContainer"]
 custom_minimum_size = Vector2(0, 42)
@@ -254,14 +332,6 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 script = SubResource("GDScript_d1ilt")
-
-[node name="FileDialog" type="FileDialog" parent="."]
-title = "Open a Directory"
-size = Vector2i(807, 360)
-ok_button_text = "Select Current Folder"
-file_mode = 2
-access = 2
-use_native_dialog = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
