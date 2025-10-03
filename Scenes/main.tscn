@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://mfcbf2sfino6"]
+[gd_scene load_steps=22 format=3 uid="uid://mfcbf2sfino6"]
 
 [ext_resource type="Texture2D" uid="uid://0jo87vtoeheu" path="res://Images/pole2.jpg" id="1_6bp64"]
 [ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="1_8gbba"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://y1d7cbmhmllf" path="res://Scripts/SourcetabUI.cs" id="5_wsu2k"]
 [ext_resource type="PackedScene" uid="uid://bam5mbsffdryc" path="res://Scenes/SourceDisplay.tscn" id="7_h1bgf"]
 [ext_resource type="Script" uid="uid://ci5h1wwbedkbt" path="res://Scripts/UIManager.cs" id="12_6iyac"]
+[ext_resource type="Texture2D" uid="uid://1rstn6r2wisy" path="res://Icons/X.png" id="12_b3802"]
 [ext_resource type="Texture2D" uid="uid://dumymuj4w4si0" path="res://Icons/shuffle.png" id="13_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="14_jkdf5"]
 
@@ -30,6 +31,15 @@ func _ready() -> void:
 func update(on:bool):
 	searchbar.visible = on == true
 	showbutton.visible = on != true
+"
+
+[sub_resource type="GDScript" id="GDScript_fevyy"]
+resource_name = "gdsd"
+script/source = "extends Button
+@export var source:Control
+
+func _pressed() -> void:
+	source.hide()
 "
 
 [sub_resource type="GDScript" id="GDScript_d1ilt"]
@@ -210,11 +220,24 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
 layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 text = "ADD_SOURCE"
 fit_content = true
 scroll_active = false
+
+[node name="HideBuen" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/HBoxContainer" node_paths=PackedStringArray("source")]
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+icon = ExtResource("12_b3802")
+expand_icon = true
+script = SubResource("GDScript_fevyy")
+source = NodePath("../../..")
 
 [node name="LineEdit" type="LineEdit" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
 layout_mode = 2

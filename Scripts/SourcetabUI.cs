@@ -12,7 +12,7 @@ public partial class SourcetabUI : Node
 	[Export] public FileDialog Dialog;
 	[Export] public Control SourceContainer;
 	[Export] public PackedScene SourceScene;
-	String Directory;
+	String Directory = "";
 	public override void _Ready()
 	{
 		base._Ready();
@@ -21,6 +21,7 @@ public partial class SourcetabUI : Node
 		Dialog.DirSelected += DirSelected;
 		DirOpenButton.Pressed += ShowDialog;
 		AddButton.Pressed += Add;
+		Adder.Hide();
 	}
 	void AddSource(){
 		Adder.Show();
@@ -60,6 +61,8 @@ public partial class SourcetabUI : Node
 	}
 	void Add(){
 		SourceDisplay NewSource = (SourceDisplay)SourceScene.Instantiate();
+		Source sauce = new Source(Directory, Namer.Text);
+		NewSource.source = sauce;
 		SourceContainer.AddChild(NewSource);
 		Adder.Hide();
 	}

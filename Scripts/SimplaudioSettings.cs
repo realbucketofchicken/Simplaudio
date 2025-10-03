@@ -11,3 +11,14 @@ public partial class SimplaudioSettings : Resource{
 		Sources = new Dictionary<String, bool>();
 	}
 }
+
+public partial class Source(String SourcePath, String SourceName) : Resource
+{
+	[Export] public String Path = SourcePath;
+	[Export] public String Name = SourceName;
+}
+
+public partial class SimplaudioSave : Resource{
+    [Export] public Source[] Sources;
+
+}
