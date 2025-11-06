@@ -10,7 +10,10 @@ public partial class SourceDisplay : Control
 	public override void _Ready()
 	{
 		base._Ready();
-		NameLabel.Text = source.Name;
-		PathLabel.Text = source.Path;
+		if (source != null){
+			NameLabel.Text = source.Name;
+			PathLabel.Text = source.Path;
+		}
+		
 	}
 }

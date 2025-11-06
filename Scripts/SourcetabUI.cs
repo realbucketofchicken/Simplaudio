@@ -13,6 +13,8 @@ public partial class SourcetabUI : Node
 	[Export] public Control SourceContainer;
 	[Export] public PackedScene SourceScene;
 	String Directory = "";
+
+	public event Action SongsUpdated;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -30,7 +32,6 @@ public partial class SourcetabUI : Node
 		Dialog.Visible = false;
 		Directory = "";
 		AddButton.Disabled = true;
-
 	}
 	void ShowDialog(){
 		Dialog.Show();
@@ -64,6 +65,8 @@ public partial class SourcetabUI : Node
 		Source sauce = new Source(Directory, Namer.Text);
 		NewSource.source = sauce;
 		SourceContainer.AddChild(NewSource);
+		SongsUpdated?.Invoke();
+		Context.instance.LoadDirectory(Directory);
 		Adder.Hide();
 	}
 }

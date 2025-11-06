@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 	
 "
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" unique_id=710966374]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,10 +60,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_k12tt")
 
-[node name="Context" type="Node" parent="."]
+[node name="Context" type="Node" parent="." unique_id=1774241699]
 script = ExtResource("3_8gbba")
 
-[node name="UiManager" type="Node" parent="." node_paths=PackedStringArray("PlayPauseButton", "ProgressIndicator", "SkipButton", "GoBackButton", "LoopButton", "RandomizeButton")]
+[node name="UiManager" type="Node" parent="." unique_id=1324792533 node_paths=PackedStringArray("PlayPauseButton", "ProgressIndicator", "SkipButton", "GoBackButton", "LoopButton", "RandomizeButton")]
 script = ExtResource("12_6iyac")
 PlayPauseButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/PlayButton")
 PauseImage = ExtResource("14_jkdf5")
@@ -74,7 +74,7 @@ GoBackButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/BackButto
 LoopButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Loop")
 RandomizeButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Shuffle")
 
-[node name="Sourcetab" type="Node" parent="UiManager" node_paths=PackedStringArray("AddSourceButton", "Adder", "Namer", "DirOpenButton", "DirLabel", "AddButton", "Dialog", "SourceContainer")]
+[node name="Sourcetab" type="Node" parent="UiManager" unique_id=236791205 node_paths=PackedStringArray("AddSourceButton", "Adder", "Namer", "DirOpenButton", "DirLabel", "AddButton", "Dialog", "SourceContainer")]
 script = ExtResource("5_wsu2k")
 AddSourceButton = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/HBoxContainer/Button")
 Adder = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource")
@@ -86,7 +86,7 @@ Dialog = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Pa
 SourceContainer = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/ScrollContainer/SourceContainer")
 SourceScene = ExtResource("7_h1bgf")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1005189690]
 z_index = -2
 layout_mode = 1
 anchors_preset = 15
@@ -98,7 +98,7 @@ texture = ExtResource("1_6bp64")
 expand_mode = 5
 stretch_mode = 6
 
-[node name="Padding" type="Control" parent="."]
+[node name="Padding" type="Control" parent="." unique_id=1887461610]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,19 +111,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_fdnlq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Padding"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Padding" unique_id=1200585373]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 2
 
-[node name="Top" type="Control" parent="Padding/VBoxContainer"]
+[node name="Top" type="Control" parent="Padding/VBoxContainer" unique_id=111990697]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Top"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Top" unique_id=683685039]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,13 +132,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="HBoxContainer" parent="Padding/VBoxContainer/Top/HBoxContainer"]
+[node name="Control" type="HBoxContainer" parent="Padding/VBoxContainer/Top/HBoxContainer" unique_id=1939866435]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="SearchBar" type="LineEdit" parent="Padding/VBoxContainer/Top/HBoxContainer/Control"]
+[node name="SearchBar" type="LineEdit" parent="Padding/VBoxContainer/Top/HBoxContainer/Control" unique_id=1940839068]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -145,12 +146,12 @@ placeholder_text = "Search..."
 max_length = 50
 expand_to_text_length = true
 
-[node name="ShowSongs" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer/Control"]
+[node name="ShowSongs" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer/Control" unique_id=1036897699]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "SHOW_SONGS"
 
-[node name="SearchToggle" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer/Control" node_paths=PackedStringArray("searchbar", "showbutton")]
+[node name="SearchToggle" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer/Control" unique_id=185868424 node_paths=PackedStringArray("searchbar", "showbutton")]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 toggle_mode = true
@@ -161,17 +162,17 @@ script = SubResource("GDScript_ynf5e")
 searchbar = NodePath("../SearchBar")
 showbutton = NodePath("../ShowSongs")
 
-[node name="Settings" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer"]
+[node name="Settings" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer" unique_id=834339092]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 icon = ExtResource("2_344ge")
 expand_icon = true
 
-[node name="Center" type="Control" parent="Padding/VBoxContainer"]
+[node name="Center" type="Control" parent="Padding/VBoxContainer" unique_id=1121630758]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HSplitContainer" type="HSplitContainer" parent="Padding/VBoxContainer/Center"]
+[node name="HSplitContainer" type="HSplitContainer" parent="Padding/VBoxContainer/Center" unique_id=1017273384]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -179,11 +180,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sources" type="Control" parent="Padding/VBoxContainer/Center/HSplitContainer"]
+[node name="Sources" type="Control" parent="Padding/VBoxContainer/Center/HSplitContainer" unique_id=1275051820]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources"]
+[node name="Panel" type="Panel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources" unique_id=306471911]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -191,7 +192,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel" unique_id=424804791]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -199,31 +200,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer" unique_id=837327006]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/HBoxContainer" unique_id=1555214569]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "SOURCE_TAB"
 fit_content = true
 scroll_active = false
 
-[node name="Button" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/HBoxContainer" unique_id=1298656246]
 layout_mode = 2
 text = "ADD"
 
-[node name="AddSource" type="PanelContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer"]
+[node name="AddSource" type="PanelContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer" unique_id=236739777]
 layout_mode = 2
 
-[node name="AddNew" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource"]
+[node name="AddNew" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource" unique_id=469839701]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=145355055]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/HBoxContainer" unique_id=1060860618]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -231,7 +232,7 @@ text = "ADD_SOURCE"
 fit_content = true
 scroll_active = false
 
-[node name="HideBuen" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/HBoxContainer" node_paths=PackedStringArray("source")]
+[node name="HideBuen" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/HBoxContainer" unique_id=918348875 node_paths=PackedStringArray("source")]
 custom_minimum_size = Vector2(22, 0)
 layout_mode = 2
 icon = ExtResource("12_b3802")
@@ -239,24 +240,24 @@ expand_icon = true
 script = SubResource("GDScript_fevyy")
 source = NodePath("../../..")
 
-[node name="LineEdit" type="LineEdit" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+[node name="LineEdit" type="LineEdit" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=744317373]
 layout_mode = 2
 placeholder_text = "NAME"
 
-[node name="Button" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+[node name="Button" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=1073120484]
 layout_mode = 2
 text = "SELECT_DIR"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=1169775431]
 layout_mode = 2
 fit_content = true
 scroll_active = false
 
-[node name="Button2" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+[node name="Button2" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=1152374549]
 layout_mode = 2
 text = "ADD"
 
-[node name="FileDialog" type="FileDialog" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew"]
+[node name="FileDialog" type="FileDialog" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=1647907678]
 title = "Open a Directory"
 size = Vector2i(827, 360)
 ok_button_text = "Select Current Folder"
@@ -264,27 +265,27 @@ file_mode = 2
 access = 2
 use_native_dialog = true
 
-[node name="HSeparator" type="HSeparator" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer" unique_id=31060683]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer" unique_id=1212463777]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SourceContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/ScrollContainer"]
+[node name="SourceContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/ScrollContainer" unique_id=436986523]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SearchResults" parent="Padding/VBoxContainer/Center/HSplitContainer" instance=ExtResource("5_fdnlq")]
+[node name="SearchResults" parent="Padding/VBoxContainer/Center/HSplitContainer" unique_id=491001094 instance=ExtResource("5_fdnlq")]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
-[node name="Bottom" type="Control" parent="Padding/VBoxContainer"]
+[node name="Bottom" type="Control" parent="Padding/VBoxContainer" unique_id=176014070]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Bottom"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Bottom" unique_id=1615147072]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -292,52 +293,52 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+[node name="BackButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=498838677]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 icon = ExtResource("1_8gbba")
 expand_icon = true
 
-[node name="PlayButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+[node name="PlayButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=863470090]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 toggle_mode = true
 icon = ExtResource("2_jjvhh")
 expand_icon = true
 
-[node name="SkipButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+[node name="SkipButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=262773788]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 icon = ExtResource("2_bo1nx")
 expand_icon = true
 
-[node name="Progress" type="HSlider" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+[node name="Progress" type="HSlider" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=1969204251]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
 step = 0.001
 
-[node name="Loop" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+[node name="Loop" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=1668328934]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 toggle_mode = true
 icon = ExtResource("4_21xkr")
 expand_icon = true
 
-[node name="Shuffle" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+[node name="Shuffle" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=266740639]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 icon = ExtResource("13_jkdf5")
 expand_icon = true
 
-[node name="Volume" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer"]
+[node name="Volume" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=1355370683]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 icon = ExtResource("4_kry3j")
 expand_icon = true
 
-[node name="VolumeSlider" type="VSlider" parent="Padding/VBoxContainer/Bottom/HBoxContainer/Volume"]
+[node name="VolumeSlider" type="VSlider" parent="Padding/VBoxContainer/Bottom/HBoxContainer/Volume" unique_id=981601120]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
 anchors_preset = -1
@@ -356,7 +357,7 @@ step = 0.01
 value = 1.0
 script = SubResource("GDScript_d1ilt")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1116909625]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
