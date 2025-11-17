@@ -1,0 +1,143 @@
+[gd_scene load_steps=7 format=3 uid="uid://5v56arvjyw4p"]
+
+[ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="1_543jr"]
+[ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="2_pwrg8"]
+[ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="3_f21cu"]
+[ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="3_hr4cn"]
+[ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_pwrg8"]
+[ext_resource type="Texture2D" uid="uid://dvid0yk4kh5hq" path="res://Images/Eveningsmall.jpg" id="6_f21cu"]
+
+[node name="FullInterface" type="Control" unique_id=678905669]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1255661485]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer" unique_id=961658991]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Panel" unique_id=1736629774]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Control" type="Control" parent="VBoxContainer/Panel/MarginContainer" unique_id=1960151738]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/MarginContainer/Control" unique_id=1483630949]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Panel/MarginContainer/Control/HBoxContainer" unique_id=433909645]
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+texture = ExtResource("6_f21cu")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Panel/MarginContainer/Control/HBoxContainer" unique_id=1251684129]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SimplSong
+Artist
+Album"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1091310261]
+layout_mode = 2
+
+[node name="GoBack" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1229237570]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+icon = ExtResource("1_543jr")
+expand_icon = true
+
+[node name="PausePlay" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1822291703]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+icon = ExtResource("2_pwrg8")
+expand_icon = true
+
+[node name="Loop" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1919587878]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+icon = ExtResource("3_f21cu")
+expand_icon = true
+
+[node name="Skip" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=133075482]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+icon = ExtResource("3_hr4cn")
+expand_icon = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1007920060]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1811164513]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=988865873]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+icon = ExtResource("4_pwrg8")
+expand_icon = true
+
+[node name="Progress" type="RichTextLabel" parent="." unique_id=674204878]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 185.0
+offset_top = -48.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+text = "0:19/31:99"
+vertical_alignment = 3
+
+[node name="Song" type="VBoxContainer" parent="." unique_id=1592308856]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 303.0
+offset_top = 1.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sources" type="VBoxContainer" parent="." unique_id=2011065913]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 451.0

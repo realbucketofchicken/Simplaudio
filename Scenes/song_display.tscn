@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c21wc1bq2pnm"]
 
-[ext_resource type="Script" uid="uid://bs55rsv7eh4l5" path="res://Scripts/SongDisplay.cs" id="1_76jf4"]
+[ext_resource type="Script" uid="uid://bs55rsv7eh4l5" path="res://Scripts/Backend/SongDisplay.cs" id="1_76jf4"]
 [ext_resource type="Texture2D" uid="uid://dwvy6crqhardn" path="res://Icons/Dropdown.png" id="2_x33bo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_swnt4"]

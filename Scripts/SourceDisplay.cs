@@ -3,17 +3,24 @@ using System;
 
 public partial class SourceDisplay : Control
 {
-	[Export] public Label NameLabel;
-	[Export] public Label PathLabel;
-	[Export] public CheckBox CheckButtonButton;
+	public event Action Changed;
 	public Source source;
-	public override void _Ready()
-	{
-		base._Ready();
-		if (source != null){
-			NameLabel.Text = source.Name;
-			PathLabel.Text = source.Path;
-		}
-		
+	[Export] CheckBox EnabledCheck;
+	[Export] Label NameLabel;
+	[Export] Label PathLabel;
+	public bool Enabled;
+	public void Update(){
+		PathLabel.Text = source.Path;
+		NameLabel.Text = source.Name;
+		EnabledCheck.Toggled += Toggled;
+	}
+	void Toggled(bool enabled){
+		Enabled = enabled;
+		Changed?.Invoke();
+	}
+	void Delete(){
+		Enabled = false;
+		Changed?.Invoke();
+		QueueFree();
 	}
 }

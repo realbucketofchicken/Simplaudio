@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bam5mbsffdryc"]
 
-[ext_resource type="Script" uid="uid://cohxe7s2pd123" path="res://Scripts/SourceDisplay.cs" id="1_24osb"]
+[ext_resource type="Script" uid="uid://du2j3lspxge7f" path="res://Scripts/SourceDisplay.cs" id="1_wqeof"]
 [ext_resource type="Texture2D" uid="uid://dwvy6crqhardn" path="res://Icons/Dropdown.png" id="2_wqeof"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_84l0p"]
@@ -13,7 +13,7 @@ font_color = Color(0.791999, 0.791999, 0.791999, 1)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.564706)
 
-[node name="SourceDisplay" type="Control" node_paths=PackedStringArray("NameLabel", "PathLabel", "CheckButtonButton")]
+[node name="SourceDisplay" type="Control" unique_id=2040468863 node_paths=PackedStringArray("EnabledCheck", "NameLabel", "PathLabel")]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 3
 anchors_preset = 15
@@ -23,12 +23,12 @@ offset_right = -572.0
 offset_bottom = -573.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_24osb")
+script = ExtResource("1_wqeof")
+EnabledCheck = NodePath("HBoxContainer/CheckBox")
 NameLabel = NodePath("HBoxContainer/VBoxContainer/Name")
 PathLabel = NodePath("HBoxContainer/VBoxContainer/Path")
-CheckButtonButton = NodePath("HBoxContainer/CheckBox")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=220383628]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=730957905]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,12 +45,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=707103310]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="Name" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="Name" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1705771460]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -59,7 +59,7 @@ label_settings = SubResource("LabelSettings_84l0p")
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="Path" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="Path" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1633998177]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -68,12 +68,12 @@ label_settings = SubResource("LabelSettings_24osb")
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="CheckBox" type="CheckBox" parent="HBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="HBoxContainer" unique_id=38681969]
 layout_mode = 2
 size_flags_vertical = 4
 text = "Enabled"
 
-[node name="MenuButton" type="MenuButton" parent="HBoxContainer"]
+[node name="MenuButton" type="MenuButton" parent="HBoxContainer" unique_id=1880046464]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 icon = ExtResource("2_wqeof")

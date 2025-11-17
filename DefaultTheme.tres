@@ -1,3 +1,35 @@
-[gd_resource type="Theme" format=3 uid="uid://cpd5cym1d4tde"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cpd5cym1d4tde"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihngy"]
+bg_color = Color(0.20511743, 0.20511743, 0.20511743, 0.48235294)
+border_color = Color(0, 0, 0, 0.49803922)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pucy"]
+bg_color = Color(0.09239707, 0.09239706, 0.09239706, 0.48235294)
+border_color = Color(0, 0, 0, 0.49803922)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnd74"]
+bg_color = Color(0, 0, 0, 0.48235294)
+border_color = Color(0, 0, 0, 0.49803922)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
 
 [resource]
+Button/styles/hover = SubResource("StyleBoxFlat_ihngy")
+Button/styles/normal = SubResource("StyleBoxFlat_8pucy")
+Button/styles/pressed = SubResource("StyleBoxFlat_jnd74")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_8pucy")

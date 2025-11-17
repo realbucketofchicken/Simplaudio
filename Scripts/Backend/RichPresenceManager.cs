@@ -17,7 +17,7 @@ public class RichPresenceManager{
 			Details = "Just started up...",
 			State = "Listening",
 			DetailsUrl = "https://realbucketofchicken.github.io/SimplSite/simplaudio.html",
-			StatusDisplay = StatusDisplayType.State,
+			StatusDisplay = StatusDisplayType.Name,
 			Type = DiscordRPC.ActivityType.Listening,
 			Assets = new DiscordRPC.Assets()
 			{
@@ -56,7 +56,7 @@ public class RichPresenceManager{
 		{
 			Details = song.Name,
 			State = song.Artist ,
-			StatusDisplay = (!String.IsNullOrEmpty(song.Artist)) ? StatusDisplayType.State : StatusDisplayType.Details,
+			StatusDisplay = (!String.IsNullOrEmpty(song.Artist)) ? StatusDisplayType.Details : StatusDisplayType.Details,
 			Type = DiscordRPC.ActivityType.Listening,
 			Assets = new DiscordRPC.Assets()
 			{

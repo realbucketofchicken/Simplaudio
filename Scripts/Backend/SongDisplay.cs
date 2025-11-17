@@ -6,6 +6,7 @@ public partial class SongDisplay : Control
 {
 	public int DisplayId;
 	Song SavedInfo;
+	
 	[Export] TextureRect background;
 	[Export] Label NameLabel;
 	[Export] Label ArtistLabel;
@@ -21,12 +22,7 @@ public partial class SongDisplay : Control
 		NameLabel.Text = SavedInfo.Name;
 		ArtistLabel.Text = SavedInfo.Artist;
 
-		PlayButton.Pressed += ButtonPressed;
 		//OpenURLButton.GetPopup().Connect("id_pressed", new Callable(this, "id_pressed"));
-	}
-	void ButtonPressed(){
-		Context.ISongPlayer.LoadSong(SavedInfo);
-		Context.ISongPlayer.PlaySong();
 	}
 	void URLOpen(){
 		OS.ShellOpen(SavedInfo.URL);

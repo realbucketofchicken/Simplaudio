@@ -1,0 +1,130 @@
+[gd_scene load_steps=11 format=3 uid="uid://e1638m72yit4"]
+
+[ext_resource type="Theme" uid="uid://vhvx5qjav337" path="res://ClearTheme.tres" id="1_g8rey"]
+[ext_resource type="Texture2D" uid="uid://bp4ipephewcrn" path="res://SmoothEdges.png" id="1_rr0ra"]
+[ext_resource type="Texture2D" uid="uid://dvid0yk4kh5hq" path="res://Images/Eveningsmall.jpg" id="1_s3st5"]
+[ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="2_7ks72"]
+[ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="3_x84vf"]
+[ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="4_rr0ra"]
+
+[sub_resource type="Gradient" id="Gradient_s3st5"]
+offsets = PackedFloat32Array(0, 0.5338983, 0.80508476, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.34433544, 0, 0, 0, 0.11016947, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7ks72"]
+gradient = SubResource("Gradient_s3st5")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 12
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rqjnj"]
+texture = SubResource("GradientTexture2D_7ks72")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ks72"]
+font_size = 25
+
+[node name="SimplifiedInterface" type="Control" unique_id=721327160]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_g8rey")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1734276215]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Centerroot" type="Control" parent="CenterContainer" unique_id=891907347]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer/Centerroot" unique_id=861126034]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -325.0
+offset_right = 325.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rqjnj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Centerroot" unique_id=471497401]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.5
+offset_top = -147.5
+offset_right = 149.5
+offset_bottom = 147.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/Centerroot/VBoxContainer" unique_id=883547640]
+clip_children = 1
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_rr0ra")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="CenterContainer/Centerroot/VBoxContainer/TextureRect" unique_id=1486812090]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_s3st5")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CenterContainer/Centerroot/VBoxContainer" unique_id=1889746587]
+layout_mode = 2
+size_flags_vertical = 3
+text = "SimpleSong - SimplAudio"
+label_settings = SubResource("LabelSettings_7ks72")
+
+[node name="Buens" type="HBoxContainer" parent="CenterContainer/Centerroot/VBoxContainer" unique_id=766446512]
+layout_mode = 2
+alignment = 1
+
+[node name="GoBack" type="Button" parent="CenterContainer/Centerroot/VBoxContainer/Buens" unique_id=231535849]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+icon = ExtResource("2_7ks72")
+expand_icon = true
+
+[node name="PausePlay" type="Button" parent="CenterContainer/Centerroot/VBoxContainer/Buens" unique_id=591623444]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+icon = ExtResource("3_x84vf")
+expand_icon = true
+
+[node name="Skip" type="Button" parent="CenterContainer/Centerroot/VBoxContainer/Buens" unique_id=1881362143]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+icon = ExtResource("4_rr0ra")
+expand_icon = true

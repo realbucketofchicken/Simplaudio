@@ -1,57 +1,72 @@
-[gd_scene load_steps=22 format=3 uid="uid://mfcbf2sfino6"]
+[gd_scene load_steps=23 format=3 uid="uid://mfcbf2sfino6"]
 
-[ext_resource type="Texture2D" uid="uid://0jo87vtoeheu" path="res://Images/pole2.jpg" id="1_6bp64"]
-[ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="1_8gbba"]
 [ext_resource type="Theme" uid="uid://cpd5cym1d4tde" path="res://DefaultTheme.tres" id="1_k12tt"]
-[ext_resource type="Texture2D" uid="uid://0r1tx6l1lc6x" path="res://Icons/settingscog.png" id="2_344ge"]
-[ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="2_bo1nx"]
-[ext_resource type="Script" uid="uid://csihi5ila47ga" path="res://Scenes/Metadatatest.cs" id="2_fdnlq"]
-[ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="2_jjvhh"]
-[ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://Icons/search.png" id="2_ynf5e"]
-[ext_resource type="Script" uid="uid://bq55jftgugexl" path="res://Scripts/Context.cs" id="3_8gbba"]
-[ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="4_21xkr"]
-[ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="4_kry3j"]
-[ext_resource type="PackedScene" uid="uid://dds3tnltcg0sg" path="res://Scenes/PerformanceDisplay.tscn" id="5_fdnlq"]
-[ext_resource type="Script" uid="uid://y1d7cbmhmllf" path="res://Scripts/SourcetabUI.cs" id="5_wsu2k"]
-[ext_resource type="PackedScene" uid="uid://bam5mbsffdryc" path="res://Scenes/SourceDisplay.tscn" id="7_h1bgf"]
-[ext_resource type="Script" uid="uid://ci5h1wwbedkbt" path="res://Scripts/UIManager.cs" id="12_6iyac"]
-[ext_resource type="Texture2D" uid="uid://1rstn6r2wisy" path="res://Icons/X.png" id="12_b3802"]
-[ext_resource type="Texture2D" uid="uid://dumymuj4w4si0" path="res://Icons/shuffle.png" id="13_jkdf5"]
-[ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="14_jkdf5"]
+[ext_resource type="Texture2D" uid="uid://0jo87vtoeheu" path="res://Images/pole2.jpg" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://f5kkp8ovi107" path="res://Scripts/SourceLoader.cs" id="2_kry3j"]
+[ext_resource type="Texture2D" uid="uid://dvid0yk4kh5hq" path="res://Images/Eveningsmall.jpg" id="4_hptm8"]
+[ext_resource type="Texture2D" uid="uid://ch8wymyxftkb3" path="res://Icons/Pause.png" id="4_jkdf5"]
+[ext_resource type="Texture2D" uid="uid://df2e70jxwrmjs" path="res://Icons/BackOne.png" id="5_d1ilt"]
+[ext_resource type="Texture2D" uid="uid://myq6n4bshduj" path="res://Icons/search.png" id="5_kry3j"]
+[ext_resource type="Texture2D" uid="uid://ctb4s2nks73rx" path="res://Icons/Play.png" id="6_6iyac"]
+[ext_resource type="Texture2D" uid="uid://38c8dfym0svn" path="res://Icons/Loop.png" id="7_fdnlq"]
+[ext_resource type="Texture2D" uid="uid://daq8wnhtscpjl" path="res://Icons/Skip.png" id="8_jkdf5"]
+[ext_resource type="Texture2D" uid="uid://cekkhyppj88xi" path="res://Icons/Headphones.png" id="9_wsu2k"]
+[ext_resource type="Script" uid="uid://bunh7x8sltmpc" path="res://Scripts/slider.gd" id="10_d1ilt"]
+[ext_resource type="Script" uid="uid://dl1ipi4ocs3kq" path="res://Scripts/AddDialog.cs" id="12_fdnlq"]
+[ext_resource type="Script" uid="uid://cl8087ysk6gbg" path="res://Scripts/SourceManager.cs" id="14_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://bam5mbsffdryc" path="res://Scenes/SourceDisplay.tscn" id="15_wsu2k"]
 
-[sub_resource type="GDScript" id="GDScript_ynf5e"]
-resource_name = "Toggle"
+[sub_resource type="Gradient" id="Gradient_6iyac"]
+offsets = PackedFloat32Array(0.7432432, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fdnlq"]
+gradient = SubResource("Gradient_6iyac")
+fill = 1
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wsu2k"]
+font_size = 17
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.57254905)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6iyac"]
+font_size = 25
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.49019608)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdnlq"]
+font_size = 20
+font_color = Color(0.851769, 0.8517689, 0.85176885, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.5882353)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jkdf5"]
+font_size = 20
+font_color = Color(0.851769, 0.8517689, 0.85176885, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.5882353)
+
+[sub_resource type="GDScript" id="GDScript_6iyac"]
+resource_name = "DirSelect"
 script/source = "extends Button
-@export var searchbar:LineEdit
-@export var showbutton:Button
+@export var file_dialog: FileDialog
 
-func _ready() -> void:
-	toggled.connect(update)
-
-func update(on:bool):
-	searchbar.visible = on == true
-	showbutton.visible = on != true
-"
-
-[sub_resource type="GDScript" id="GDScript_fevyy"]
-resource_name = "gdsd"
-script/source = "extends Button
-@export var source:Control
 
 func _pressed() -> void:
-	source.hide()
+	file_dialog.show()
 "
 
-[sub_resource type="GDScript" id="GDScript_d1ilt"]
-resource_name = "Slider"
-script/source = "extends VSlider
-
-func _process(delta: float) -> void:
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(\"Music\"),linear_to_db(value))
-	
-"
-
-[node name="Main" type="Control" unique_id=710966374]
+[node name="Main" type="Control" unique_id=710966374 node_paths=PackedStringArray("manager", "playbutton", "backbutton", "skipbutton", "loopbutton", "progressbar", "progresslabel", "TitleLabel", "ArtistLabel", "AlbumLabel", "CoverArt")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,303 +74,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_k12tt")
-
-[node name="Context" type="Node" parent="." unique_id=1774241699]
-script = ExtResource("3_8gbba")
-
-[node name="UiManager" type="Node" parent="." unique_id=1324792533 node_paths=PackedStringArray("PlayPauseButton", "ProgressIndicator", "SkipButton", "GoBackButton", "LoopButton", "RandomizeButton")]
-script = ExtResource("12_6iyac")
-PlayPauseButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/PlayButton")
-PauseImage = ExtResource("14_jkdf5")
-PlayImage = ExtResource("2_jjvhh")
-ProgressIndicator = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Progress")
-SkipButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/SkipButton")
-GoBackButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/BackButton")
-LoopButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Loop")
-RandomizeButton = NodePath("../Padding/VBoxContainer/Bottom/HBoxContainer/Shuffle")
-
-[node name="Sourcetab" type="Node" parent="UiManager" unique_id=236791205 node_paths=PackedStringArray("AddSourceButton", "Adder", "Namer", "DirOpenButton", "DirLabel", "AddButton", "Dialog", "SourceContainer")]
-script = ExtResource("5_wsu2k")
-AddSourceButton = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/HBoxContainer/Button")
-Adder = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource")
-Namer = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/LineEdit")
-DirOpenButton = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/Button")
-DirLabel = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/RichTextLabel2")
-AddButton = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/Button2")
-Dialog = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/FileDialog")
-SourceContainer = NodePath("../../Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/ScrollContainer/SourceContainer")
-SourceScene = ExtResource("7_h1bgf")
-
-[node name="Background" type="TextureRect" parent="." unique_id=1005189690]
-z_index = -2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_6bp64")
-expand_mode = 5
-stretch_mode = 6
-
-[node name="Padding" type="Control" parent="." unique_id=1887461610]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = 31.0
-offset_right = -29.0
-offset_bottom = -31.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_fdnlq")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Padding" unique_id=1200585373]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 2
-
-[node name="Top" type="Control" parent="Padding/VBoxContainer" unique_id=111990697]
-custom_minimum_size = Vector2(0, 42)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Top" unique_id=683685039]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Control" type="HBoxContainer" parent="Padding/VBoxContainer/Top/HBoxContainer" unique_id=1939866435]
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="SearchBar" type="LineEdit" parent="Padding/VBoxContainer/Top/HBoxContainer/Control" unique_id=1940839068]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-placeholder_text = "Search..."
-max_length = 50
-expand_to_text_length = true
-
-[node name="ShowSongs" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer/Control" unique_id=1036897699]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "SHOW_SONGS"
-
-[node name="SearchToggle" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer/Control" unique_id=185868424 node_paths=PackedStringArray("searchbar", "showbutton")]
-custom_minimum_size = Vector2(42, 0)
-layout_mode = 2
-toggle_mode = true
-icon = ExtResource("2_ynf5e")
-alignment = 0
-expand_icon = true
-script = SubResource("GDScript_ynf5e")
-searchbar = NodePath("../SearchBar")
-showbutton = NodePath("../ShowSongs")
-
-[node name="Settings" type="Button" parent="Padding/VBoxContainer/Top/HBoxContainer" unique_id=834339092]
-custom_minimum_size = Vector2(42, 0)
-layout_mode = 2
-icon = ExtResource("2_344ge")
-expand_icon = true
-
-[node name="Center" type="Control" parent="Padding/VBoxContainer" unique_id=1121630758]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HSplitContainer" type="HSplitContainer" parent="Padding/VBoxContainer/Center" unique_id=1017273384]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Sources" type="Control" parent="Padding/VBoxContainer/Center/HSplitContainer" unique_id=1275051820]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources" unique_id=306471911]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel" unique_id=424804791]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer" unique_id=837327006]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/HBoxContainer" unique_id=1555214569]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "SOURCE_TAB"
-fit_content = true
-scroll_active = false
-
-[node name="Button" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/HBoxContainer" unique_id=1298656246]
-layout_mode = 2
-text = "ADD"
-
-[node name="AddSource" type="PanelContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer" unique_id=236739777]
-layout_mode = 2
-
-[node name="AddNew" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource" unique_id=469839701]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=145355055]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/HBoxContainer" unique_id=1060860618]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-text = "ADD_SOURCE"
-fit_content = true
-scroll_active = false
-
-[node name="HideBuen" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew/HBoxContainer" unique_id=918348875 node_paths=PackedStringArray("source")]
-custom_minimum_size = Vector2(22, 0)
-layout_mode = 2
-icon = ExtResource("12_b3802")
-expand_icon = true
-script = SubResource("GDScript_fevyy")
-source = NodePath("../../..")
-
-[node name="LineEdit" type="LineEdit" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=744317373]
-layout_mode = 2
-placeholder_text = "NAME"
-
-[node name="Button" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=1073120484]
-layout_mode = 2
-text = "SELECT_DIR"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=1169775431]
-layout_mode = 2
-fit_content = true
-scroll_active = false
-
-[node name="Button2" type="Button" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=1152374549]
-layout_mode = 2
-text = "ADD"
-
-[node name="FileDialog" type="FileDialog" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/AddSource/AddNew" unique_id=1647907678]
-title = "Open a Directory"
-size = Vector2i(827, 360)
-ok_button_text = "Select Current Folder"
-file_mode = 2
-access = 2
-use_native_dialog = true
-
-[node name="HSeparator" type="HSeparator" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer" unique_id=31060683]
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer" unique_id=1212463777]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="SourceContainer" type="VBoxContainer" parent="Padding/VBoxContainer/Center/HSplitContainer/Sources/Panel/VBoxContainer/ScrollContainer" unique_id=436986523]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="SearchResults" parent="Padding/VBoxContainer/Center/HSplitContainer" unique_id=491001094 instance=ExtResource("5_fdnlq")]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-
-[node name="Bottom" type="Control" parent="Padding/VBoxContainer" unique_id=176014070]
-custom_minimum_size = Vector2(0, 42)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Padding/VBoxContainer/Bottom" unique_id=1615147072]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BackButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=498838677]
-custom_minimum_size = Vector2(42, 0)
-layout_mode = 2
-icon = ExtResource("1_8gbba")
-expand_icon = true
-
-[node name="PlayButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=863470090]
-custom_minimum_size = Vector2(42, 0)
-layout_mode = 2
-toggle_mode = true
-icon = ExtResource("2_jjvhh")
-expand_icon = true
-
-[node name="SkipButton" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=262773788]
-custom_minimum_size = Vector2(42, 0)
-layout_mode = 2
-icon = ExtResource("2_bo1nx")
-expand_icon = true
-
-[node name="Progress" type="HSlider" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=1969204251]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.001
-
-[node name="Loop" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=1668328934]
-custom_minimum_size = Vector2(42, 0)
-layout_mode = 2
-toggle_mode = true
-icon = ExtResource("4_21xkr")
-expand_icon = true
-
-[node name="Shuffle" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=266740639]
-custom_minimum_size = Vector2(42, 0)
-layout_mode = 2
-icon = ExtResource("13_jkdf5")
-expand_icon = true
-
-[node name="Volume" type="Button" parent="Padding/VBoxContainer/Bottom/HBoxContainer" unique_id=1355370683]
-custom_minimum_size = Vector2(42, 0)
-layout_mode = 2
-icon = ExtResource("4_kry3j")
-expand_icon = true
-
-[node name="VolumeSlider" type="VSlider" parent="Padding/VBoxContainer/Bottom/HBoxContainer/Volume" unique_id=981601120]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -9.0
-offset_top = -50.0
-offset_right = 7.0
-offset_bottom = -42.0
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 1.0
-step = 0.01
-value = 1.0
-script = SubResource("GDScript_d1ilt")
+script = ExtResource("2_kry3j")
+manager = NodePath("SourceManager")
+playbutton = NodePath("InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer/PausePlay")
+backbutton = NodePath("InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer/GoBack")
+skipbutton = NodePath("InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer/Skip")
+loopbutton = NodePath("InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer/Loop")
+progressbar = NodePath("InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer/VBoxContainer/HSlider")
+progresslabel = NodePath("InterfaceHolder/FullInterface/Progress")
+TitleLabel = NodePath("InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer2/Title")
+ArtistLabel = NodePath("InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer2/Artit")
+AlbumLabel = NodePath("InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer2/Album")
+CoverArt = NodePath("InterfaceHolder/FullInterface/TextureRect/TextureRect")
+PausedIcon = ExtResource("6_6iyac")
+PlayingIcon = ExtResource("4_jkdf5")
 
 [node name="Label" type="Label" parent="." unique_id=1116909625]
 layout_mode = 1
@@ -369,3 +101,274 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "v2.0"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1332965117]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bo1nx")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="InterfaceHolder" type="MarginContainer" parent="." unique_id=1778024061]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 45
+
+[node name="FullInterface" type="Control" parent="InterfaceHolder" unique_id=678905669]
+layout_mode = 2
+
+[node name="Song" type="VBoxContainer" parent="InterfaceHolder/FullInterface" unique_id=1592308856]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 303.0
+offset_top = 1.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="InterfaceHolder/FullInterface" unique_id=433909645]
+clip_children = 1
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -343.0
+offset_right = 343.0
+grow_vertical = 0
+size_flags_horizontal = 0
+texture = SubResource("GradientTexture2D_fdnlq")
+expand_mode = 3
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="InterfaceHolder/FullInterface/TextureRect" unique_id=1371068144]
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+texture = ExtResource("4_hptm8")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Progress" type="Label" parent="InterfaceHolder/FullInterface" unique_id=1303512998]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 185.0
+offset_top = -50.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0:19/31:99"
+label_settings = SubResource("LabelSettings_wsu2k")
+vertical_alignment = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InterfaceHolder/FullInterface" unique_id=1255661485]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="InterfaceHolder/FullInterface/VBoxContainer" unique_id=1571684229]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer2" unique_id=968360559]
+layout_mode = 2
+text = "TITLE"
+label_settings = SubResource("LabelSettings_6iyac")
+clip_text = true
+
+[node name="Artit" type="Label" parent="InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer2" unique_id=1594212855]
+layout_mode = 2
+text = "ARTIST"
+label_settings = SubResource("LabelSettings_fdnlq")
+clip_text = true
+
+[node name="Album" type="Label" parent="InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer2" unique_id=434177385]
+layout_mode = 2
+text = "ALBUM"
+label_settings = SubResource("LabelSettings_jkdf5")
+clip_text = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InterfaceHolder/FullInterface/VBoxContainer" unique_id=1091310261]
+layout_mode = 2
+
+[node name="GoBack" type="Button" parent="InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer" unique_id=1229237570]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+icon = ExtResource("5_d1ilt")
+expand_icon = true
+
+[node name="PausePlay" type="Button" parent="InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer" unique_id=1822291703]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("6_6iyac")
+expand_icon = true
+
+[node name="Loop" type="Button" parent="InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer" unique_id=1919587878]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("7_fdnlq")
+expand_icon = true
+
+[node name="Skip" type="Button" parent="InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer" unique_id=133075482]
+custom_minimum_size = Vector2(42, 36)
+layout_mode = 2
+icon = ExtResource("8_jkdf5")
+expand_icon = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer" unique_id=1007920060]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1811164513]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.0
+
+[node name="Button" type="Button" parent="InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer" unique_id=988865873]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+icon = ExtResource("9_wsu2k")
+expand_icon = true
+
+[node name="VSlider" type="VSlider" parent="InterfaceHolder/FullInterface/VBoxContainer/HBoxContainer/Button" unique_id=981008252]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.0
+offset_top = -111.0
+offset_right = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+script = ExtResource("10_d1ilt")
+
+[node name="Panel" type="Panel" parent="InterfaceHolder/FullInterface" unique_id=1241981314]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.24000001
+anchor_bottom = 0.753
+offset_right = 0.519989
+offset_bottom = -0.059020996
+
+[node name="SourcesRoot" type="VBoxContainer" parent="InterfaceHolder/FullInterface/Panel" unique_id=2011065913]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="InterfaceHolder/FullInterface/Panel/SourcesRoot" unique_id=1139116413]
+layout_mode = 2
+text = "Sources:"
+
+[node name="AddDialog" type="Panel" parent="InterfaceHolder/FullInterface/Panel/SourcesRoot" unique_id=1695223686 node_paths=PackedStringArray("SourcesRoot", "NameEdit", "Dialog", "DirectoryLabel", "AddButton")]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+script = ExtResource("12_fdnlq")
+SourcesRoot = NodePath("..")
+NameEdit = NodePath("VBoxContainer/NameEdit")
+Dialog = NodePath("VBoxContainer/DirSelect/FileDialog")
+DirectoryLabel = NodePath("VBoxContainer/DirDisplay")
+AddButton = NodePath("VBoxContainer/Button2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InterfaceHolder/FullInterface/Panel/SourcesRoot/AddDialog" unique_id=1274684795]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="InterfaceHolder/FullInterface/Panel/SourcesRoot/AddDialog/VBoxContainer" unique_id=1065512212]
+layout_mode = 2
+text = "Add Source"
+
+[node name="NameEdit" type="LineEdit" parent="InterfaceHolder/FullInterface/Panel/SourcesRoot/AddDialog/VBoxContainer" unique_id=880637161]
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="DirSelect" type="Button" parent="InterfaceHolder/FullInterface/Panel/SourcesRoot/AddDialog/VBoxContainer" unique_id=192358857 node_paths=PackedStringArray("file_dialog")]
+layout_mode = 2
+text = "Select directory"
+script = SubResource("GDScript_6iyac")
+file_dialog = NodePath("FileDialog")
+
+[node name="FileDialog" type="FileDialog" parent="InterfaceHolder/FullInterface/Panel/SourcesRoot/AddDialog/VBoxContainer/DirSelect" unique_id=1146828904]
+oversampling_override = 1.0
+title = "Open a Directory"
+initial_position = 4
+size = Vector2i(744, 360)
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="DirDisplay" type="Label" parent="InterfaceHolder/FullInterface/Panel/SourcesRoot/AddDialog/VBoxContainer" unique_id=25621450]
+layout_mode = 2
+clip_text = true
+
+[node name="Button2" type="Button" parent="InterfaceHolder/FullInterface/Panel/SourcesRoot/AddDialog/VBoxContainer" unique_id=316723766]
+layout_mode = 2
+disabled = true
+text = "Add"
+
+[node name="SourcesContainer" type="VBoxContainer" parent="InterfaceHolder/FullInterface/Panel/SourcesRoot" unique_id=405400634]
+layout_mode = 2
+
+[node name="SearchContainer" type="HBoxContainer" parent="." unique_id=955825789]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.0
+offset_right = 34.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="LineEdit" type="LineEdit" parent="SearchContainer" unique_id=556652431]
+layout_mode = 2
+expand_to_text_length = true
+
+[node name="Button" type="Button" parent="SearchContainer" unique_id=317701807]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+icon = ExtResource("5_kry3j")
+expand_icon = true
+
+[node name="SourceManager" type="Node" parent="." unique_id=729994015 node_paths=PackedStringArray("SourceRoot", "AddDialog")]
+script = ExtResource("14_jkdf5")
+SourceRoot = NodePath("../InterfaceHolder/FullInterface/Panel/SourcesRoot/SourcesContainer")
+AddDialog = NodePath("../InterfaceHolder/FullInterface/Panel/SourcesRoot/AddDialog")
+SourceDisplayScene = ExtResource("15_wsu2k")
