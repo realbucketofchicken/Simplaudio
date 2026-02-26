@@ -1,8 +1,7 @@
 # Simplaudio
-a simple music player that just works
+a simple music player
 
-the v1.x versions are built on a bad codebase, i am working on 2.0 every now and then but it will take a bit for it to be finished
-the music player is very functual though
+the v1.x versions are built on a bad codebase, i am working on fixing it every now and then
 
 ## Translations
 I would apprechiate if you could help out with translations,

@@ -232,11 +232,6 @@ script = ExtResource("1_ubs1p")
 LoopPressed = ExtResource("2_iolk5")
 LoopNotPressed = ExtResource("5_c2g63")
 
-[node name="OSMediaIntigration" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="WallpaperManager" type="Node2D" parent="." node_paths=PackedStringArray("Daytime", "Evening", "Nighttime")]
 script = ExtResource("4_y372l")
 Daytime = NodePath("../Daytime")
@@ -921,7 +916,7 @@ offset_left = -64.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.6.2"
+text = "v1.6.3"
 horizontal_alignment = 2
 
 [node name="SettingsButton" type="Button" parent="."]

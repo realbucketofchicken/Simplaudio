@@ -6,6 +6,7 @@ var songidx:int
 @onready var songname: Button = $HBoxContainer/Songname
 @onready var dropdown: Button = $HBoxContainer/Dropdown
 @onready var popup_menu: PopupMenu = $PopupMenu
+@export var soung_source: Node
 
 
 signal PlayPressed
@@ -21,12 +22,10 @@ func popupPressed(idx:int):
 			DeletePressed.emit(songidx)
 		1:
 			var songdir = MainScene.instance.CurrentDir + "/" + MainScene.instance.textSongs[songidx]
-			var song = AudioStreamMP3.load_from_file(songdir)
-			var meta:MusicMeta.MusicMetadata =  MusicMeta.new().get_mp3_metadata(song)
-			print(songdir)
-			meta.print_info()
-			if meta.comments:
-				OS.shell_open(meta.comments)
+			var source:String = soung_source.TryGetSongUrl(songdir)
+			print("Source: "+source)
+			if source:
+				OS.shell_open(source)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

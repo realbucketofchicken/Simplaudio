@@ -72,10 +72,13 @@ custom_minimum_size = Vector2(20.505, 0)
 layout_mode = 2
 icon = ExtResource("2_im6ur")
 expand_icon = true
-item_count = 2
-popup/item_0/text = "Change Directory"
-popup/item_1/text = "Delete"
-popup/item_1/id = 1
+item_count = 3
+popup/item_0/text = "Open Directory"
+popup/item_0/id = 2
+popup/item_1/text = "Change Directory"
+popup/item_1/id = 0
+popup/item_2/text = "Delete"
+popup/item_2/id = 1
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a Directory"

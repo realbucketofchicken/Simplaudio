@@ -18,14 +18,16 @@ func _ready() -> void:
 	CorrectlyName()
 	options_dropdown.get_popup().id_pressed.connect(dropdown_pressed)
 
-func dropdown_pressed(Idx:int):
-	match options_dropdown.get_popup().get_item_text(Idx):
-		"Change Directory":
+func dropdown_pressed(Id:int):
+	match Id:
+		0:
 			_on_select_directory_pressed()
-		"Delete":
+		1:
 			confirmation.show()
 		"Rename":
 			pass
+		2:
+			OS.shell_open(PlaylistLocation)
 	Parent.SaveEverything()
 
 func Delete():
