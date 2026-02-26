@@ -114,7 +114,9 @@ func _on_download_request_completed(result: int, response_code: int, headers: Pa
 		for file in files:
 			var actualfile = file.replace("Linux/","").replace("Windows/","").replace("Android/","")
 			print("FILE: " + actualfile)
-			var FileAcess:FileAccess = FileAccess.open(GetLocalPath() + actualfile,FileAccess.WRITE_READ)
+			print("dir: "+actualfile.rsplit("/")[0])
+			DirAccess.open(GetLocalPath()).make_dir(actualfile.rsplit("/")[0])
+			var FileAcess:FileAccess = FileAccess.open(GetLocalPath() + actualfile,FileAccess.WRITE)
 			
 			if FileAcess != null:
 				var downloadedfile = unzipper.read_file(file)
