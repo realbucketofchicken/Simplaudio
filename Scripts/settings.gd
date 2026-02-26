@@ -190,6 +190,7 @@ func _on_reset_bg_pressed() -> void:
 
 
 func _on_now_playing_window_button_toggled(toggled_on: bool) -> void:
+	print("!!! PLAYING NOW TOGGLED TO ",toggled_on)
 	Parent.UsingPlayingNow = toggled_on
 	Parent.SaveEverything()
-	
+	print("!!! PLAYING NOW IS ",Parent.UsingPlayingNow)

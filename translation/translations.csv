@@ -14,7 +14,7 @@ UPDATE,Update,Updaten
 SETTINGS,SETTINGS,EINSTELLUNGEN
 INTIGRATIONS,INTIGRATIONS,INTIGRATIONEN
 DRPC,discord rich presense,Discord aktivitäten
-DRPC_NOTE,NOTE: After disableing a restart is needed,Nach deaktivieren neustarten
+DRPC_NOTE,NOTE: After disableing simplaudio needs a restart,Nach dem deaktivieren muss Simplaudio neugestartet werden
 LOOKS,LOOKS,AUSEHEN
 BS_SELECT,Select Background,Hintergrund auswählen
 RESET_BG,Reset,Zurücksetzen
@@ -72,7 +72,7 @@ UPD_ERR_CLT,a client error occurred,ein client error ist passiert
 UPDT_OUT_END, Is Out!, Ist raus!
 IMPORTANT,(Important),(Wichtig)
 UPD_UPDATING,Updating…,Updated…
-UPD_ERR_CODE,DOWNLOAD FAILED ERROR CODE: ,DOWLOAD FEHLER CODE: 
+UPD_ERR_CODE,DOWNLOAD FAILED ERROR CODE: ,"DOWLOAD FEHLER, CODE: "
 UPD_UNZIP_PANT,unzipping…,entpacken…
 SONG_SEARCH,Search…,Suchen…
 FOLDER_SELECT,Select Current Folder,Wähle einen ordner aus
@@ -84,3 +84,8 @@ DL_LIST,Download Playlist,Playliste Herunterladen
 DL_DIALOG,Do you want to download the song or the Entire playlist?,Willst du die playlist herunterladen?
 LANGUAGE,Language:,Sprache:
 SELECT,Select ,Auswählen
+OPEN SOURCE,open source,Quelle oeffnen
+Change Directory,Change Directory,Ordner Aendern
+Open Directory,Open Directory,Ordner Oeffnen
+PLAY,Play,Abspielen
+use Up/Down arrow keys to adjust,use Up/Down arrow keys to adjust,Bentzte die Hoch/Runter pfeiltasten zum aendern

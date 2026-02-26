@@ -172,6 +172,7 @@ func _ready() -> void:
 			if data.has("UsingPlayingNow"):
 				UsingPlayingNow = data["UsingPlayingNow"]
 				if UsingPlayingNow:
+					print("!!! using stereamer window !!!")
 					settings_menu_child.now_playing_window_button.button_pressed = true
 			if data.has("OverriddenLocale"):
 				TranslationServer.set_locale(data["OverriddenLocale"])

@@ -64,7 +64,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 focus_mode = 0
-text = "Play"
+text = "PLAY"
 
 [node name="OptionsDropdown" type="MenuButton" parent="HSplitContainer/HBoxContainer"]
 modulate = Color(0.724643, 0.724643, 0.724643, 1)
@@ -77,7 +77,7 @@ popup/item_0/text = "Open Directory"
 popup/item_0/id = 2
 popup/item_1/text = "Change Directory"
 popup/item_1/id = 0
-popup/item_2/text = "Delete"
+popup/item_2/text = "DELETE"
 popup/item_2/id = 1
 
 [node name="FileDialog" type="FileDialog" parent="."]
