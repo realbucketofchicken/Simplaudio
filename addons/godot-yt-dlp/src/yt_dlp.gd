@@ -13,8 +13,7 @@ const yt_dlp_sources: Dictionary = {
 	"macOS": "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos",
 }
 const ffmpeg_sources: Dictionary = {
-	"ffmpeg": "https://github.com/Nolkaloid/godot-youtube-dl/releases/latest/download/ffmpeg.exe",
-	"ffprobe": "https://github.com/Nolkaloid/godot-youtube-dl/releases/latest/download/ffprobe.exe",
+	"ffmpeg": "https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip",
 }
 
 var _downloader: Downloader
@@ -79,9 +78,24 @@ func setup() -> void:
 func _setup_ffmpeg() -> void:
 	if not FileAccess.file_exists("user://ffmpeg.exe"):
 		if OS.get_name() == "Windows":
-			_downloader.download(ffmpeg_sources["ffmpeg"], "user://ffmpeg.exe")
+			print("starting ffmpeg download")
+			_downloader.download(ffmpeg_sources["ffmpeg"], "user://ffmpeg-master-latest-win64-gpl.zip")
 			await _downloader.download_completed
-			print(OS.get_distribution_name())
+			print("ffmpeg download completed")
+			var unzipper:ZIPReader = ZIPReader.new()
+			if unzipper.open("user://ffmpeg-master-latest-win64-gpl.zip") != OK:
+				push_error("something went wrong when trying to unzip ffmpeg!")
+			var ffmpeg_raw = unzipper.read_file("ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe")
+			var ffmpeg_saver = FileAccess.open("user://ffmpeg.exe",FileAccess.WRITE)
+			ffmpeg_saver.store_buffer(ffmpeg_raw)
+			
+			var ffprobe_raw = unzipper.read_file("ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe")
+			var ffprobe_saver = FileAccess.open("user://ffprobe.exe",FileAccess.WRITE)
+			ffprobe_saver.store_buffer(ffprobe_raw)
+			unzipper.read_file("bin/ffprobe.exe")
+			print("finished saving files, removing zip")
+			var zip_access := DirAccess.open("user://")
+			zip_access.remove("user://ffmpeg-master-latest-win64-gpl.zip")
 		elif OS.get_distribution_name() in ["Ubuntu","Linux Mint","Debian"]:
 			var stuff = OS.execute("bash",PackedStringArray(["-c","ffmpeg"]))
 			print(stuff)
@@ -93,9 +107,7 @@ func _setup_ffmpeg() -> void:
 	
 	if not FileAccess.file_exists("user://ffprobe.exe"):
 		if OS.get_name() == "Windows":
-			_downloader.download(ffmpeg_sources["ffprobe"], "user://ffprobe.exe")
-			print(OS.get_distribution_name())
-			await _downloader.download_completed
+			print("ffprobe assumed to be installed correctly")
 		elif OS.get_name() == "Linux":
 			var stuff = OS.execute("bash",PackedStringArray(["-c","ffprobe"]))
 			print(stuff)
